@@ -1,70 +1,79 @@
-import Link from 'next/link';
+import logo from 'assets/logo/logo.png';
+import Image from 'next/image';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
 
-import FooterMenu from 'components/layout/footer-menu';
-import LogoSquare from 'components/logo-square';
-import { getMenu } from 'lib/shopify';
-import { Suspense } from 'react';
+const ForHimData = [
+  { label: 'Men jeans', href: '#' },
+  { label: 'Men jeans', href: '#' },
+  { label: 'Men jeans', href: '#' },
+  { label: 'Men jeans', href: '#' }
+];
+const ForHerData = [
+  { label: 'Women jeans', href: '#' },
+  { label: 'Women jeans', href: '#' },
+  { label: 'Women jeans', href: '#' },
+  { label: 'Women jeans', href: '#' },
+  { label: 'Women jeans', href: '#' }
+];
 
-const { COMPANY_NAME, SITE_NAME } = process.env;
-
-export default async function Footer() {
-  const currentYear = new Date().getFullYear();
-  const copyrightDate = 2023 + (currentYear > 2023 ? `-${currentYear}` : '');
-  const skeleton = 'w-full h-6 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700';
-  const menu = await getMenu('next-js-frontend-footer-menu');
-  const copyrightName = COMPANY_NAME || SITE_NAME || '';
-
+const footer = () => {
   return (
-    <footer className="text-sm text-neutral-500 dark:text-neutral-400">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 border-t border-neutral-200 px-6 py-12 text-sm dark:border-neutral-700 md:flex-row md:gap-12 md:px-4 min-[1320px]:px-0">
-        <div>
-          <Link className="flex items-center gap-2 text-black dark:text-white md:pt-1" href="/">
-            <LogoSquare size="sm" />
-            <span className="uppercase">{SITE_NAME}</span>
-          </Link>
+    <div>
+      <div className=" w-full border-y-2  border-gray-300 p-10 text-center">
+        <h1 className="text-2xl font-bold transition duration-300 hover:cursor-pointer hover:text-primary">
+          SALE UP TO 70% OFF FOR ALL CLOTHES & FASHION ITEMS, ON ALL BRANDS
+        </h1>
+      </div>
+      <div className="mx-auto grid border-b-2 border-gray-300 px-10 py-16 md:grid-cols-5">
+        <div className="sm:col-span-2">
+          <Image src={logo} alt="logo" />
+          <h2 className="mt-2 text-xl	 font-bold leading-10 tracking-wider">
+            The best look anytime, anywhere.
+          </h2>
         </div>
-        <Suspense
-          fallback={
-            <div className="flex h-[188px] w-[200px] flex-col gap-2">
-              <div className={skeleton} />
-              <div className={skeleton} />
-              <div className={skeleton} />
-              <div className={skeleton} />
-              <div className={skeleton} />
-              <div className={skeleton} />
-            </div>
-          }
-        >
-          <FooterMenu menu={menu} />
-        </Suspense>
-        <div className="md:ml-auto">
-          <a
-            className="flex h-8 w-max flex-none items-center justify-center rounded-md border border-neutral-200 bg-white text-xs text-black dark:border-neutral-700 dark:bg-black dark:text-white"
-            aria-label="Deploy on Vercel"
-            href="https://vercel.com/templates/next.js/nextjs-commerce"
-          >
-            <span className="px-3">▲</span>
-            <hr className="h-full border-r border-neutral-200 dark:border-neutral-700" />
-            <span className="px-3">Deploy</span>
-          </a>
+        <div className="p-3">
+          <h2 className="trading-wider  mb-6 text-lg font-medium">For Her</h2>
+          <ul>
+            {ForHerData.map((item, index) => {
+              return (
+                <li
+                  key={index}
+                  className="mb-2 text-base font-light text-gray-600 hover:cursor-pointer hover:text-primary"
+                >
+                  <a href={item.href}>{item.label}</a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <div className="p-3">
+          <h2 className="trading-wider  mb-6 text-lg font-medium">For Him</h2>
+          <ul>
+            {ForHimData.map((item, index) => {
+              return (
+                <li
+                  key={index}
+                  className="mb-2 text-base font-light text-gray-600 hover:cursor-pointer hover:text-primary"
+                >
+                  <a href={item.href}>{item.label}</a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <div className="flex flex-col gap-6 p-3">
+          <h2 className="trading-wider  text-lg  font-medium">Subscribe</h2>
+          <Input type="email" placeholder="Your email address .." />
+          {/* @ts-ignore */}
+          <Button variant="default">Subscribe</Button>
         </div>
       </div>
-      <div className="border-t border-neutral-200 py-6 text-sm dark:border-neutral-700">
-        <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-1 px-4 md:flex-row md:gap-0 md:px-4 min-[1320px]:px-0">
-          <p>
-            &copy; {copyrightDate} {copyrightName}
-            {copyrightName.length && !copyrightName.endsWith('.') ? '.' : ''} All rights reserved.
-          </p>
-          <hr className="mx-4 hidden h-4 w-[1px] border-l border-neutral-400 md:inline-block" />
-          <p>Designed in California</p>
-          <p className="md:ml-auto">
-            Crafted by{' '}
-            <a href="https://vercel.com" className="text-black dark:text-white">
-              ▲ Vercel
-            </a>
-          </p>
-        </div>
+      <div className="mx-auto w-full p-6 text-center">
+        <p>Copyright © 2023 Panacloud</p>
       </div>
-    </footer>
+    </div>
   );
-}
+};
+
+export default footer;
