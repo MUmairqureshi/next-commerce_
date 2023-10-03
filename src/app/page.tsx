@@ -30,9 +30,9 @@ export default async function HomePage() {
       <Comfort />
       <Dressshirt />
       <Logos />
-      {/*   <Commutiny/> */}
-      {/* <ThreeItemGrid /> */}
-      {/* <Suspense>
+      {/* <Commutiny/> */}
+      {/* <ThreeItemGrid />
+      <Suspense>
         <Carousel />
         <Suspense>
           <Footer />
