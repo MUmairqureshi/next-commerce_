@@ -6,7 +6,8 @@ import {
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import Image, { StaticImageData } from 'next/image';
 import ProductCart from '../product-cart';
 import category_hero from '/components/images/category_hero.webp';
@@ -14,6 +15,260 @@ import product_1 from '/components/images/product_1.webp';
 import product_2 from '/components/images/product_2.webp';
 import product_3 from '/components/images/product_3.webp';
 import product_4 from '/components/images/product_4.webp';
+
+const SHEET_SIDES = ['bottom'] as const;
+
+type SheetSide = (typeof SHEET_SIDES)[number];
+
+export function SheetSide() {
+  return (
+    <div className="flex gap-2 ">
+      {SHEET_SIDES.map((side) => (
+        <Sheet key={side}>
+          <SheetTrigger asChild>
+            <div>
+              <Button className="rounded-3xl bg-slate-200 text-slate-600">
+                Color{' '}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  className="lucide lucide-chevron-down ml-1"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </Button>
+            </div>
+          </SheetTrigger>
+          <SheetContent side={side} className="w-full bg-white">
+            <h1 className="flex items-center justify-between">
+              <div className="text-xl">Colors</div>
+              <div>
+                <SheetClose className="right-0 top-0">
+                  <X className="h-4 w-4" />
+                </SheetClose>
+              </div>
+            </h1>
+            <div className="mt-8 flex h-28 flex-col gap-y-2 overflow-y-auto">
+              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                <Checkbox id="Asphalt" />
+                <p>Asphalt</p>
+              </div>
+              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                <Checkbox id="Betta Fish" />
+                <p>Betta Fish</p>
+              </div>
+              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                <Checkbox id="Black" />
+                <p>Black</p>
+              </div>
+              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                <Checkbox id="Black Constellation" />
+                <p>Black Constellation</p>
+              </div>
+              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                <Checkbox id="Blue" />
+                <p>Blue</p>
+              </div>
+              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                <Checkbox id="Blue Ditsy" />
+                <p>Blue Ditsy</p>
+              </div>
+            </div>
+            <div className="mt-8 flex justify-between gap-x-2">
+              <Button className="w-full border-[1px]">CLEAR</Button>
+              <Button className="w-full border-[1px] border-slate-950 bg-slate-950  text-white">
+                APPLY
+              </Button>
+            </div>
+          </SheetContent>
+
+          <SheetTrigger asChild>
+            <div>
+              <Button className="rounded-3xl bg-slate-200 text-slate-600">
+                Size{' '}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  className="lucide lucide-chevron-down ml-1"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </Button>
+            </div>
+          </SheetTrigger>
+          <SheetContent side={side} className="w-full bg-white">
+            <h1 className="flex items-center justify-between">
+              <div className="text-xl">Size</div>
+              <div>
+                <SheetClose className="right-0 top-0">
+                  <X className="h-4 w-4" />
+                </SheetClose>
+              </div>
+            </h1>
+            <div className="mt-8 flex h-28 flex-col gap-y-2 overflow-y-auto">
+              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                <Checkbox id="30" />
+                <p>30</p>
+              </div>
+              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                <Checkbox id="34" />
+                <p>34</p>
+              </div>
+              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                <Checkbox id="39" />
+                <p>39</p>
+              </div>
+              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                <Checkbox id="44" />
+                <p>44</p>
+              </div>
+              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                <Checkbox id="49" />
+                <p>49</p>
+              </div>
+            </div>
+            <div className="mt-8 flex justify-between gap-x-2">
+              <Button className="w-full border-[1px]">CLEAR</Button>
+              <Button className="w-full border-[1px] border-slate-950 bg-slate-950  text-white">
+                APPLY
+              </Button>
+            </div>
+          </SheetContent>
+
+          <SheetTrigger asChild>
+            <div>
+              <Button className="rounded-3xl bg-slate-200 text-slate-600">
+                Style{' '}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  className="lucide lucide-chevron-down ml-1"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </Button>
+            </div>
+          </SheetTrigger>
+          <SheetContent side={side} className="w-full bg-white">
+            <h1 className="flex items-center justify-between">
+              <div className="text-xl">Style</div>
+              <div>
+                <SheetClose className="right-0 top-0">
+                  <X className="h-4 w-4" />
+                </SheetClose>
+              </div>
+            </h1>
+            <div className="mt-8 flex h-28 flex-col gap-y-2 overflow-y-auto">
+              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                <Checkbox id="Blazer" />
+                <p>Blazer</p>
+              </div>
+              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                <Checkbox id="Bow Tie" />
+                <p>Bow Tie</p>
+              </div>
+              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                <Checkbox id="Classic Dress Shirt" />
+                <p>Classic Dress Shirt</p>
+              </div>
+              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                <Checkbox id="Dress Shirt" />
+                <p>Dress Shirt</p>
+              </div>
+            </div>
+            <div className="mt-8 flex justify-between gap-x-2">
+              <Button className="w-full border-[1px]">CLEAR</Button>
+              <Button className="w-full border-[1px] border-slate-950 bg-slate-950  text-white">
+                APPLY
+              </Button>
+            </div>
+          </SheetContent>
+
+          <SheetTrigger asChild>
+            <div>
+              <Button className="rounded-3xl bg-slate-200 text-slate-600">
+                Sort{' '}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  className="lucide lucide-chevron-down ml-1"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </Button>
+            </div>
+          </SheetTrigger>
+          <SheetContent side={side} className="w-full bg-white">
+            <h1 className="flex items-center justify-between">
+              <div className="text-xl">Sort</div>
+              <div>
+                <SheetClose className="right-0 top-0">
+                  <X className="h-4 w-4" />
+                </SheetClose>
+              </div>
+            </h1>
+            <div className="mt-8 flex h-28 flex-col gap-y-2 overflow-y-auto">
+              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                <Checkbox id="Featured" />
+                <p>Featured</p>
+              </div>
+              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                <Checkbox id="Best Selling" />
+                <p>Best Selling</p>
+              </div>
+              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                <Checkbox id="Alphabetically, A-Z" />
+                <p>Alphabetically, A-Z</p>
+              </div>
+              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                <Checkbox id="Price, Low To High" />
+                <p>Price, Low To High</p>
+              </div>
+              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                <Checkbox id="Price, High To Low" />
+                <p>Price, High To Low</p>
+              </div>
+            </div>
+            <div className="mt-8 flex justify-between gap-x-2">
+              <Button className="w-full border-[1px]">CLEAR</Button>
+              <Button className="w-full border-[1px] border-slate-950 bg-slate-950  text-white">
+                APPLY
+              </Button>
+            </div>
+          </SheetContent>
+        </Sheet>
+      ))}
+    </div>
+  );
+}
 
 type Product = {
   _id: number;
@@ -81,155 +336,159 @@ export default async function CategoryPage({ params }: { params: { gender: strin
         <div className=" basis-4/12 lg:basis-1/4 xl:basis-1/5 ">
           {/* <MenProductSideBar /> */}
 
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="colors" className="border-black">
-              <AccordionTrigger className="mb-4 rounded-sm px-3 py-2 text-sm hover:bg-slate-100 hover:no-underline">
-                Colors
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="flex items-center gap-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="Asphalt" />
-                  <p>Asphalt</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="Betta Fish" />
-                  <p>Betta Fish</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="Black" />
-                  <p>Black</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="Black Constellation" />
-                  <p>Black Constellation</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="Blue" />
-                  <p>Blue</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="Blue Ditsy" />
-                  <p>Blue Ditsy</p>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="Size" className="border-black">
-              <AccordionTrigger className="mb-4 mt-2 rounded-sm px-3 py-2 text-sm hover:bg-slate-100 hover:no-underline">
-                Size
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="flex items-center gap-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="0" />
-                  <p>0</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="2" />
-                  <p>2</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="4XL" />
-                  <p>4XL</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="4" />
-                  <p>4</p>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="size" className="border-black">
-              <AccordionTrigger className="mb-4 mt-2 rounded-sm px-3 py-2 text-sm hover:bg-slate-100 hover:no-underline">
-                Size
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="flex items-center gap-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="30" />
-                  <p>30</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="34" />
-                  <p>34</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="39" />
-                  <p>39</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="44" />
-                  <p>44</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="49" />
-                  <p>49</p>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="Style" className="border-black">
-              <AccordionTrigger className="mb-4 mt-2 rounded-sm px-3 py-2 text-sm hover:bg-slate-100 hover:no-underline">
-                Style
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="flex items-center gap-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="Blazer" />
-                  <p>Blazer</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="Bow Tie" />
-                  <p>Bow Tie</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="Cabana Set" />
-                  <p>Cabana Set</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="Classic Dress Shirt" />
-                  <p>Classic Dress Shirt</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="Dress Shirt" />
-                  <p>Dress Shirt</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="Easy-Care Dress Shirt" />
-                  <p>Easy-Care Dress Shirt</p>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="Sort" className="border-black">
-              <AccordionTrigger className="mb-4 mt-2 rounded-sm px-3 py-2 text-sm hover:bg-slate-100 hover:no-underline">
-                Sort
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="flex items-center gap-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="Featured" />
-                  <p>Featured</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="Best Selling" />
-                  <p>Best Selling</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="Alphabetically, A-Z" />
-                  <p>Alphabetically, A-Z</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="Price, Low To High" />
-                  <p>Price, Low To High</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="Price, High To Low" />
-                  <p>Price, High To Low</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="Date, Old To New" />
-                  <p>Date, Old To New</p>
-                </div>
-                <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
-                  <Checkbox id="Date, New To Old" />
-                  <p>Date, New To Old</p>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+          <div className="flex overflow-x-auto md:hidden">{SheetSide()}</div>
+
+          <div className="hidden md:block">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="colors" className="border-black">
+                <AccordionTrigger className="mb-4 rounded-sm px-3 py-2 text-sm hover:bg-slate-100 hover:no-underline">
+                  Colors
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="flex items-center gap-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="Asphalt" />
+                    <p>Asphalt</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="Betta Fish" />
+                    <p>Betta Fish</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="Black" />
+                    <p>Black</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="Black Constellation" />
+                    <p>Black Constellation</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="Blue" />
+                    <p>Blue</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="Blue Ditsy" />
+                    <p>Blue Ditsy</p>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="Size" className="border-black">
+                <AccordionTrigger className="mb-4 mt-2 rounded-sm px-3 py-2 text-sm hover:bg-slate-100 hover:no-underline">
+                  Size
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="flex items-center gap-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="0" />
+                    <p>0</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="2" />
+                    <p>2</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="4XL" />
+                    <p>4XL</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="4" />
+                    <p>4</p>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="size" className="border-black">
+                <AccordionTrigger className="mb-4 mt-2 rounded-sm px-3 py-2 text-sm hover:bg-slate-100 hover:no-underline">
+                  Size
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="flex items-center gap-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="30" />
+                    <p>30</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="34" />
+                    <p>34</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="39" />
+                    <p>39</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="44" />
+                    <p>44</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="49" />
+                    <p>49</p>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="Style" className="border-black">
+                <AccordionTrigger className="mb-4 mt-2 rounded-sm px-3 py-2 text-sm hover:bg-slate-100 hover:no-underline">
+                  Style
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="flex items-center gap-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="Blazer" />
+                    <p>Blazer</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="Bow Tie" />
+                    <p>Bow Tie</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="Cabana Set" />
+                    <p>Cabana Set</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="Classic Dress Shirt" />
+                    <p>Classic Dress Shirt</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="Dress Shirt" />
+                    <p>Dress Shirt</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="Easy-Care Dress Shirt" />
+                    <p>Easy-Care Dress Shirt</p>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="Sort" className="border-black">
+                <AccordionTrigger className="mb-4 mt-2 rounded-sm px-3 py-2 text-sm hover:bg-slate-100 hover:no-underline">
+                  Sort
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="flex items-center gap-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="Featured" />
+                    <p>Featured</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="Best Selling" />
+                    <p>Best Selling</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="Alphabetically, A-Z" />
+                    <p>Alphabetically, A-Z</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="Price, Low To High" />
+                    <p>Price, Low To High</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="Price, High To Low" />
+                    <p>Price, High To Low</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="Date, Old To New" />
+                    <p>Date, Old To New</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 pl-3 hover:bg-slate-100">
+                    <Checkbox id="Date, New To Old" />
+                    <p>Date, New To Old</p>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
         </div>
         <div className="basis-8/12 lg:basis-3/4 xl:basis-4/5">
           {/* <MenProducts /> */}

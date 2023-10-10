@@ -3,20 +3,12 @@ import { motion } from 'framer-motion';
 import Image, { StaticImageData } from 'next/image';
 import { FC } from 'react';
 
-type ProductColor = {
-  color: string;
-  imageSrc: StaticImageData;
-  priceChange: number;
-};
-
 type Product = {
   _id: number;
   title: string;
   category: string;
   price: number;
-  defaultColor?: string;
   imageUrl: StaticImageData;
-  colors?: ProductColor[];
 };
 
 const ProductCart: FC<{ item: Product }> = ({ item }) => {
