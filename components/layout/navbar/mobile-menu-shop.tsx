@@ -1,22 +1,34 @@
 'use client';
 import { Dialog, Transition } from '@headlessui/react';
-import { Bars3Icon, UserIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { UserIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
-import { Star } from 'lucide-react';
+import { Bird, ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
-import MobileShopDropDown from './mobile-menu-shop';
 import SearchMobile from './searchMobile';
 
-export default function MobileMenu({ men }: { men: string[] }) {
+
+export default function MobileShopDropDown() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
   const openMobileMenu = () => setIsOpen(true);
   const closeMobileMenu = () => setIsOpen(false);
-
+  const men=[
+    {label:'Shop',href:"#"},
+    {label:'New Arrivals',href:"#"},
+    {label:'Suits & Blazzers',href:"#"},
+    {label:'Vests',href:"#"},
+    {label:'Dress Shirts',href:"#"},
+    {label:'Dress Pants',href:"#"},
+    {label:'Sweaters & Jacket',href:"#"},
+    {label:'Casual Shirts & Sets',href:"#"},
+    {label:'Casual Pants & Shorts',href:"#"},
+    {label:'Accessories',href:"#"},
+    {label:'Gift Card',href:"#"},
+  ]
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 768) {
@@ -36,9 +48,11 @@ export default function MobileMenu({ men }: { men: string[] }) {
       <button
         onClick={openMobileMenu}
         aria-label="Open mobile menu"
-        className="flex h-11 w-11 items-center justify-center rounded-md   text-black transition-colors dark:border-neutral-700 dark:text-white lg:hidden"
+        className="text-md flex w-full justify-between font-thin text-white transition-colors hover:text-neutral-500 dark:text-white"
       >
-        <Bars3Icon className="h-6" />
+        Shop 
+        <ChevronRight/>
+        
       </button>
       <Transition show={isOpen}>
         <Dialog onClose={closeMobileMenu} className="relative z-50">
@@ -62,60 +76,66 @@ export default function MobileMenu({ men }: { men: string[] }) {
             leaveFrom="translate-x-0"
             leaveTo="translate-x-[-100%]"
           >
-            <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-[90%] flex-col   bg-[#003445] pb-6 dark:bg-black">
+            <Dialog.Panel className="fixed overflow-y-scroll bottom-0 left-0 right-0 top-0 flex h-full w-[90%] flex-col   bg-[#003445] pb-6 dark:bg-black">
               <div className="border-b-2  p-4 px-8  ">
-                <motion.div
-                 viewport={{ once: false }}
-                 initial={{ opacity: 0, x: 24 }}
-       whileInView={{ opacity: 1, x: 0 }}
-           transition={{ duration: 0.3}}
-                 className=" mt-4 -ml-8 flex w-full  items-baseline">
+              <motion.div
+              viewport={{ once: false }}
+              initial={{ opacity: 0, x: 24 }}
+    whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.3}}
+               className="mt-4 flex w-full  items-baseline">
                   <button
-                    className="  flex h-11 w-11 items-center justify-center rounded-md font-extrabold     text-white transition-colors dark:border-neutral-700 dark:text-white"
                     onClick={closeMobileMenu}
                     aria-label="Close mobile menu"
-                  >
-                    <XMarkIcon className="h-6" />
-                  </button>
-                </motion.div>
-                <motion.div
-                viewport={{ once: false }}
-                initial={{ opacity: 0, x: 24 }}
-      whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3}}
-           className='mb-6' >
+                    className="text-md font-bold border-b-0 pb-4 border-white flex w-full justify-between text-white transition-colors hover:text-neutral-500 dark:text-white"
+                    >
+                      Shop 
+                      <ChevronLeft/>
+                    </button>
+</motion.div>
+                <motion.div viewport={{ once: false }}
+                 initial={{ opacity: 0, x: 24 }}
+       whileInView={{ opacity: 1, x: 0 }}
+           transition={{ duration: 0.3}} className="mb-6 flex w-full  items-baseline">
+                 
                 <SearchMobile/>
+
                 </motion.div>
+                
                 {men.length ? (
                   <ul className="flex w-full    flex-col">
                     {men.map((item,ind) => (
-                      
-                      <motion.li
+                      <motion.li 
                       viewport={{ once: false }}
-                  initial={{ opacity: 0, x: 24 }}
-        whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay:0.12*ind}} 
-        className="text-sm py-2 font-thin text-white transition-colors hover:text-neutral-500 dark:text-white">
-                        {item === "Shop" ? (
-                      <MobileShopDropDown />
-                        ) : (       
-                        <Link href="/to" onClick={closeMobileMenu}>
-                          {item}
-                        </Link>)}
+                      initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.2, delay:0.1*ind}} 
+                       className="text-sm py-2 font-thin text-white transition-colors hover:text-neutral-500 dark:text-white">
+                        <Link href={item.href} onClick={closeMobileMenu}>
+                          {item.label}
+                        </Link>
                       </motion.li>
                     ))}
                   </ul>
                 ) : null}
 
-                
-              </div>
-              <div className="p-4 px-6">
+                <motion.div
+                 viewport={{ once: false }}
+                 initial={{ opacity: 0, x: 24 }}
+       whileInView={{ opacity: 1, x: 0 }}
+           transition={{ duration: 0.2,delay:window.innerWidth >= 768 ? 1.2 : 0}}
+                className='my-4 w-full flex justify-center items-center gap-3 border-[1px] border-white text-white p-2'>
+                <Bird size="30" className='mb-3'/>
+                  Our Design & Fit
+              </motion.div>
+                </div>
+              <div className="p-4 pb-10 px-6">
                   <ul className="text-white space-y-3">
                     <motion.li 
                      viewport={{ once: false }}
                      initial={{ opacity: 0, x: 24 }}
            whileInView={{ opacity: 1, x: 0 }}
-               transition={{ duration: 0.3, delay:0.7}}  className="flex text-white">
+               transition={{ duration: 0.2,delay:window.innerWidth >= 768 ? 1.4 : 0}}  className="flex text-white">
                       <p className="flex">
                         
                         <UserIcon className={clsx('h-6 w-8 font-extrabold  text-white mr-2 ')} />
@@ -125,7 +145,7 @@ export default function MobileMenu({ men }: { men: string[] }) {
                     <motion.li viewport={{ once: false }}
                      initial={{ opacity: 0, x: 24 }}
            whileInView={{ opacity: 1, x: 0 }}
-               transition={{ duration: 0.3, delay:0.8}}  className="flex text-white">
+               transition={{ duration: 0.2,delay:window.innerWidth >= 768 ? 1.6 : 0}}  className="flex text-white">
                       <p className="flex">
                         
                         <Star className={clsx('h-6 w-8 font-extrabold  text-white mr-2')} />

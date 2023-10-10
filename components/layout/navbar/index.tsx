@@ -1,18 +1,16 @@
-import { UserIcon } from '@heroicons/react/24/outline';
-import { Suspense } from 'react';
-import clsx from 'clsx';
+'use client'
 
-import { getMenu } from 'lib/shopify';
-import Cart from 'components/cart';
-import OpenCart from 'components/cart/open-cart';
-import { Menu } from 'lib/shopify/types';
+import { UserIcon } from '@heroicons/react/24/outline';
+// import { LuBird } from "react-icons/lu";
+// import { getMenu } from 'lib/shopify';
 import Link from 'next/link';
+import { DropdownMenuCheckboxes } from './dropdown';
 import MobileMenu from './mobile-menu';
 import Search from './search';
 const { SITE_NAME } = process.env;
 
 export default async function Navbar() {
-  const menu = await getMenu('next-js-frontend-header-menu');
+
   const men = ['New', 'Shop', 'Our Story', 'The Dapper Scouts', 'Blog', 'Pre-Loved'];
   return (
     <div className="h-full w-full">
@@ -21,46 +19,54 @@ export default async function Navbar() {
           THE GEORGIE SUIT - RESTOCKED IN BURGUNDY, OLIVE, ROYAL & SLATE BLUE! SHOP NOW{' '}
         </p>{' '}
       </div>
-      <div className=" relative flex  items-center justify-between border border-b-2 p-4 lg:px-16">
-        <div className="block flex-none md:hidden">
+      <div className=" relative flex  items-center justify-between border  border-b-2 p-4 lg:px-20">
+        <div className="block flex-none lg:hidden">
           <MobileMenu men={men} />
         </div>
         <div className="flex w-full  justify-between">
-          <div className="flex w-full md:w-1/3">
+          <div className="flex w-full lg:w-1/3">
             <Link
               href="/"
-              className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6"
+              className="mr-2 flex w-full items-center justify-center lg:mr-6"
             >
-              <div className="ml-2 flex-none text-sm font-medium uppercase md:hidden lg:block">
+              <div className="ml-2 flex-none text-sm font-medium uppercase ">
                 <img src="https://kirrinfinch.com/cdn/shop/t/149/assets/kf-logo.svg?v=99177132444844244501693863898" />{' '}
               </div>
             </Link>
 
             {men.length ? (
-              <ul className=" ml-14 hidden w-full gap-6   text-sm md:flex md:items-center ">
+              <ul className="ml-20 hidden gap-8  text-sm lg:flex lg:items-center ">
                 {men.map((item) => (
-                  <li>
+                  <li className=' w-full'>
+                     {item === "Shop" ? (
+        <DropdownMenuCheckboxes />
+      ) : (       
                     <Link
-                      href="/to"
-                      className="text-baseline  w-full    items-baseline text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300 "
+                      href="#"
+                      className="text-baseline w-full items-baseline text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300 "
                     >
                       {item}
                     </Link>
-                  </li>
+                    )}
+                  </li>                    
                 ))}
               </ul>
             ) : null}
           </div>
-
-          <div className="flex items-baseline justify-end text-xl font-bold md:w-1/3">
-            <div className="hidden justify-center font-bold md:flex md:w-1/3">
+          <div className="flex items-center justify-end text-xl ">
+            <div className="justify-center relative items-center flex gap-x-6">
+            
+              <div className="hidden sm:block">
               <Search />
-              <UserIcon className={clsx('h-6 w-8  font-extrabold ')} />{' '}
+              </div>
+              <div className="right-0 top-0 flex h-full items-center font-extrabold">
+        <UserIcon className="h-6  font-extrabold " />
+      </div>
             </div>
 
-            <Suspense fallback={<OpenCart />}>
+            {/* <Suspense fallback={<OpenCart />}>
               <Cart />
-            </Suspense>
+            </Suspense> */}
           </div>
         </div>
       </div>
