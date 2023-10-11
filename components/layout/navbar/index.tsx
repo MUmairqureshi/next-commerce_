@@ -1,8 +1,7 @@
-'use client'
 
 import { UserIcon } from '@heroicons/react/24/outline';
 // import { LuBird } from "react-icons/lu";
-// import { getMenu } from 'lib/shopify';
+import { getMenu } from 'lib/shopify';
 import Link from 'next/link';
 import { DropdownMenuCheckboxes } from './dropdown';
 import MobileMenu from './mobile-menu';
@@ -10,7 +9,8 @@ import Search from './search';
 const { SITE_NAME } = process.env;
 
 export default async function Navbar() {
-
+  const menu = await getMenu('main-menu');
+  console.log(menu);
   const men = ['New', 'Shop', 'Our Story', 'The Dapper Scouts', 'Blog', 'Pre-Loved'];
   return (
     <div className="h-full w-full">

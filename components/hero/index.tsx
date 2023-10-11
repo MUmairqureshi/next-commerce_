@@ -1,8 +1,16 @@
-import React from 'react';
+import { getCollectionProducts } from 'lib/shopify';
 
-export function Hero() {
+export async function Hero() {
+  const homepageItems = await getCollectionProducts({
+    collection: 'Home Page'
+  });
+
+  if (!homepageItems[0]) return null;
+
+  const [firstProduct] = homepageItems;
+  console.log(firstProduct);
   return (
-    // <div className='w-full h-full item-center relative'>
+    // <div className='w-full h-full item-center relative'>s
     //     <div className=' '>
     //         {/* <img src='https://kirrinfinch.com/cdn/shop/files/Hero_HomePage_Banner_1500x.png?v=1692199151' className="   w-full h-full object-cover   " /> */}
     //     </div>
