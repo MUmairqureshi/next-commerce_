@@ -6,15 +6,47 @@ import {
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Sheet, SheetClose, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { ChevronLeft, ChevronRight, X } from 'lucide-react';
-import Image, { StaticImageData } from 'next/image';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { getCollectionProducts } from 'lib/shopify';
+import { Product } from 'lib/shopify/types';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
 import ProductCart from '../product-cart';
 import category_hero from '/components/images/category_hero.webp';
-import product_1 from '/components/images/product_1.webp';
-import product_2 from '/components/images/product_2.webp';
-import product_3 from '/components/images/product_3.webp';
-import product_4 from '/components/images/product_4.webp';
+
+export default async function Hero(params: any) {
+  const latestProduct = await getCollectionProducts({
+    collection: 'all-new-arrivals-1'
+  });
+  // console.log("Latest Product", latestProduct)
+  return (
+    <section>
+      <CategoryPage item={latestProduct} params={params} />
+    </section>
+  );
+}
+
+// export async function generateMetadata({
+//   params
+// }: {
+//   params: { page: string };
+// }): Promise<Metadata> {
+//   const page = await getPage(params.page);
+
+//   if (!page) return notFound();
+
+//   return {
+//     title: page.seo?.title || page.title,
+//     description: page.seo?.description || page.bodySummary,
+//     openGraph: {
+//       publishedTime: page.createdAt,
+//       modifiedTime: page.updatedAt,
+//       type: 'article'
+//     }
+//   };
+// }
+
+// console.log("before ", latestProduct.map((products:any) => products.title))
 
 const SHEET_SIDES = ['bottom'] as const;
 
@@ -46,46 +78,43 @@ export function SheetSide() {
               </Button>
             </div>
           </SheetTrigger>
-          <SheetContent side={side} className="w-full bg-white">
-            <h1 className="flex items-center justify-between">
+          <SheetContent side={side} className="flex w-full flex-col place-items-end bg-white">
+            <div className="flex w-full flex-col items-start">
               <div className="text-xl">Colors</div>
-              <div>
-                <SheetClose className="right-0 top-0">
-                  <X className="h-4 w-4" />
-                </SheetClose>
+              <div className="w-full">
+                <div className="mt-8 flex h-28 flex-col gap-y-2 overflow-y-auto">
+                  <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                    <Checkbox id="Asphalt" />
+                    <p>Asphalt</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                    <Checkbox id="Betta Fish" />
+                    <p>Betta Fish</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                    <Checkbox id="Black" />
+                    <p>Black</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                    <Checkbox id="Black Constellation" />
+                    <p>Black Constellation</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                    <Checkbox id="Blue" />
+                    <p>Blue</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                    <Checkbox id="Blue Ditsy" />
+                    <p>Blue Ditsy</p>
+                  </div>
+                </div>
+                <div className="mt-8 flex justify-between gap-x-2">
+                  <Button className="w-full border-[1px]">CLEAR</Button>
+                  <Button className="w-full border-[1px] border-slate-950 bg-slate-950  text-white">
+                    APPLY
+                  </Button>
+                </div>
               </div>
-            </h1>
-            <div className="mt-8 flex h-28 flex-col gap-y-2 overflow-y-auto">
-              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
-                <Checkbox id="Asphalt" />
-                <p>Asphalt</p>
-              </div>
-              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
-                <Checkbox id="Betta Fish" />
-                <p>Betta Fish</p>
-              </div>
-              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
-                <Checkbox id="Black" />
-                <p>Black</p>
-              </div>
-              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
-                <Checkbox id="Black Constellation" />
-                <p>Black Constellation</p>
-              </div>
-              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
-                <Checkbox id="Blue" />
-                <p>Blue</p>
-              </div>
-              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
-                <Checkbox id="Blue Ditsy" />
-                <p>Blue Ditsy</p>
-              </div>
-            </div>
-            <div className="mt-8 flex justify-between gap-x-2">
-              <Button className="w-full border-[1px]">CLEAR</Button>
-              <Button className="w-full border-[1px] border-slate-950 bg-slate-950  text-white">
-                APPLY
-              </Button>
             </div>
           </SheetContent>
 
@@ -110,42 +139,39 @@ export function SheetSide() {
               </Button>
             </div>
           </SheetTrigger>
-          <SheetContent side={side} className="w-full bg-white">
-            <h1 className="flex items-center justify-between">
+          <SheetContent side={side} className="flex w-full flex-col place-items-end bg-white">
+            <div className="flex w-full flex-col items-start">
               <div className="text-xl">Size</div>
-              <div>
-                <SheetClose className="right-0 top-0">
-                  <X className="h-4 w-4" />
-                </SheetClose>
+              <div className="w-full">
+                <div className="mt-8 flex h-28 flex-col gap-y-2 overflow-y-auto">
+                  <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                    <Checkbox id="30" />
+                    <p>30</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                    <Checkbox id="34" />
+                    <p>34</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                    <Checkbox id="39" />
+                    <p>39</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                    <Checkbox id="44" />
+                    <p>44</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                    <Checkbox id="49" />
+                    <p>49</p>
+                  </div>
+                </div>
+                <div className="mt-8 flex justify-between gap-x-2">
+                  <Button className="w-full border-[1px]">CLEAR</Button>
+                  <Button className="w-full border-[1px] border-slate-950 bg-slate-950  text-white">
+                    APPLY
+                  </Button>
+                </div>
               </div>
-            </h1>
-            <div className="mt-8 flex h-28 flex-col gap-y-2 overflow-y-auto">
-              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
-                <Checkbox id="30" />
-                <p>30</p>
-              </div>
-              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
-                <Checkbox id="34" />
-                <p>34</p>
-              </div>
-              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
-                <Checkbox id="39" />
-                <p>39</p>
-              </div>
-              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
-                <Checkbox id="44" />
-                <p>44</p>
-              </div>
-              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
-                <Checkbox id="49" />
-                <p>49</p>
-              </div>
-            </div>
-            <div className="mt-8 flex justify-between gap-x-2">
-              <Button className="w-full border-[1px]">CLEAR</Button>
-              <Button className="w-full border-[1px] border-slate-950 bg-slate-950  text-white">
-                APPLY
-              </Button>
             </div>
           </SheetContent>
 
@@ -170,38 +196,35 @@ export function SheetSide() {
               </Button>
             </div>
           </SheetTrigger>
-          <SheetContent side={side} className="w-full bg-white">
-            <h1 className="flex items-center justify-between">
+          <SheetContent side={side} className="flex w-full flex-col place-items-end bg-white">
+            <div className="flex w-full flex-col items-start">
               <div className="text-xl">Style</div>
-              <div>
-                <SheetClose className="right-0 top-0">
-                  <X className="h-4 w-4" />
-                </SheetClose>
+              <div className="w-full">
+                <div className="mt-8 flex h-28 flex-col gap-y-2 overflow-y-auto">
+                  <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                    <Checkbox id="Blazer" />
+                    <p>Blazer</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                    <Checkbox id="Bow Tie" />
+                    <p>Bow Tie</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                    <Checkbox id="Classic Dress Shirt" />
+                    <p>Classic Dress Shirt</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                    <Checkbox id="Dress Shirt" />
+                    <p>Dress Shirt</p>
+                  </div>
+                </div>
+                <div className="mt-8 flex justify-between gap-x-2">
+                  <Button className="w-full border-[1px]">CLEAR</Button>
+                  <Button className="w-full border-[1px] border-slate-950 bg-slate-950  text-white">
+                    APPLY
+                  </Button>
+                </div>
               </div>
-            </h1>
-            <div className="mt-8 flex h-28 flex-col gap-y-2 overflow-y-auto">
-              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
-                <Checkbox id="Blazer" />
-                <p>Blazer</p>
-              </div>
-              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
-                <Checkbox id="Bow Tie" />
-                <p>Bow Tie</p>
-              </div>
-              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
-                <Checkbox id="Classic Dress Shirt" />
-                <p>Classic Dress Shirt</p>
-              </div>
-              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
-                <Checkbox id="Dress Shirt" />
-                <p>Dress Shirt</p>
-              </div>
-            </div>
-            <div className="mt-8 flex justify-between gap-x-2">
-              <Button className="w-full border-[1px]">CLEAR</Button>
-              <Button className="w-full border-[1px] border-slate-950 bg-slate-950  text-white">
-                APPLY
-              </Button>
             </div>
           </SheetContent>
 
@@ -226,42 +249,39 @@ export function SheetSide() {
               </Button>
             </div>
           </SheetTrigger>
-          <SheetContent side={side} className="w-full bg-white">
-            <h1 className="flex items-center justify-between">
-              <div className="text-xl">Sort</div>
-              <div>
-                <SheetClose className="right-0 top-0">
-                  <X className="h-4 w-4" />
-                </SheetClose>
+          <SheetContent side={side} className="flex w-full flex-col place-items-end bg-white">
+            <div className="flex w-full flex-col items-start">
+              <div className="flex text-xl ">Sort</div>
+              <div className="w-full">
+                <div className="mt-8 flex h-28 flex-col gap-y-2 overflow-y-auto">
+                  <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                    <Checkbox id="Featured" />
+                    <p>Featured</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                    <Checkbox id="Best Selling" />
+                    <p>Best Selling</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                    <Checkbox id="Alphabetically, A-Z" />
+                    <p>Alphabetically, A-Z</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                    <Checkbox id="Price, Low To High" />
+                    <p>Price, Low To High</p>
+                  </div>
+                  <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
+                    <Checkbox id="Price, High To Low" />
+                    <p>Price, High To Low</p>
+                  </div>
+                </div>
+                <div className="mt-8 flex justify-between gap-x-2">
+                  <Button className="w-full border-[1px]">CLEAR</Button>
+                  <Button className="w-full border-[1px] border-slate-950 bg-slate-950  text-white">
+                    APPLY
+                  </Button>
+                </div>
               </div>
-            </h1>
-            <div className="mt-8 flex h-28 flex-col gap-y-2 overflow-y-auto">
-              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
-                <Checkbox id="Featured" />
-                <p>Featured</p>
-              </div>
-              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
-                <Checkbox id="Best Selling" />
-                <p>Best Selling</p>
-              </div>
-              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
-                <Checkbox id="Alphabetically, A-Z" />
-                <p>Alphabetically, A-Z</p>
-              </div>
-              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
-                <Checkbox id="Price, Low To High" />
-                <p>Price, Low To High</p>
-              </div>
-              <div className="flex items-center space-x-2 rounded-sm py-1 hover:bg-slate-100">
-                <Checkbox id="Price, High To Low" />
-                <p>Price, High To Low</p>
-              </div>
-            </div>
-            <div className="mt-8 flex justify-between gap-x-2">
-              <Button className="w-full border-[1px]">CLEAR</Button>
-              <Button className="w-full border-[1px] border-slate-950 bg-slate-950  text-white">
-                APPLY
-              </Button>
             </div>
           </SheetContent>
         </Sheet>
@@ -270,46 +290,47 @@ export function SheetSide() {
   );
 }
 
-type Product = {
-  _id: number;
-  title: string;
-  category: string;
-  price: number;
-  imageUrl: StaticImageData;
-};
+// type Product = {
+//   _id: number;
+//   title: string;
+//   category: string;
+//   price: number;
+//   imageUrl: StaticImageData;
+// };
 
-const products: Product[] = [
-  {
-    _id: 1,
-    title: 'The Frances Gray Quarter-Zip Sweater',
-    category: 'Men',
-    price: 110,
-    imageUrl: product_1
-  },
-  {
-    _id: 2,
-    title: 'The Vasa Charcoal Crewneck Sweater (Pre-Order)',
-    category: 'Men',
-    price: 110,
-    imageUrl: product_2
-  },
-  {
-    _id: 3,
-    title: 'The Vasa Burgundy Crewneck Sweater (Pre-Order)',
-    category: 'Men',
-    price: 110,
-    imageUrl: product_3
-  },
-  {
-    _id: 4,
-    title: 'The Vasa Navy Crewneck Sweater (Pre-Order)',
-    category: 'Men',
-    price: 110,
-    imageUrl: product_4
-  }
-];
+// const products: Product[] = [
+//   {
+//     _id: 1,
+//     title: 'The Frances Gray Quarter-Zip Sweater',
+//     category: 'Men',
+//     price: 110,
+//     imageUrl: product_1
+//   },
+//   {
+//     _id: 2,
+//     title: 'The Vasa Charcoal Crewneck Sweater (Pre-Order)',
+//     category: 'Men',
+//     price: 110,
+//     imageUrl: product_2
+//   },
+//   {
+//     _id: 3,
+//     title: 'The Vasa Burgundy Crewneck Sweater (Pre-Order)',
+//     category: 'Men',
+//     price: 110,
+//     imageUrl: product_3
+//   },
+//   {
+//     _id: 4,
+//     title: 'The Vasa Navy Crewneck Sweater (Pre-Order)',
+//     category: 'Men',
+//     price: 110,
+//     imageUrl: product_4
+//   }
+// ];
 
-export default async function CategoryPage({ params }: { params: { gender: string } }) {
+async function CategoryPage({ params, item }: { item: Product[]; params: { gender: string } }) {
+  // console.log("After ", item.map((products) => products.title))
   return (
     <section className="mx-2 flex flex-col px-2 md:mx-5 md:px-5 2xl:mx-40 2xl:px-40">
       <div className="relative mt-5 md:mt-11">
@@ -326,9 +347,7 @@ export default async function CategoryPage({ params }: { params: { gender: strin
           {/* Text */}
           <div className="absolute top-0 z-50 flex h-full w-full flex-col justify-center p-6 text-end text-white md:items-end md:justify-end md:gap-y-10 md:p-11">
             <h1 className="hidden font-serif text-2xl md:block lg:text-6xl">New Arrivals</h1>
-            <h4 className="lg:text-xl">
-              Check out the latest and greatest of our androgynous clothing and accessories.
-            </h4>
+            <h4 className="lg:text-xl">{}</h4>
           </div>
         </div>
       </div>
@@ -495,8 +514,8 @@ export default async function CategoryPage({ params }: { params: { gender: strin
 
           <section className="">
             <div className=" grid grid-cols-2 py-3 md:grid-cols-3 lg:px-3">
-              {products.map((product: any) => (
-                <ProductCart key={product._id} item={product} />
+              {item.map((product: Product) => (
+                <ProductCart key={product.id} item={product} />
               ))}
             </div>
             <div className="mt-12 flex items-center justify-center gap-x-2 py-4 lg:mt-4 lg:py-10">

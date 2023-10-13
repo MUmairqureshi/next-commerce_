@@ -13,9 +13,40 @@ import our_story_hero_circle from 'components/images/our-story-hero-circle.webp'
 import our_story_hero from 'components/images/our-story-hero.webp';
 import pigeon_icon from 'components/images/pigeon_icon.png';
 import shirt_icon from 'components/images/shirt_icon.png';
-
+import { getCollectionProducts } from 'lib/shopify';
 import Image from 'next/image';
-const page = () => {
+
+export default async function ThreeItemGrid() {
+  const storyProducts = await getCollectionProducts({
+    collection: 'all-our-story'
+  });
+  // const [firstProduct,secondProduct,thirdProduct] =storyProducts;
+  //  console.log(storyProducts)
+  //  const firstProduct = storyProducts[0];
+  //  console.log("first",firstProduct)
+  return (
+    <section>
+      <OurStory item={storyProducts} />
+    </section>
+  );
+}
+
+// console.log("story products",storyProducts)
+// if (!storyProducts[0] || !storyProducts[1] || !storyProducts[2] || !storyProducts[3] || !storyProducts[4] || !storyProducts[5] || !storyProducts[6]) return null;
+
+// console.log(firstProduct)
+// return (
+// fifthProduct,sixthProduct,seventhProduct
+// item5={fifthProduct} item6={sixthProduct} item7={seventhProduct}
+//   <section>
+//     <OurStory item={firstProduct}  />
+//   </section>
+// )
+// }
+// item5:any, item6:any, item7:any
+
+async function OurStory(item: any) {
+  console.log('item', item);
   return (
     <section>
       <div className="relative h-[390px] md:h-[430px] lg:h-[500px]">
@@ -28,6 +59,7 @@ const page = () => {
         />
         {/* Dull black overlay */}
         {/* <div className="absolute inset-0 z-10 bg-black opacity-30"></div> */}
+
         {/* Text */}
         <div className="absolute top-0 z-50 flex h-full w-full flex-col items-end justify-end p-6 text-end text-white md:gap-y-4 md:p-11">
           <Image src={our_story_hero_circle} alt="a" className="h-7 w-7 lg:h-12 lg:w-12"></Image>
@@ -86,11 +118,11 @@ const page = () => {
               </div>
             </div>
             <div className="flex-1">
-              <Image
-                alt="a"
-                src={our_story_1}
-                className="object-cover object-center md:h-[700px] xl:h-auto"
-              ></Image>
+              {/* <Image
+                alt={"item"}
+                src={item.}
+                className="object-cover object-center md:h-[700px] xl:h-auto transition zoom-out-90 ease-in-out delay-150 duration-300"
+              ></Image> */}
             </div>
           </div>
           <div className="flex flex-col md:flex-row ">
@@ -268,6 +300,4 @@ const page = () => {
       </div>
     </section>
   );
-};
-
-export default page;
+}
