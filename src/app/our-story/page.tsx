@@ -3,14 +3,7 @@ import binocular_icon from 'components/images/binocular_icon.png';
 import handsshake_icon from 'components/images/handsshake_icon.png';
 import heart_icon from 'components/images/heart_icon.png';
 import leaf_in_hand_icon from 'components/images/leaf_in_hand_icon.png';
-import our_story_1 from 'components/images/our-story-1.webp';
-import our_story_2 from 'components/images/our-story-2.webp';
-import our_story_3 from 'components/images/our-story-3.webp';
-import our_story_hero_4 from 'components/images/our-story-4.webp';
-import our_story_hero_5 from 'components/images/our-story-5.webp';
-import our_story_hero_circle_black from 'components/images/our-story-hero-circle-black.webp';
 import our_story_hero_circle from 'components/images/our-story-hero-circle.webp';
-import our_story_hero from 'components/images/our-story-hero.webp';
 import pigeon_icon from 'components/images/pigeon_icon.png';
 import shirt_icon from 'components/images/shirt_icon.png';
 import { getCollectionProducts } from 'lib/shopify';
@@ -18,41 +11,60 @@ import Image from 'next/image';
 
 export default async function ThreeItemGrid() {
   const storyProducts = await getCollectionProducts({
-    collection: 'all-our-story'
+    collection: 'all-our-storys'
   });
-  // const [firstProduct,secondProduct,thirdProduct] =storyProducts;
-  //  console.log(storyProducts)
-  //  const firstProduct = storyProducts[0];
-  //  console.log("first",firstProduct)
+
+  const [
+    eighthProduct,
+    seventhProduct,
+    sixthProduct,
+    fifthProduct,
+    fourthProduct,
+    thirdProduct,
+    secondProduct,
+    firstProduct
+  ] = storyProducts;
+
   return (
     <section>
-      <OurStory item={storyProducts} />
+      <OurStory
+        firstProduct={firstProduct}
+        secondProduct={secondProduct}
+        thirdProduct={thirdProduct}
+        fourthProduct={fourthProduct}
+        fifthProduct={fifthProduct}
+        sixthProduct={sixthProduct}
+        seventhProduct={seventhProduct}
+        eighthProduct={eighthProduct}
+      />
     </section>
   );
 }
 
-// console.log("story products",storyProducts)
-// if (!storyProducts[0] || !storyProducts[1] || !storyProducts[2] || !storyProducts[3] || !storyProducts[4] || !storyProducts[5] || !storyProducts[6]) return null;
-
-// console.log(firstProduct)
-// return (
-// fifthProduct,sixthProduct,seventhProduct
-// item5={fifthProduct} item6={sixthProduct} item7={seventhProduct}
-//   <section>
-//     <OurStory item={firstProduct}  />
-//   </section>
-// )
-// }
-// item5:any, item6:any, item7:any
-
-async function OurStory(item: any) {
-  console.log('item', item);
+async function OurStory({
+  firstProduct,
+  secondProduct,
+  thirdProduct,
+  fourthProduct,
+  fifthProduct,
+  sixthProduct,
+  seventhProduct,
+  eighthProduct
+}: any) {
+  // console.log("firstProduct.title",firstProduct.title)
+  // console.log("secondProduct.title",secondProduct.title)
+  // console.log("thirdProduct.title",thirdProduct.title)
+  // console.log("fourthProduct.title",fourthProduct.title)
+  // console.log("fifthProduct.title",fifthProduct)
+  // console.log("sixthProduct.title",sixthProduct.title)
+  // console.log("seventhProduct.title",seventhProduct.title)
+  // console.log("eighthProduct.title",eighthProduct.title)
   return (
     <section>
       <div className="relative h-[390px] md:h-[430px] lg:h-[500px]">
         <Image
-          src={our_story_hero}
-          alt="a"
+          src={firstProduct.featuredImage.url}
+          alt={firstProduct.featuredImage.altText}
           height={500}
           width={400}
           className="h-full w-full object-cover object-top "
@@ -64,11 +76,9 @@ async function OurStory(item: any) {
         <div className="absolute top-0 z-50 flex h-full w-full flex-col items-end justify-end p-6 text-end text-white md:gap-y-4 md:p-11">
           <Image src={our_story_hero_circle} alt="a" className="h-7 w-7 lg:h-12 lg:w-12"></Image>
           <h1 className="mt-4 text-sm font-light tracking-widest md:mt-0 md:text-xl">
-            ABOUT KIRRIN FINCH
+            {firstProduct.description}
           </h1>
-          <h4 className="mt-4 font-serif text-4xl md:mt-0 md:text-6xl">
-            Clothing Designed for You
-          </h4>
+          <h4 className="mt-4 font-serif text-4xl md:mt-0 md:text-6xl">{firstProduct.title}</h4>
         </div>
       </div>
 
@@ -76,20 +86,18 @@ async function OurStory(item: any) {
         <div className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-200 lg:h-14 lg:w-14">
           <div className="h-5 w-5 lg:h-10 lg:w-10">
             <Image
-              src={our_story_hero_circle_black}
-              alt="a"
+              src={secondProduct.featuredImage.url}
+              alt={secondProduct.featuredImage.altText}
               height={35}
               width={35}
               className="h-full w-full"
             />
           </div>
         </div>
-        <h1 className="mt-8 text-center text-4xl lg:text-start">The Kirrin Finch Story</h1>
+        <h1 className="mt-8 text-center text-4xl lg:text-start">{secondProduct.title}</h1>
         <span className="mt-7 border-b-[1px] border-black px-36"></span>
         <p className="mt-6 max-w-[290px] text-center text-sm text-slate-500 md:max-w-2xl">
-          We challenge fashion industry norms for what is considered menswear & womenswear and
-          instead focus on creating great fitting clothing that makes you feel comfortable &
-          confident in who you are. Learn more about what makes us, us.
+          {secondProduct.description}
         </p>
       </div>
 
@@ -101,35 +109,32 @@ async function OurStory(item: any) {
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white">
                   <Image src={binocular_icon} alt="a" height={35} width={35} />
                 </div>
-                <h3 className="mt-2 text-lg tracking-widest text-gray-800 ">THE WHY</h3>
+                <h3 className="mt-2 text-lg tracking-widest text-gray-800 ">{thirdProduct.tags}</h3>
                 <h1 className="text-4xl md:max-w-[205px] lg:max-w-xs xl:max-w-none">
-                  We Were Searching Too
+                  {thirdProduct.title}
                 </h1>
                 <p className="mt-6 text-sm text-slate-700 md:max-w-[235px] lg:max-w-[360px] xl:max-w-lg ">
-                  Kirrin Finch is a conscientious clothing company, founded by Brooklyn-based couple
-                  Laura Moffat and Kelly Sanders Moffat, that meets the growing demand for
-                  gender-defying fashion by creating menswear-inspired apparel designed to fit a
-                  range of female and non-binary bodies. The inspiration for the business was borne
-                  out of our own frustration at being unable to find clothes that match our personal
-                  style. As women who tend to gravitate towards button-up shirts and bow ties, we
-                  often find ourselves envying the clothes in the men&apos;s section, but are always
-                  frustrated because they are not designed to fit a woman&apos;s body.
+                  {thirdProduct.description}
                 </p>
               </div>
             </div>
             <div className="flex-1">
-              {/* <Image
-                alt={"item"}
-                src={item.}
-                className="object-cover object-center md:h-[700px] xl:h-auto transition zoom-out-90 ease-in-out delay-150 duration-300"
-              ></Image> */}
+              <Image
+                alt={thirdProduct.featuredImage.altText}
+                src={thirdProduct.featuredImage.url}
+                width={thirdProduct.featuredImage.width}
+                height={thirdProduct.featuredImage.height}
+                className="object-cover object-center transition delay-150 duration-300 ease-in-out zoom-out-90 md:h-[700px] xl:h-auto"
+              ></Image>
             </div>
           </div>
           <div className="flex flex-col md:flex-row ">
             <div className="flex-1">
               <Image
-                alt="a"
-                src={our_story_2}
+                alt={fourthProduct.featuredImage.altText}
+                src={fourthProduct.featuredImage.url}
+                width={fourthProduct.featuredImage.width}
+                height={fourthProduct.featuredImage.height}
                 className="object-cover object-center md:h-[700px] xl:h-auto"
               ></Image>
             </div>
@@ -140,15 +145,12 @@ async function OurStory(item: any) {
                     <Image src={pigeon_icon} alt="a" height={35} width={35} />
                   </div>
                 </div>
-                <h3 className="mt-2 text-lg tracking-widest text-gray-800">A BRAND BEYOND US</h3>
-                <h1 className="mt-1 text-4xl md:max-w-[205px] lg:max-w-none">Behind Our Name</h1>
+                <h3 className="mt-2 text-lg tracking-widest text-gray-800">{fourthProduct.tags}</h3>
+                <h1 className="mt-1 text-4xl md:max-w-[205px] lg:max-w-none">
+                  {fourthProduct.title}
+                </h1>
                 <p className="mt-6 text-end text-sm text-slate-700 md:max-w-[235px] lg:max-w-sm xl:max-w-lg">
-                  The name, Kirrin Finch, was inspired by iconic fictional tomboys
-                  &apos;&apos;Georgina Kirrin&apos;&apos; from The Famous Five series and
-                  &apos;&apos;Scout Finch&apos;&apos; from To Kill A Mockingbird. Both these
-                  characters embrace the tomboy spirit and are not constrained by society&apos;s
-                  views of how a woman should behave or dress. You&apos;ll probably notice that each
-                  shirt takes on the name of a tomboy character.
+                  {fourthProduct.description}
                 </p>
               </div>
             </div>
@@ -159,11 +161,13 @@ async function OurStory(item: any) {
       <div className="mt-6 bg-[#e0e7ed] md:mt-12 2xl:mx-[560px]">
         <div className="mx-7 flex flex-col-reverse gap-y-6 py-8 md:mx-12 md:py-12 lg:flex-row">
           <div className="basis-3/5 ">
-            <Image
-              alt="a"
-              src={our_story_1}
+            {/* <Image
+                alt={fifthProduct.featuredImage.altText}
+                src={fifthProduct.featuredImage.url}
+                width={fifthProduct.featuredImage.width}
+                height={fifthProduct.featuredImage.height}
               className="h-[200px] w-full object-cover object-top md:h-[400px]"
-            ></Image>
+            ></Image> */}
           </div>
           <div className="flex basis-2/5 flex-col items-end justify-center ">
             <div className="items-end justify-end text-end md:mx-auto md:max-w-sm md:text-center lg:mr-12 lg:text-end xl:max-w-none">
@@ -172,13 +176,12 @@ async function OurStory(item: any) {
                   <Image src={handsshake_icon} alt="a" height={35} width={35} />
                 </div>
               </div>
-              <h3 className="mt-2 text-lg tracking-widest text-gray-800">THE BRAND STORY</h3>
+              <h3 className="mt-2 text-lg tracking-widest text-gray-800">{fifthProduct.tags}</h3>
               <h1 className="mt-1 text-end text-5xl md:text-center lg:max-w-[200px] lg:text-end xl:max-w-sm">
-                Why We Founded Kirrin Finch
+                {fifthProduct.title}
               </h1>
               <p className="mt-6 max-w-[360px] text-end text-sm text-slate-700 lg:max-w-[210px] xl:max-w-sm">
-                Listen to Laura & Kelly share their experience about shopping for their wedding day
-                and all the conversations that would eventually inspire the founding of Kirrin Finch
+                {fifthProduct.description}
               </p>
             </div>
           </div>
@@ -192,26 +195,27 @@ async function OurStory(item: any) {
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white">
                 <Image src={heart_icon} alt="a" height={35} width={35} />
               </div>
-              <h3 className="mt-2 text-sm tracking-widest md:text-lg">THE WHAT</h3>
+              <h3 className="mt-2 text-sm tracking-widest md:text-lg">{sixthProduct.tags}</h3>
               <h1 className="mt-1 text-4xl lg:max-w-[250px] lg:text-5xl xl:max-w-md">
-                Giving Back to Our Community
+                {sixthProduct.title}
               </h1>
               <p className="mt-6 max-w-sm text-sm lg:max-w-[260px] xl:max-w-sm">
-                At Kirrin Finch, giving back to the LGBTQ+ community and empowering women is central
-                to who we are as people, and to the core of our company.
+                {sixthProduct.description}
               </p>
-              <p className="mt-6 max-w-sm text-sm lg:max-w-[260px] xl:max-w-sm">
+              {/* <p className="mt-6 max-w-sm text-sm lg:max-w-[260px] xl:max-w-sm">
                 We want every person to feel like themselves and we understand personally what the
                 power of clothes can do to help achieve that. We work with our community to
                 highlight all walks of life and styles of fashion, & we hope you feel represented
                 here.
-              </p>
+              </p> */}
             </div>
           </div>
           <div className="basis-3/5">
             <Image
-              alt="a"
-              src={our_story_3}
+              alt={sixthProduct.featuredImage.altText}
+              width={sixthProduct.featuredImage.width}
+              height={sixthProduct.featuredImage.height}
+              src={sixthProduct.featuredImage.url}
               className="object-cover object-center md:h-[700px] xl:h-auto"
             ></Image>
           </div>
@@ -223,8 +227,10 @@ async function OurStory(item: any) {
           <div className="flex flex-col md:flex-row">
             <div className="flex-1">
               <Image
-                alt="a"
-                src={our_story_hero_4}
+                alt={seventhProduct.featuredImage.altText}
+                width={seventhProduct.featuredImage.width}
+                height={seventhProduct.featuredImage.height}
+                src={seventhProduct.featuredImage.url}
                 className="object-cover object-center md:h-[700px] xl:h-auto"
               ></Image>
             </div>
@@ -236,23 +242,20 @@ async function OurStory(item: any) {
                   </div>
                 </div>
                 <h3 className="mt-2 text-end text-sm tracking-wider text-slate-700 md:text-start lg:text-base">
-                  MENSWEAR INSPIRED DESIGN
+                  {seventhProduct.tags}
                 </h3>
                 <h1 className="mt-1 text-end text-4xl md:max-w-[220px] lg:max-w-none">
-                  Designing for You
+                  {seventhProduct.title}
                 </h1>
                 <p className="mt-6 text-end text-sm text-slate-500 md:max-w-[235px] lg:max-w-sm xl:max-w-[500px]">
-                  Today, people are questioning traditional notions of gender and embracing the
-                  freedom to be themselves. That’s why we created a collection of menswear-inspired
-                  button-up shirts that combine the design and aesthetic of menswear with the
-                  perfect fit for the female body.
+                  {seventhProduct.description}
                 </p>
 
-                <p className="mt-6 text-end text-sm text-slate-500 md:max-w-[235px] lg:max-w-sm xl:max-w-[500px]">
+                {/* <p className="mt-6 text-end text-sm text-slate-500 md:max-w-[235px] lg:max-w-sm xl:max-w-[500px]">
                   We don’t want you to experience ill-fitting menswear or overly frilly womenswear
                   ever again. That’s why we went through a rigorous process to ensure our customers
                   receive the best fitting garments possible.
-                </p>
+                </p> */}
                 <Button className="mt-6 rounded-sm bg-black px-14 py-2 text-white ">
                   LEARN MORE
                 </Button>
@@ -266,18 +269,16 @@ async function OurStory(item: any) {
                   <Image src={leaf_in_hand_icon} alt="a" height={35} width={35} />
                 </div>
                 <h3 className="mt-2 tracking-wider text-slate-700 md:text-lg">
-                  ETHICALLY MADE CLOTHING
+                  {eighthProduct.tags}
                 </h3>
                 <h1 className="mt-1 text-4xl md:max-w-[205px] lg:max-w-none">
-                  Sustainable Practices
+                  {eighthProduct.title}
                 </h1>
                 <p className="mt-6 text-sm text-slate-500 md:max-w-[235px] lg:max-w-sm xl:max-w-lg">
-                  The fashion industry is the second most polluting industry, second only to the oil
-                  industry. That&apos;s why we believe it is essential for our brand to have
-                  environmentally sustainable practices.
+                  {eighthProduct.description}
                 </p>
 
-                <p className="mt-6 text-sm text-slate-500 md:max-w-[235px] lg:max-w-sm xl:max-w-lg">
+                {/* <p className="mt-6 text-sm text-slate-500 md:max-w-[235px] lg:max-w-sm xl:max-w-lg">
                   We think the person making it is just as important as the person wearing it.
                   That&apos;s why we scour the globe to find factories with fair labor and ethical
                   manufacturing practices.
@@ -285,13 +286,15 @@ async function OurStory(item: any) {
 
                 <p className="mt-6 text-sm text-slate-500 md:max-w-[235px] lg:max-w-sm xl:max-w-lg">
                   Learn more about our commitment to sustainability here.
-                </p>
+                </p> */}
               </div>
             </div>
             <div className="flex-1">
               <Image
-                alt="a"
-                src={our_story_hero_5}
+                alt={eighthProduct.featuredImage.altText}
+                width={eighthProduct.featuredImage.width}
+                height={eighthProduct.featuredImage.height}
+                src={eighthProduct.featuredImage.url}
                 className="object-cover object-center md:h-[700px] xl:h-auto"
               ></Image>
             </div>
