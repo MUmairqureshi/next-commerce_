@@ -299,7 +299,6 @@ export async function getCollectionProducts({
       sortKey: sortKey === 'CREATED_AT' ? 'P' : sortKey
     }
   });
-    console.log("heh",res)
   if (!res.body.data.collection) {
     console.log(`No collection found for \`${collection}\``);
     return [];
@@ -344,7 +343,6 @@ export async function getMenu(handle: string): Promise<Menu[]> {
       handle
     }
   });
-  console.log(res.body)
   return (
     res.body?.data?.menu?.items.map((item: { title: string; url: string }) => ({
       title: item.title,

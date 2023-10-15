@@ -10,7 +10,12 @@ import { Fragment, useEffect, useState } from 'react';
 import MobileShopDropDown from './mobile-menu-shop';
 import SearchMobile from './searchMobile';
 
-export default function MobileMenu({ men }: { men: string[] }) {
+interface PropType{
+  title:string,
+  path:string
+}
+
+export default function MobileMenu({ men }: { men: PropType[] }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
@@ -96,11 +101,11 @@ export default function MobileMenu({ men }: { men: string[] }) {
         whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3, delay:0.12*ind}} 
         className="text-sm py-2 font-thin text-white transition-colors hover:text-neutral-500 dark:text-white">
-                        {item === "Shop" ? (
+                        {item.title === "Shop" ? (
                       <MobileShopDropDown />
                         ) : (       
-                        <Link href="/to" onClick={closeMobileMenu}>
-                          {item}
+                        <Link href={item.path} onClick={closeMobileMenu}>
+                          {item.title}
                         </Link>)}
                       </motion.li>
                     ))}

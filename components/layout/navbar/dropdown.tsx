@@ -52,7 +52,7 @@ whileInView={{ opacity: 1, }}
           <div className='flex items-center justify-end border-r-2 border-white pr-14 col-span-2'>
             <div>
             {shpoMenu1.length ? (
-              <ul className=" ml-14 hidden w-full gap-6  text-sm md:flex md:flex-col md:items-center ">
+              <ul className=" ml-14 hidden w-full gap-6   text-sm md:flex md:flex-col  ">
                 {shpoMenu1.map((item) => (
                   <li>
                     <Link
@@ -68,7 +68,7 @@ whileInView={{ opacity: 1, }}
             </div>
             <div >
             {shpoMenu2.length ? (
-              <ul className=" ml-14 hidden w-full gap-6  text-sm md:flex md:flex-col md:items-center ">
+              <ul className=" ml-14 hidden w-full gap-6  text-sm md:flex md:flex-col ">
                 {shpoMenu2.map((item) => (
                   <li>
                     <Link

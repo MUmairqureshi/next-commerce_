@@ -1,6 +1,12 @@
-import React from 'react';
+import { getCollectionProducts } from "lib/shopify";
+import Link from "next/link";
 
-export function Formallwear() {
+export async function Formallwear() {
+  const latestProduct = await getCollectionProducts({
+    collection: 'suits-blazers'
+  });
+
+  if (!latestProduct[0]) return null;
   return (
     <div className="item-center    min-h- relative w-full p-4 md:p-12">
       <div className=" min-h- container mx-auto  flex flex-col  gap-8 bg-gray-200  p-6 md:flex-row md:p-12">
@@ -20,11 +26,15 @@ export function Formallwear() {
           </button>
         </div>
         <div className="h-full w-full border-b   border-zinc-950 pb-6 md:border-none xl:w-2/3 ">
+        <Link href={`/product/${latestProduct[0]?.handle}`}>
+
+          
           <img
-            src="https://kirrinfinch.com/cdn/shop/files/HomePage_Georgie_Royal_Blue_540x.png?v=1692216933"
-            alt="Large Image"
+            src={latestProduct[0].featuredImage.url}
+            alt={latestProduct[0].featuredImage.altText}
             className="h-full  w-full "
-          />
+            />
+            </Link>
         </div>
 
         <div className=" flex  flex-col   ">
@@ -48,27 +58,35 @@ export function Formallwear() {
 
           <div className="flex  gap-14 ">
             <div className="">
+            <Link href={`/product/${latestProduct[1]?.handle}`}>
               <img
-                src="https://kirrinfinch.com/cdn/shop/products/RoyalBlueAndrogynousWomensSuitBlazer_92891533-f229-4bc0-b8eb-f85fbef4a93a_360x.jpg?v=1634089471"
-                alt="Small Image 1"
+                src={latestProduct[1]?.featuredImage.url}
+                alt={latestProduct[1]?.featuredImage.altText}
                 className="mb-2 h-auto w-64"
               />
               <p className="  text-md font-serif text-slate-600">
-                The Georgie Royal Blue Suit Blazer
+              {latestProduct[1]?.title}
               </p>
-              <p className="text-md text-slate-600">$ 380</p>
+              </Link>
+
+              <p className="text-md text-slate-600">{latestProduct[1]?.priceRange.maxVariantPrice.currencyCode} {latestProduct[1]?.priceRange.maxVariantPrice.amount}</p>
             </div>
 
             <div className="     ">
+            <Link href={`/product/${latestProduct[2]?.handle}`}>
+
+
               <img
-                src="https://kirrinfinch.com/cdn/shop/products/RoyalBlueAndroDressPantsbrighter_3196dbfc-6303-407a-9779-eca169d55c78_360x.jpg?v=1651697522"
-                alt="Small Image 2"
+                src={latestProduct[2]?.featuredImage.url}
+                alt={latestProduct[2]?.featuredImage.altText}
                 className="mb-2 h-auto w-64"
               />
               <p className="    text-md font-serif text-slate-600">
-                The Georgie Royal Blue Dress Pants
+              {latestProduct[2]?.title}
               </p>
-              <p className="text-md text-slate-600">$ 195</p>
+            </Link>
+
+              <p className="text-md text-slate-600">{latestProduct[2]?.priceRange.maxVariantPrice.currencyCode} {latestProduct[2]?.priceRange.maxVariantPrice.amount}</p>
             </div>
           </div>
         </div>

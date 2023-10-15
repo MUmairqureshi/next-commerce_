@@ -8,10 +8,9 @@ import MobileMenu from './mobile-menu';
 import Search from './search';
 const { SITE_NAME } = process.env;
 
+
 export default async function Navbar() {
   const menu = await getMenu('main-menu');
-  console.log(menu);
-  const men = ['New', 'Shop', 'Our Story', 'The Dapper Scouts', 'Blog', 'Pre-Loved'];
   return (
     <div className="h-full w-full">
       <div className="ceontent-center flex h-12 items-center justify-center bg-slate-400 text-center text-black">
@@ -21,7 +20,7 @@ export default async function Navbar() {
       </div>
       <div className=" relative flex  items-center justify-between border  border-b-2 p-4 lg:px-20">
         <div className="block flex-none lg:hidden">
-          <MobileMenu men={men} />
+          <MobileMenu men={menu} />
         </div>
         <div className="flex w-full  justify-between">
           <div className="flex w-full lg:w-1/3">
@@ -34,18 +33,18 @@ export default async function Navbar() {
               </div>
             </Link>
 
-            {men.length ? (
+            {menu.length ? (
               <ul className="ml-20 hidden gap-8  text-sm lg:flex lg:items-center ">
-                {men.map((item) => (
+                {menu.map((item) => (
                   <li className=' w-full'>
-                     {item === "Shop" ? (
+                     {item.title === "Shop" ? (
         <DropdownMenuCheckboxes />
       ) : (       
                     <Link
-                      href="#"
+                      href={item.path}
                       className="text-baseline w-full items-baseline text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300 "
                     >
-                      {item}
+                      {item.title}
                     </Link>
                     )}
                   </li>                    

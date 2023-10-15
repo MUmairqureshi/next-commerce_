@@ -1,4 +1,20 @@
-export function Latestproduct() {
+import { getCollectionProducts } from "lib/shopify";
+
+export async function Latestproduct() {
+  const latestProduct = await getCollectionProducts({
+    collection: 'the-latest-product'
+  });
+
+  if (!latestProduct[0]) return null;
+  const [firstProduct] = latestProduct;
+
+
+  const trendingProduct = await getCollectionProducts({
+    collection: 'Trending'
+  });
+
+  if (!trendingProduct[0]) return null;
+  const [trenProduct] = trendingProduct;
   return (
     //         <div className='h-screen p-8 w-full  first-line: item-center  '>
 
@@ -27,8 +43,9 @@ export function Latestproduct() {
       <div className="xs:p-4  flex h-full flex-col gap-14 p-6 sm:p-4   md:p-8 lg:flex-row lg:p-12">
         <div className="relative   flex    h-96   w-full     items-end      overflow-hidden  md:min-h-screen">
           <img
-            src="https://kirrinfinch.com/cdn/shop/files/New_Arrivals_Pre_Fall_61451e0c-e89e-4c13-ad31-49e20c7862bf_720x.png?v=1692206347"
-            alt="Your Image"
+          src={firstProduct.featuredImage.url}
+          alt={firstProduct.featuredImage.altText}
+          
             className="absolute h-full  w-full     object-cover"
           />
           <div className="relative items-end p-4 text-white lg:text-left">
@@ -43,8 +60,8 @@ export function Latestproduct() {
 
         <div className="relative   flex    h-96   w-full    items-end      overflow-hidden   md:min-h-screen">
           <img
-            src="https://kirrinfinch.com/cdn/shop/files/Best_Seller_Pre_F_b415c760-f5e0-4801-8357-afd3d0beb67c_720x.png?v=1692210526"
-            alt="Your Image"
+            src={trenProduct.featuredImage.url}
+            alt={trenProduct.featuredImage.altText}
             className="absolute h-full w-full    object-cover"
           />
           <div className="relative items-end p-4 text-white lg:text-left">
