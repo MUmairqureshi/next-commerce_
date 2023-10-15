@@ -1,6 +1,5 @@
 import CardListingScetion from 'components/Dapper-Hero/CardListingScetion';
 import Hero from 'components/Dapper-Hero/DapperHero';
-import Footer from "components/layout/footer";
 import { getCollectionProducts } from "lib/shopify";
 
 export default async function Blogs() {
@@ -31,7 +30,6 @@ const Blogs = await getCollectionProducts({
       </div> 
       
         <CardListingScetion Products={Blogs}/>
-          <Footer />
     </section> 
   </div>
   )

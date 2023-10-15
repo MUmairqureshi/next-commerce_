@@ -49,7 +49,7 @@ export async function Latestproduct() {
             className="absolute h-full  w-full     object-cover"
           />
           <div className="relative items-end p-4 text-white lg:text-left">
-            <p className="w-17 mb-2 font-serif text-4xl text-slate-200 lg:w-96 lg:text-6xl">
+            <p className="w-17 mb-2 font-serif text-4xl  lg:w-96 lg:text-6xl text-slate-100">
               The Latest Product
             </p>
             <button className="text-ellipsis rounded-sm border bg-white px-3 font-serif text-lg  text-black lg:px-12 lg:py-4">
@@ -65,7 +65,7 @@ export async function Latestproduct() {
             className="absolute h-full w-full    object-cover"
           />
           <div className="relative items-end p-4 text-white lg:text-left">
-            <p className="w-17 mb-2 font-serif text-4xl text-slate-200 lg:w-96 lg:text-6xl">
+            <p className="w-17 mb-2 font-serif text-4xl text-slate-100 lg:w-96 lg:text-6xl">
               What's Trending
             </p>
             <button className="text-ellipsis rounded-sm border bg-white px-3 font-serif text-lg  text-black lg:px-12 lg:py-4">

@@ -1,7 +1,6 @@
 import CardListingScetion from 'components/Dapper-Hero/CardListingScetion';
 import Hero from 'components/Dapper-Hero/DapperHero';
 import ImageScrollSection from 'components/Dapper-Hero/ImageScrollSection';
-import Footer from "components/layout/footer";
 import { getCollectionProducts } from "lib/shopify";
 
 export default async function DapperScout() {
@@ -35,7 +34,6 @@ if(!ScoutlistingData[0]) return null;
       >
 <CardListingScetion Products={ScoutlistingData}/>
     <ImageScrollSection data={latestProduct[1]}/>
-          <Footer />
   </div>
     </section> 
   </div>

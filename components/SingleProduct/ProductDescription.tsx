@@ -33,13 +33,12 @@ const ProductDescription = ({ longDesc, subImg }: any) => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="h-full w-full relative"
+          className="h-96 md:h-full  w-full relative"
         > 
           <Image
             src={subImg[0].url}
             layout='fill'
-            // height={100}
-            // width={100}
+            
             className="h-full w-full"
             alt={subImg[0].altText}
             objectFit="cover"
@@ -50,7 +49,7 @@ const ProductDescription = ({ longDesc, subImg }: any) => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="h-full w-full relative"
+          className="h-96 md:h-full w-full relative"
         >
           <Image
             src={subImg.length < 2 ? subImg[0].url : subImg[1].url}
@@ -66,7 +65,7 @@ const ProductDescription = ({ longDesc, subImg }: any) => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="relative h-full w-full"
+          className="relative h-96 md:h-full w-full"
         >
           <Image
             src={subImg.length < 3 ? subImg[0].url : subImg[2].url}
@@ -108,7 +107,7 @@ const ProductDescription = ({ longDesc, subImg }: any) => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="h-full w-full relative"
+          className="h-96 md:h-full w-full relative"
         >
           <Image
             src={subImg.length < 4 ? subImg[0].url : subImg[3].url}

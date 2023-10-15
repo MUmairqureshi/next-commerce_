@@ -19,7 +19,8 @@ export async function Hero() {
     //         <button className='bg-white     px-14 py-4  ml-2  rounded-lg border mx-auto  text-black text-xl  font-serif'>SHOP NOW</button>
     //     </div>
     // </div>
-    <div className="item-center relative h-full w-full">
+    <div className='w-full'>
+    <div className="item-center relative mx-auto h-full w-full max-w-screen-2xl">
       <div className="">
         <img
           srcSet=" 
@@ -43,5 +44,7 @@ export async function Hero() {
         </button>
       </div>
     </div>
+    </div>
+
   );
 }
