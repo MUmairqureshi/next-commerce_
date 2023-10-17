@@ -1,6 +1,7 @@
 import { Dressshirt } from 'components/Dress-Shirts';
 import { Essential } from 'components/ESSENTIAL STYLES';
 import { Formallwear } from 'components/FORMAL WEAR';
+import { Commutiny } from 'components/blog';
 import { Comfort } from 'components/confort';
 import { Hero } from 'components/hero';
 import { Latestproduct } from 'components/latest-trent';
@@ -25,13 +26,10 @@ export default async function HomePage() {
       <Comfort />
       <Dressshirt />
       <Logos />
-      {/* <Commutiny/> */}
-      {/* <ThreeItemGrid />
-      <Suspense>
+      <Commutiny />
+      {/* <ThreeItemGrid /> */}
+      {/* <Suspense>
         <Carousel />
-        <Suspense>
-          <Footer />
-        </Suspense>
       </Suspense> */}
     </>
   );

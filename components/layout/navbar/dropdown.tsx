@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-key */
-/* eslint-disable no-unused-vars */
 'use client';
 
 import { DropdownMenuCheckboxItemProps } from '@radix-ui/react-dropdown-menu';

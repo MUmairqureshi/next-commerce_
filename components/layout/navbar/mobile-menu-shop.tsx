@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 'use client';
 import { Dialog, Transition } from '@headlessui/react';
 import { UserIcon } from '@heroicons/react/24/outline';

@@ -1,4 +1,12 @@
-export function Essential() {
+import { getCollectionProducts } from 'lib/shopify';
+import Link from 'next/link';
+
+export async function Essential() {
+  const latestProduct = await getCollectionProducts({
+    collection: 'home-products'
+  });
+
+  if (!latestProduct[0]) return null;
   return (
     <div className="item-center relative h-full w-full bg-gray-100">
       <div className="  container mx-auto p-4 md:p-8">
@@ -17,16 +25,18 @@ export function Essential() {
         <div className="flex overflow-auto md:grid-cols-4  md:gap-4 md:overflow-scroll ">
           <div className="group relative   rounded-lg     ">
             <img
-              src="https://kirrinfinch.com/cdn/shop/products/Navy_Womens_Chinos_with_deep_pockets_f4698cd9-805a-4902-9caa-eaf78b23b731_360x.jpg?v=1675174924"
-              alt="Card 2"
-              className="h-62 mb-2 w-full  object-cover"
+              src={latestProduct[0].featuredImage.url}
+              alt={latestProduct[0].featuredImage.altText}
+              className="mb-2 h-[260PX] w-full  object-cover"
             />
             <div className="absolute   inset-0 flex items-center justify-center bg-opacity-70 text-white opacity-0 transition-opacity hover:opacity-100">
-              <button className="    mt-20 flex rounded-lg  bg-black px-14 py-3 text-start  font-serif text-sm  text-white opacity-0  transition-opacity   duration-300 group-hover:opacity-100">
-                QUICK ADD
-              </button>
+              <Link href={`/product/${latestProduct[0]?.handle}`}>
+                <button className="    mt-20 flex rounded-lg  bg-black px-14 py-3 text-start  font-serif text-sm  text-white opacity-0  transition-opacity   duration-300 group-hover:opacity-100">
+                  QUICK ADD
+                </button>
+              </Link>
             </div>
-            <p className="font-serif  text-slate-800 md:text-xl">Joni Black Jeans</p>
+            <p className="font-serif  text-slate-800 md:text-xl">{latestProduct[0].title}</p>
 
             <div className="flex  items-center space-x-1   overflow-hidden  text-start">
               <svg
@@ -79,21 +89,26 @@ export function Essential() {
               </p>
             </div>
 
-            <p className=" flex text-xs  text-slate-800 md:text-lg">$ 32</p>
+            <p className=" flex text-xs  text-slate-800 md:text-lg">
+              {latestProduct[0]?.priceRange.maxVariantPrice.currencyCode}{' '}
+              {latestProduct[0]?.priceRange.maxVariantPrice.amount}
+            </p>
           </div>
 
           <div className="group relative   rounded-lg     ">
             <img
-              src="https://kirrinfinch.com/cdn/shop/products/Navy_Womens_Chinos_with_deep_pockets_f4698cd9-805a-4902-9caa-eaf78b23b731_360x.jpg?v=1675174924"
-              alt="Card 2"
-              className="h-62 mb-2 w-full  object-cover"
+              src={latestProduct[1]?.featuredImage.url}
+              alt={latestProduct[1]?.featuredImage.altText}
+              className="mb-2 h-[260PX] w-full  object-cover"
             />
             <div className="absolute   inset-0 flex items-center justify-center bg-opacity-70 text-white opacity-0 transition-opacity hover:opacity-100">
-              <button className="    mt-20 flex rounded-lg  bg-black px-14 py-3 text-start  font-serif text-sm  text-white opacity-0  transition-opacity   duration-300 group-hover:opacity-100">
-                QUICK ADD
-              </button>
+              <Link href={`/product/${latestProduct[1]?.handle}`}>
+                <button className="    mt-20 flex rounded-lg  bg-black px-14 py-3 text-start  font-serif text-sm  text-white opacity-0  transition-opacity   duration-300 group-hover:opacity-100">
+                  QUICK ADD
+                </button>
+              </Link>
             </div>
-            <p className="font-serif  text-slate-800 md:text-xl">Joni Black Jeans</p>
+            <p className="font-serif  text-slate-800 md:text-xl">{latestProduct[1]?.title}</p>
 
             <div className="flex items-center   space-x-1  overflow-hidden">
               <svg
@@ -146,21 +161,26 @@ export function Essential() {
               </p>
             </div>
 
-            <p className=" flex text-xs  text-slate-800 md:text-lg">$ 32</p>
+            <p className=" flex text-xs  text-slate-800 md:text-lg">
+              {latestProduct[1]?.priceRange.maxVariantPrice.currencyCode}{' '}
+              {latestProduct[1]?.priceRange.maxVariantPrice.amount}
+            </p>
           </div>
 
           <div className="group relative   rounded-lg     ">
             <img
-              src="https://kirrinfinch.com/cdn/shop/products/Navy_Womens_Chinos_with_deep_pockets_f4698cd9-805a-4902-9caa-eaf78b23b731_360x.jpg?v=1675174924"
-              alt="Card 2"
-              className="h-62 mb-2 w-full  object-cover"
+              src={latestProduct[2]?.featuredImage.url}
+              alt={latestProduct[2]?.featuredImage.altText}
+              className="mb-2 h-[260PX] w-full  object-cover"
             />
             <div className="absolute   inset-0 flex items-center justify-center bg-opacity-70 text-white opacity-0 transition-opacity hover:opacity-100">
-              <button className="    mt-20 flex rounded-lg  bg-black px-14 py-3 text-start  font-serif text-sm  text-white opacity-0  transition-opacity   duration-300 group-hover:opacity-100">
-                QUICK ADD
-              </button>
+              <Link href={`/product/${latestProduct[2]?.handle}`}>
+                <button className="    mt-20 flex rounded-lg  bg-black px-14 py-3 text-start  font-serif text-sm  text-white opacity-0  transition-opacity   duration-300 group-hover:opacity-100">
+                  QUICK ADD
+                </button>
+              </Link>
             </div>
-            <p className="font-serif  text-slate-800 md:text-xl">Joni Black Jeans</p>
+            <p className="font-serif  text-slate-800 md:text-xl">{latestProduct[2]?.title}</p>
 
             <div className="flex items-center   space-x-1  overflow-hidden">
               <svg
@@ -213,21 +233,26 @@ export function Essential() {
               </p>
             </div>
 
-            <p className=" flex text-xs  text-slate-800 md:text-lg">$ 32</p>
+            <p className=" flex text-xs  text-slate-800 md:text-lg">
+              {latestProduct[2]?.priceRange.maxVariantPrice.currencyCode}{' '}
+              {latestProduct[2]?.priceRange.maxVariantPrice.amount}
+            </p>
           </div>
 
           <div className="group relative   rounded-lg     ">
             <img
-              src="https://kirrinfinch.com/cdn/shop/products/Navy_Womens_Chinos_with_deep_pockets_f4698cd9-805a-4902-9caa-eaf78b23b731_360x.jpg?v=1675174924"
-              alt="Card 2"
-              className="h-62 mb-2 w-full  object-cover"
+              src={latestProduct[3]?.featuredImage.url}
+              alt={latestProduct[3]?.featuredImage.altText}
+              className="mb-2 h-[260px] w-full  object-cover"
             />
             <div className="absolute   inset-0 flex items-center justify-center bg-opacity-70 text-white opacity-0 transition-opacity hover:opacity-100">
-              <button className="    mt-20 flex rounded-lg  bg-black px-14 py-3 text-start  font-serif text-sm  text-white opacity-0  transition-opacity   duration-300 group-hover:opacity-100">
-                QUICK ADD
-              </button>
+              <Link href={`/product/${latestProduct[3]?.handle}`}>
+                <button className="    mt-20 flex rounded-lg  bg-black px-14 py-3 text-start  font-serif text-sm  text-white opacity-0  transition-opacity   duration-300 group-hover:opacity-100">
+                  QUICK ADD
+                </button>
+              </Link>
             </div>
-            <p className="font-serif  text-slate-800 md:text-xl">Joni Black Jeans</p>
+            <p className="font-serif  text-slate-800 md:text-xl">{latestProduct[3]?.title}</p>
 
             <div className="flex items-center   space-x-1  overflow-hidden">
               <svg
@@ -280,7 +305,10 @@ export function Essential() {
               </p>
             </div>
 
-            <p className=" flex text-xs  text-slate-800 md:text-lg">$ 32</p>
+            <p className=" flex text-xs  text-slate-800 md:text-lg">
+              {latestProduct[3]?.priceRange.maxVariantPrice.currencyCode}{' '}
+              {latestProduct[3]?.priceRange.maxVariantPrice.amount}
+            </p>
           </div>
         </div>
         <div className="mt-6 hidden justify-start text-start sm:justify-center md:flex md:text-center">

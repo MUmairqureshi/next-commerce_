@@ -1,9 +1,7 @@
-import React from 'react';
-
 export function Logos() {
   return (
     <div className="mx-auto mt-6 w-full items-center border-b-2 border-t-2 border-slate-200 py-8 pb-12 pt-6">
-      <div className="lg:w-65 l container m-4 flex w-full justify-between space-x-4  text-xl md:flex-row md:px-4">
+      <div className="l container m-4 mx-auto flex w-full justify-between space-x-4 text-xl  md:flex-row md:px-4 lg:w-5/6">
         <div className="flex rounded-md text-center">
           <div className="w-full">
             <img

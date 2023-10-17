@@ -1,3 +1,4 @@
+import Footer from 'components/layout/footer';
 import Navbar from 'components/layout/navbar';
 import { ensureStartsWith } from 'lib/utils';
 import { Inter } from 'next/font/google';
@@ -40,11 +41,14 @@ const inter = Inter({
 export default async function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="bg-white  text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
+      <body
+        className={`${inter.className} bg-white  text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white`}
+      >
         <Navbar />
         <Suspense>
           <main>{children}</main>
         </Suspense>
+        <Footer />
       </body>
     </html>
   );

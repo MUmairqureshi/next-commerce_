@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/filename-case */
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';

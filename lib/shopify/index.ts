@@ -296,10 +296,9 @@ export async function getCollectionProducts({
     variables: {
       handle: collection,
       reverse,
-      sortKey: sortKey === 'CREATED_AT' ? 'CREATED' : sortKey
+      sortKey: sortKey === 'CREATED_AT' ? 'P' : sortKey
     }
   });
-
   if (!res.body.data.collection) {
     console.log(`No collection found for \`${collection}\``);
     return [];
@@ -344,7 +343,6 @@ export async function getMenu(handle: string): Promise<Menu[]> {
       handle
     }
   });
-
   return (
     res.body?.data?.menu?.items.map((item: { title: string; url: string }) => ({
       title: item.title,
