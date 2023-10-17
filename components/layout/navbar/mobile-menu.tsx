@@ -1,16 +1,21 @@
 'use client';
-import { UserIcon } from '@heroicons/react/24/outline';
 import { Dialog, Transition } from '@headlessui/react';
+import { Bars3Icon, UserIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import clsx from 'clsx';
+import { motion } from 'framer-motion';
+import { Star } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
+import MobileShopDropDown from './mobile-menu-shop';
+import SearchMobile from './searchMobile';
 
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Menu } from 'lib/shopify/types';
-import Search from './search';
-import clsx from 'clsx';
+interface PropType{
+  title:string,
+  path:string
+}
 
-export default function MobileMenu({ men }: { men: string[] }) {
+export default function MobileMenu({ men }: { men: PropType[] }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +41,7 @@ export default function MobileMenu({ men }: { men: string[] }) {
       <button
         onClick={openMobileMenu}
         aria-label="Open mobile menu"
-        className="flex h-11 w-11 items-center justify-center rounded-md   text-black transition-colors dark:border-neutral-700 dark:text-white md:hidden"
+        className="flex h-11 w-11 items-center justify-center rounded-md   text-black transition-colors dark:border-neutral-700 dark:text-white lg:hidden"
       >
         <Bars3Icon className="h-6" />
       </button>
@@ -62,9 +67,14 @@ export default function MobileMenu({ men }: { men: string[] }) {
             leaveFrom="translate-x-0"
             leaveTo="translate-x-[-100%]"
           >
-            <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-full flex-col   bg-slate-800 pb-6 dark:bg-black">
-              <div className="border-b-2  p-4 px-12  ">
-                <div className="mb-4 mt-4 flex w-full  items-baseline">
+            <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-[90%] flex-col   bg-[#003445] pb-6 dark:bg-black">
+              <div className="border-b-2  p-4 px-8  ">
+                <motion.div
+                 viewport={{ once: false }}
+                 initial={{ opacity: 0, x: 24 }}
+       whileInView={{ opacity: 1, x: 0 }}
+           transition={{ duration: 0.3}}
+                 className=" mt-4 -ml-8 flex w-full  items-baseline">
                   <button
                     className="  flex h-11 w-11 items-center justify-center rounded-md font-extrabold     text-white transition-colors dark:border-neutral-700 dark:text-white"
                     onClick={closeMobileMenu}
@@ -72,36 +82,63 @@ export default function MobileMenu({ men }: { men: string[] }) {
                   >
                     <XMarkIcon className="h-6" />
                   </button>
-
-                  <Search />
-                  <UserIcon className={clsx('h-6 w-8 font-extrabold  text-white ')} />
-                </div>
-
+                </motion.div>
+                <motion.div
+                viewport={{ once: false }}
+                initial={{ opacity: 0, x: 24 }}
+      whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3}}
+           className='mb-6' >
+                <SearchMobile/>
+                </motion.div>
                 {men.length ? (
                   <ul className="flex w-full    flex-col">
-                    {men.map((item) => (
-                      <li className="text-md py-2 font-thin text-white transition-colors hover:text-neutral-500 dark:text-white">
-                        <Link href="/to" onClick={closeMobileMenu}>
-                          {item}
-                        </Link>
-                      </li>
+                    {men.map((item,ind) => (
+                      
+                      <motion.li
+                      viewport={{ once: false }}
+                  initial={{ opacity: 0, x: 24 }}
+        whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay:0.12*ind}} 
+        className="text-sm py-2 font-thin text-white transition-colors hover:text-neutral-500 dark:text-white">
+                        {item.title === "Shop" ? (
+                      <MobileShopDropDown />
+                        ) : (       
+                        <Link href={item.path} onClick={closeMobileMenu}>
+                          {item.title}
+                        </Link>)}
+                      </motion.li>
                     ))}
                   </ul>
                 ) : null}
 
-                <div>
-                  <ul className="text-white">
-                    <li className="flex text-white">
+                
+              </div>
+              <div className="p-4 px-6">
+                  <ul className="text-white space-y-3">
+                    <motion.li 
+                     viewport={{ once: false }}
+                     initial={{ opacity: 0, x: 24 }}
+           whileInView={{ opacity: 1, x: 0 }}
+               transition={{ duration: 0.3, delay:0.7}}  className="flex text-white">
                       <p className="flex">
-                        {' '}
-                        <UserIcon className={clsx('h-6 w-8 font-extrabold  text-white ')} />
-                        Account
-                      </p>{' '}
-                    </li>
-                    <li></li>
+                        
+                        <UserIcon className={clsx('h-6 w-8 font-extrabold  text-white mr-2 ')} />
+                        Accounts
+                      </p>
+                    </motion.li>
+                    <motion.li viewport={{ once: false }}
+                     initial={{ opacity: 0, x: 24 }}
+           whileInView={{ opacity: 1, x: 0 }}
+               transition={{ duration: 0.3, delay:0.8}}  className="flex text-white">
+                      <p className="flex">
+                        
+                        <Star className={clsx('h-6 w-8 font-extrabold  text-white mr-2')} />
+                        Reviews
+                      </p>
+                    </motion.li>
                   </ul>
                 </div>
-              </div>
             </Dialog.Panel>
           </Transition.Child>
         </Dialog>

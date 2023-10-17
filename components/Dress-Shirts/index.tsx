@@ -1,8 +1,14 @@
-import React from 'react';
+import { getCollectionProducts } from "lib/shopify";
+import Link from "next/link";
 
-export function Dressshirt() {
+
+export async function Dressshirt() {
+  const latestProduct = await getCollectionProducts({
+    collection: 'all-adress-shirts'
+  });
+  console.log(latestProduct)
   return (
-    <div className="  mb-b mx-auto w-full  bg-gray-100 pb-4 ">
+    <div className="  mb-b mx-auto w-full  bg-gray-100 py-6 ">
       <div className="mx-auto   max-w-[1240px]   bg-gray-100   ">
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div className="  col-span-2 mt-14 content-center items-center justify-center rounded-lg p-4 md:col-span-2 lg:col-span-1 ">
@@ -18,14 +24,17 @@ export function Dressshirt() {
 
           <div className=" col-span-3 flex overflow-scroll  lg:overflow-hidden  ">
             <div className=" rounded-lg p-2  lg:p-4">
+              <Link href={`/product/${latestProduct[0]?.handle}`}>
+
               <img
-                src="https://kirrinfinch.com/cdn/shop/files/ItalianMadeWomensDresssShirtLavender_360x.png?v=1686929793"
-                alt="Card 2"
+                src={latestProduct[0]?.featuredImage.url}
+                alt={latestProduct[0]?.featuredImage.altText}
                 className="h-62 mb-2 w-full object-cover"
               />
               <p className="text-md font-serif text-slate-800 lg:text-xl ">
-                The Windsor Navy Chinos
+              {latestProduct[0]?.title}
               </p>
+                </Link>
               <div className="flex  items-center space-x-1   overflow-hidden  text-start">
                 <svg
                   className="h-4 w-4 text-slate-800"
@@ -76,17 +85,23 @@ export function Dressshirt() {
                   125 reviews
                 </p>
               </div>
-              <p className="  flex font-mono  text-xl text-slate-800 lg:text-2xl  "> $ 45 </p>
+              <p className="  flex font-mono  text-xl text-slate-800 lg:text-2xl  ">{latestProduct[0]?.priceRange.maxVariantPrice.currencyCode} {latestProduct[0]?.priceRange.maxVariantPrice.amount}</p>
             </div>
 
             <div className=" rounded-lg p-2  lg:p-4">
+            <Link href={`/product/${latestProduct[1]?.handle}`}>
+
+
               <img
-                src="https://kirrinfinch.com/cdn/shop/products/BlackWomensDressShirtEasyCare_d704990f-50df-41cb-b124-4bd26f3dc9c7_360x.png?v=1634089334"
+                src={latestProduct[1]?.featuredImage.url}
+                alt={latestProduct[1]?.featuredImage.altText}
                 className="h-62 mb-2 w-full object-cover"
               />
               <p className="text-md font-serif text-slate-800 lg:text-xl ">
-                The Graf Asphalt Stretch{' '}
+              {latestProduct[1]?.title}
               </p>
+            </Link>
+
               <div className="flex  items-center space-x-1   overflow-hidden  text-start">
                 <svg
                   className="h-4 w-4 text-slate-800"
@@ -137,15 +152,21 @@ export function Dressshirt() {
                   125 reviews
                 </p>
               </div>
-              <p className="  flex font-mono  text-xl text-slate-800 lg:text-2xl  "> $ 45 </p>
+              <p className="  flex font-mono  text-xl text-slate-800 lg:text-2xl  ">{latestProduct[1]?.priceRange.maxVariantPrice.currencyCode} {latestProduct[1]?.priceRange.maxVariantPrice.amount}</p>
             </div>
 
             <div className=" rounded-lg p-2  lg:p-4">
+            <Link href={`/product/${latestProduct[2]?.handle}`}>
+
+
               <img
-                src="https://kirrinfinch.com/cdn/shop/products/White_Italian_Made_Dress_Shirt_For_Women_91a1bf4e-cc61-4bbb-82d6-2c928d33381e_360x.jpg?v=1552414898"
+                src={latestProduct[2]?.featuredImage.url}
+                alt={latestProduct[2]?.featuredImage.altText}
                 className="h-62 mb-2 w-full object-cover"
               />
-              <p className="text-md font-serif text-slate-800 lg:text-xl ">Joni Indigo Jeans</p>
+              <p className="text-md font-serif text-slate-800 lg:text-xl ">{latestProduct[2]?.title}</p>
+            </Link>
+
               <div className="flex  items-center space-x-1   overflow-hidden  text-start">
                 <svg
                   className="h-4 w-4 text-slate-800"
@@ -196,7 +217,7 @@ export function Dressshirt() {
                   125 reviews
                 </p>
               </div>
-              <p className="  flex font-mono  text-xl text-slate-800 lg:text-2xl  "> $ 45 </p>
+              <p className="  flex font-mono  text-xl text-slate-800 lg:text-2xl  "> {latestProduct[2]?.priceRange.maxVariantPrice.currencyCode} {latestProduct[2]?.priceRange.maxVariantPrice.amount} </p>
             </div>
           </div>
         </div>

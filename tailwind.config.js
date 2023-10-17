@@ -16,6 +16,9 @@ module.exports = {
       }
     },
     extend: {
+      gridTemplateColumns: {
+        table: '200px auto'
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
