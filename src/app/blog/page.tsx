@@ -22,7 +22,7 @@ const Blogs = await getCollectionProducts({
       title={latestProduct[0]?.title} 
       description={latestProduct[0]?.description} />
 
-     <section className='mt-[460px] md:mt-60'>
+     <section className='mt-20 md:mt-60'>
       <div className=' mx-7  bg-white border-b-[1px] justify-center items-center border-[#032733] font-bold '>
         <h1 className='text-base text-center font-bold  text-[#032733] uppercase  mb-[20px] m-0 h1'>
         MOST RECENT

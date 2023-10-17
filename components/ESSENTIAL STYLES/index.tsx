@@ -22,12 +22,12 @@ export async function Essential() {
             SHOP THE COLLECTION
           </button>
         </div>
-        <div className="flex overflow-auto md:grid-cols-4  md:gap-4 md:overflow-scroll ">
+        <div className="flex overflow-auto md:grid-cols-4 gap-4  md:gap-4 md:overflow-scroll ">
           <div className="group relative   rounded-lg     ">
             <img
               src={latestProduct[0].featuredImage.url}
               alt={latestProduct[0].featuredImage.altText}
-              className="h-[260PX] mb-2 w-full  object-cover"
+              className="h-[200px] md:h-[260px] mb-2 w-full  object-cover"
             />
             <div className="absolute   inset-0 flex items-center justify-center bg-opacity-70 text-white opacity-0 transition-opacity hover:opacity-100">
             <Link href={`/product/${latestProduct[0]?.handle}`}>
@@ -98,7 +98,7 @@ export async function Essential() {
             <img
               src={latestProduct[1]?.featuredImage.url}
               alt={latestProduct[1]?.featuredImage.altText}
-              className="h-[260PX] mb-2 w-full  object-cover"
+              className="h-[200px] md:h-[260px] mb-2 w-full  object-cover"
             />
             <div className="absolute   inset-0 flex items-center justify-center bg-opacity-70 text-white opacity-0 transition-opacity hover:opacity-100">
             <Link href={`/product/${latestProduct[1]?.handle}`}>
@@ -167,7 +167,7 @@ export async function Essential() {
             <img
               src={latestProduct[2]?.featuredImage.url}
               alt={latestProduct[2]?.featuredImage.altText}
-              className="h-[260PX] mb-2 w-full  object-cover"
+              className="h-[200px] md:h-[260px] mb-2 w-full  object-cover"
             />
             <div className="absolute   inset-0 flex items-center justify-center bg-opacity-70 text-white opacity-0 transition-opacity hover:opacity-100">
             <Link href={`/product/${latestProduct[2]?.handle}`}>
@@ -238,7 +238,7 @@ export async function Essential() {
             <img
               src={latestProduct[3]?.featuredImage.url}
               alt={latestProduct[3]?.featuredImage.altText}
-              className="h-[260px] mb-2 w-full  object-cover"
+              className="h-[200px] md:h-[260px] mb-2 w-full  object-cover"
             />
             <div className="absolute   inset-0 flex items-center justify-center bg-opacity-70 text-white opacity-0 transition-opacity hover:opacity-100">
             <Link href={`/product/${latestProduct[3]?.handle}`}>

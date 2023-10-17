@@ -39,9 +39,9 @@ export async function Latestproduct() {
 
     //         </div>
 
-    <div className="container mx-auto w-full">
-      <div className="xs:p-4  flex h-full flex-col gap-14 p-6 sm:p-4   md:p-8 lg:flex-row lg:p-12">
-        <div className="relative   flex    h-96   w-full     items-end      overflow-hidden  md:min-h-screen">
+    <div className="container mx-auto w-full my-6">
+      <div className="  flex  flex-col gap-14   md:p-8 lg:flex-row lg:p-12">
+        <div className="relative   flex    h-96   w-full     items-end      overflow-hidden  md:h-[600px]">
           <img
           src={firstProduct.featuredImage.url}
           alt={firstProduct.featuredImage.altText}
@@ -58,7 +58,7 @@ export async function Latestproduct() {
           </div>
         </div>
 
-        <div className="relative   flex    h-96   w-full    items-end      overflow-hidden   md:min-h-screen">
+        <div className="relative   flex    h-96   w-full    items-end      overflow-hidden   md:h-[600px]">
           <img
             src={trenProduct.featuredImage.url}
             alt={trenProduct.featuredImage.altText}

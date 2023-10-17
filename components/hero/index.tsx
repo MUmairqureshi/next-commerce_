@@ -19,9 +19,9 @@ export async function Hero() {
     //         <button className='bg-white     px-14 py-4  ml-2  rounded-lg border mx-auto  text-black text-xl  font-serif'>SHOP NOW</button>
     //     </div>
     // </div>
-    <div className='w-full'>
-    <div className="item-center relative mx-auto h-full w-full max-w-screen-2xl">
-      <div className="">
+    <div className='w-full h-[80vh] xl:h-[60vh]'>
+    <div className="item-center relative mx-auto h-full  w-full max-w-screen-2xl">
+      <div className="h-full w-full ">
         <img
           srcSet=" 
             https://kirrinfinch.com/cdn/shop/files/Mobile_Hero_2_3_1080x.png?v=1692200428 600w,

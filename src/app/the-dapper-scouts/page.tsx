@@ -22,7 +22,7 @@ if(!ScoutlistingData[0]) return null;
       title={latestProduct[0]?.title} 
       description={latestProduct[0]?.description} />
 
-     <section className='mt-[460px] md:mt-60'>
+     <section className='mt-20  md:mt-60'>
       <div className=' mx-7  bg-white border-b-[1px] justify-center items-center border-[#032733] font-bold '>
         <h1 className='text-base text-center font-bold  text-[#032733] uppercase  mb-[20px] m-0 h1'>
         DAPPER SCOUTS SHOWCASE DAPPER STYLE AND COMMUNITY SPIRIT
@@ -30,7 +30,7 @@ if(!ScoutlistingData[0]) return null;
       </div> 
       <div
         style={{ backgroundImage: `url(${latestProduct[1]?.featuredImage.url})` }}
-        className="w-full  bg-cover bg-fixed bg-center bg-no-repeat "
+        className="border-0  w-full  bg-cover bg-fixed bg-center bg-no-repeat "
       >
 <CardListingScetion Products={ScoutlistingData}/>
     <ImageScrollSection data={latestProduct[1]}/>

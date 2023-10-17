@@ -104,7 +104,8 @@ export default function MobileMenu({ men }: { men: PropType[] }) {
                         {item.title === "Shop" ? (
                       <MobileShopDropDown />
                         ) : (       
-                        <Link href={item.path} onClick={closeMobileMenu}>
+                        <Link                       href={`/${item.path.split("/")[2]}`}
+                        onClick={closeMobileMenu}>
                           {item.title}
                         </Link>)}
                       </motion.li>

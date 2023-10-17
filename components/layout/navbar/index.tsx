@@ -41,7 +41,7 @@ export default async function Navbar() {
         <DropdownMenuCheckboxes />
       ) : (       
                     <Link
-                      href={item.path}
+                      href={`/${item.path.split("/")[2]}`}
                       className="text-baseline w-full items-baseline text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300 "
                     >
                       {item.title}
