@@ -10,10 +10,10 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import category_hero from 'components/images/category_hero.webp';
 import { getCollection, getCollectionProducts } from 'lib/shopify';
 import { Product } from 'lib/shopify/types';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
-import ProductCart from '../product-cart';
+import MenProducts from '../men-products';
 import StyleInspiration from '../style-inspiration';
+import TwoBoxes from '../two-boxes';
 
 export default async function Hero({ params }: { params: { gender: string } }) {
   // console.log(params)
@@ -454,8 +454,12 @@ async function CategoryPage({ collection, item }: { item: Product[]; collection:
               </Accordion>
             </div>
           </div>
-          <div className="basis-8/12 lg:basis-3/4 xl:basis-4/5">
-            {/* <MenProducts /> */}
+
+          {/* <MenProducts /> */}
+
+          <MenProducts items={item} />
+
+          {/* <div className="basis-8/12 lg:basis-3/4 xl:basis-4/5">
 
             <section className="">
               <div className=" grid grid-cols-2 py-3 md:grid-cols-3 lg:px-3">
@@ -475,11 +479,13 @@ async function CategoryPage({ collection, item }: { item: Product[]; collection:
                 </Button>
               </div>
             </section>
-          </div>
+          </div> */}
         </div>
       </section>
 
       <StyleInspiration />
+
+      <TwoBoxes />
     </>
   );
 }

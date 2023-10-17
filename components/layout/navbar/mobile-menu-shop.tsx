@@ -27,7 +27,7 @@ export default function MobileShopDropDown() {
     { label: 'Casual Shirts & Sets', href: '../category/casual-shirts-sets' },
     { label: 'Casual Pants & Shorts', href: '../category/casual-pants-shorts' },
     { label: 'Accessories', href: '../category/accessories' },
-    { label: 'Gift Card', href: '../category/gift-cards' }
+    { label: 'Gift Card', href: '../gift-cards' }
   ];
   useEffect(() => {
     const handleResize = () => {
