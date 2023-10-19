@@ -7,10 +7,11 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
-// import img1 from 'assets/images/NavImage1.png'
-// import img2 from 'assets/images/NavImage2.png'
+import img1 from 'assets/images/NavImage1.png';
+import img2 from 'assets/images/NavImage2.png';
 import { motion } from 'framer-motion';
 import { Bird, ChevronDown } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 type Checked = DropdownMenuCheckboxItemProps['checked'];
@@ -97,14 +98,14 @@ export function DropdownMenuCheckboxes() {
                 </p>
               </div>
               <div className=" flex h-4/5 w-48 flex-col items-center justify-center border-white text-center text-sm text-white">
-                {/* <Image alt="image" className="h-full w-full" width="100" height="100" src={img1}/> */}
+                <Image alt="image" className="h-full w-full" width="100" height="100" src={img1} />
                 <h1 className="mb-1 mt-3 font-bold">Shop fresh new arrivals!</h1>
                 <Link href="#" className="hover:text-white/70 hover:underline">
                   <p>Shop New Arrivals</p>
                 </Link>
               </div>
               <div className=" flex h-4/5 w-48 flex-col items-center justify-center border-white text-center text-sm text-white">
-                {/* <Image alt="image" className="h-full w-full" width="100" height="100" src={img2}/> */}
+                <Image alt="image" className="h-full w-full" width="100" height="100" src={img2} />
                 <h1 className="mb-1  mt-3 font-bold">Shop fresh new arrivals!</h1>
                 <Link href="#" className="hover:text-white/70 hover:underline">
                   <p>Shop New Arrivals</p>

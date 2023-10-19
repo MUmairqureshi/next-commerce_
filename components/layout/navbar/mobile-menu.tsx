@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 'use client';
 import { Dialog, Transition } from '@headlessui/react';
 import { Bars3Icon, UserIcon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -107,7 +106,7 @@ export default function MobileMenu({ men }: { men: PropType[] }) {
                         {item.title === 'Shop' ? (
                           <MobileShopDropDown />
                         ) : (
-                          <Link href={item.path} onClick={closeMobileMenu}>
+                          <Link href={`/${item.path.split('/')[2]}`} onClick={closeMobileMenu}>
                             {item.title}
                           </Link>
                         )}

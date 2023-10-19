@@ -1,4 +1,7 @@
 import { UserIcon } from '@heroicons/react/24/outline';
+import Cart from 'components/cart';
+import OpenCart from 'components/cart/open-cart';
+import { Suspense } from 'react';
 // import { LuBird } from "react-icons/lu";
 import { getMenu } from 'lib/shopify';
 import Link from 'next/link';
@@ -36,7 +39,7 @@ export default async function Navbar() {
                       <DropdownMenuCheckboxes />
                     ) : (
                       <Link
-                        href={item.path}
+                        href={`/${item.path.split('/')[2]}`}
                         className="text-baseline w-full items-baseline text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300 "
                       >
                         {item.title}
@@ -57,9 +60,9 @@ export default async function Navbar() {
               </div>
             </div>
 
-            {/* <Suspense fallback={<OpenCart />}>
+            <Suspense fallback={<OpenCart />}>
               <Cart />
-            </Suspense> */}
+            </Suspense>
           </div>
         </div>
       </div>

@@ -7,16 +7,18 @@ interface HeroProps {
 }
 function BlogPostSection({ imageSrc, title, description, altText }: HeroProps) {
   return (
-    <section className=" mb-10 h-auto w-full  px-7 ">
+    <section className=" mb-10 h-auto w-full  px-7">
       <div className="relative w-full ">
-        <div className="mt-10 h-[300px]  md:h-[500px]">
-          <Image
-            src={imageSrc}
-            alt={altText}
-            layout="fill"
-            objectFit="cover"
-            className=" h-full  w-full object-cover"
-          />
+        <div className="mt-3 h-full  ">
+          <div className="relative h-[300px] w-full md:h-[500px]">
+            <Image
+              src={imageSrc}
+              alt={altText}
+              layout="fill"
+              objectFit="cover"
+              className="h-full  w-full object-cover"
+            />
+          </div>
           <div className="block bg-[#e0e7ed] px-4 py-8 font-serif md:hidden">
             <span className="mb-3 border-t-[1px] border-[#003445] pt-2 font-serif font-semibold uppercase leading-4 tracking-wider text-[#003445]">
               Featured
@@ -28,7 +30,7 @@ function BlogPostSection({ imageSrc, title, description, altText }: HeroProps) {
           </div>
         </div>
 
-        <div className="absolute -bottom-40 z-10  box-border  flex   w-full justify-center text-center">
+        <div className="absolute -bottom-40 z-10 box-border   hidden  w-full   justify-center text-center md:flex">
           <div className="z-10  box-border hidden w-5/6 bg-[#003445] p-12 text-center   md:block lg:p-16 xl:p-20">
             <div className="mb-3 font-semibold uppercase leading-4 tracking-wider text-white">
               Featured

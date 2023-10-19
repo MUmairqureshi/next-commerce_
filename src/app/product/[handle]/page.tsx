@@ -5,10 +5,8 @@ import HeroSection from 'components/SingleProduct/HeroSection';
 import ProductDetailsSection from 'components/SingleProduct/ProductDetailsSection';
 // import RelatedProducts from 'components/SingleProduct/RelatedProducts';
 import RelatedProducts from 'components/SingleProduct/RelatedProducts';
-import { GridTileImage } from 'components/grid/tile';
 import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
 import { getProduct, getProductRecommendations } from 'lib/shopify';
-import Link from 'next/link';
 
 export const runtime = 'edge';
 
@@ -54,34 +52,7 @@ async function RelatedProd({ id }: { id: string }) {
   const relatedProducts = await getProductRecommendations(id);
   console.log('id', id);
   if (!relatedProducts.length) return <p>null</p>;
-
-  return (
-    <div className="py-8">
-      <h2 className="mb-4 text-2xl font-bold">Related Products</h2>
-      <ul className="flex w-full gap-4 overflow-x-auto pt-1">
-        {relatedProducts.map((product) => (
-          <li
-            key={product.handle}
-            className="aspect-square w-full flex-none min-[475px]:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
-          >
-            <Link className="relative h-full w-full" href={`/product/${product.handle}`}>
-              <GridTileImage
-                alt={product.title}
-                label={{
-                  title: product.title,
-                  amount: product.priceRange.maxVariantPrice.amount,
-                  currencyCode: product.priceRange.maxVariantPrice.currencyCode
-                }}
-                src={product.featuredImage?.url}
-                fill
-                sizes="(min-width: 1024px) 20vw, (min-width: 768px) 25vw, (min-width: 640px) 33vw, (min-width: 475px) 50vw, 100vw"
-              />
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+  return <RelatedProducts Data={relatedProducts} />;
 }
 export default async function ProductPage({ params }: { params: { handle: string } }) {
   const product = await getProduct(params.handle);
@@ -117,8 +88,8 @@ export default async function ProductPage({ params }: { params: { handle: string
         <div className="max-w-screen-xl bg-background px-6 py-16">
           <HeroSection data={product} />
           <ProductDetailsSection data={product} />
-          {/* <RelatedProd id={product.id} /> */}
-          <RelatedProducts />
+          <RelatedProd id={product.id} />
+          {/* <RelatedProducts /> */}
         </div>
       </div>
     </>

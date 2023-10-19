@@ -1,11 +1,7 @@
-import image from 'assets/images/dapper-scout-2.jpg';
+import { Product } from 'lib/shopify/types';
 import Image from 'next/image';
-const Data = [
-  { title: 'DNK Blue Shores', category: 'Men', price: '400-1000', stars: 4 },
-  { title: 'XYZ Red Waves', category: 'Women', price: '350-700', stars: 5 },
-  { title: 'PQR Ocean Breeze', category: 'Men', price: '500-1200', stars: 4 }
-];
-const RelatedProducts = () => {
+
+const RelatedProducts = ({ Data }: { Data: Product[] }) => {
   return (
     <div className="mt-16 w-full">
       <h3 className="m-0 mb-10 p-0 text-2xl font-semibold md:text-3xl">Related Products</h3>
@@ -13,11 +9,14 @@ const RelatedProducts = () => {
         {Data.map((item, ind) => {
           return (
             <div className=" rounded-lg ">
-              <Image
-                src={image}
-                alt={'latestProduct[0]?.featuredImage.altText'}
-                className="h-62 mb-2 w-full object-cover"
-              />
+              <div className="relative h-[200px] md:h-[260px]">
+                <Image
+                  layout="fill"
+                  src={item?.featuredImage?.url}
+                  alt={item?.featuredImage.altText}
+                  className="h-62 mb-2 w-full object-cover"
+                />
+              </div>
               <p className="text-md font-serif text-slate-800 lg:text-xl ">{item.title}</p>
               <div className="flex  items-center space-x-1   overflow-hidden  text-start">
                 <svg
@@ -69,7 +68,9 @@ const RelatedProducts = () => {
                   125 reviews
                 </p>
               </div>
-              <p className="  flex font-mono  text-xl text-slate-800 lg:text-2xl  ">{item.price}</p>
+              <p className="  flex font-mono  text-xl text-slate-800 lg:text-2xl  ">
+                {item.priceRange.maxVariantPrice.amount}
+              </p>
             </div>
             // </motion.div>
           );

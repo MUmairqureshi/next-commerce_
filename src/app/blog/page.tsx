@@ -1,18 +1,17 @@
 import CardListingScetion from 'components/Dapper-Hero/CardListingScetion';
 import Hero from 'components/Dapper-Hero/DapperHero';
-import ImageScrollSection from 'components/Dapper-Hero/ImageScrollSection';
 import { getCollectionProducts } from 'lib/shopify';
 
-export default async function DapperScout() {
+export default async function Blogs() {
   const latestProduct = await getCollectionProducts({
-    collection: 'the-dapper-scouts-image'
+    collection: 'blogs-page-images'
   });
   if (!latestProduct[0]) return null;
 
-  const ScoutlistingData = await getCollectionProducts({
-    collection: 'all-the-dappers-scoutts'
+  const Blogs = await getCollectionProducts({
+    collection: 'all-blogs'
   });
-  if (!ScoutlistingData[0]) return null;
+  if (!Blogs[0]) return null;
 
   return (
     <div className="mx-auto w-full max-w-screen-2xl ">
@@ -23,19 +22,14 @@ export default async function DapperScout() {
         description={latestProduct[0]?.description}
       />
 
-      <section className="mt-20  md:mt-60">
+      <section className="mt-20 md:mt-60">
         <div className=" mx-7  items-center justify-center border-b-[1px] border-[#032733] bg-white font-bold ">
           <h1 className="h1 m-0 mb-[20px]  text-center text-base  font-bold uppercase text-[#032733]">
-            DAPPER SCOUTS SHOWCASE DAPPER STYLE AND COMMUNITY SPIRIT
+            MOST RECENT
           </h1>
         </div>
-        <div
-          style={{ backgroundImage: `url(${latestProduct[1]?.featuredImage.url})` }}
-          className="w-full  border-0  bg-cover bg-fixed bg-center bg-no-repeat "
-        >
-          <CardListingScetion Products={ScoutlistingData} />
-          <ImageScrollSection data={latestProduct[1]} />
-        </div>
+
+        <CardListingScetion Products={Blogs} />
       </section>
     </div>
   );
