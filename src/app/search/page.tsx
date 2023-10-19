@@ -1,7 +1,7 @@
 import Grid from 'components/grid';
 import { defaultSort, sorting } from 'lib/constants';
 import { getProducts } from 'lib/shopify';
-import MenProducts from '../category/men-products';
+import MenProducts from '../collection/men-products';
 
 export const runtime = 'edge';
 

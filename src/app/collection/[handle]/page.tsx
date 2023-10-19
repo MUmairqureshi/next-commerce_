@@ -15,13 +15,13 @@ import MenProducts from '../men-products';
 import StyleInspiration from '../style-inspiration';
 import TwoBoxes from '../two-boxes';
 
-export default async function Hero({ params }: { params: { gender: string } }) {
+export default async function Hero({ params }: { params: { handle: string } }) {
   // console.log(params)
   const latestProduct = await getCollectionProducts({
-    collection: `${params.gender}`
+    collection: `${params.handle}`
   });
 
-  const collection = await getCollection(`${params.gender}`);
+  const collection = await getCollection(`${params.handle}`);
   // console.log(collection)
   return (
     <section>
@@ -280,7 +280,7 @@ async function CategoryPage({ collection, item }: { item: Product[]; collection:
           <div className="relative md:h-[430px]">
             <Image
               src={category_hero}
-              alt={'params.gender'}
+              alt={'params.handle'}
               height={500}
               width={400}
               className="h-full w-full object-cover object-top "

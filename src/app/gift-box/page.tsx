@@ -16,7 +16,7 @@ import { getCollectionProducts } from 'lib/shopify';
 import { Star } from 'lucide-react';
 import Image from 'next/image';
 import { Suspense } from 'react';
-import TwoBoxes from '../category/two-boxes';
+import TwoBoxes from '../collection/two-boxes';
 import Reviews from './reviews';
 import cloud from '/components/images/cloud.webp';
 import flag from '/components/images/flag.webp';
