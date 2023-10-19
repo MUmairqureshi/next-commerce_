@@ -6,7 +6,7 @@ import { useState } from 'react';
 import ProductCart from './product-cart';
 
 const MenProducts = ({ items }: { items: Product[] }) => {
-  const itemsPerPage = 6; // Number of items to display per page
+  const itemsPerPage = 9; // Number of items to display per page
   const [currentPage, setCurrentPage] = useState(1);
 
   // Calculate the index range for the current page
