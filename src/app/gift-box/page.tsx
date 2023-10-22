@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import {
   Accordion,
   AccordionContent,
@@ -17,7 +18,9 @@ import { Star } from 'lucide-react';
 import Image from 'next/image';
 import { Suspense } from 'react';
 import TwoBoxes from '../collection/two-boxes';
+import { getReviews } from '../service';
 import Reviews from './reviews';
+import ReviewsComponent from './reviews-component';
 import cloud from '/components/images/cloud.webp';
 import flag from '/components/images/flag.webp';
 import message from '/components/images/message.webp';
@@ -35,79 +38,118 @@ export default async function gift_box() {
     </section>
   );
 }
+
+// interface Review {
+//   name: string;
+//   title: string;
+//   content: string;
+// }
+
+// const reviews: Review[] = [
+//   {
+//     name: 'Susan L. (Lancaster, US)',
+//     title: 'An exciting gift',
+//     content:
+//       "What more could a hip Brooklynite want than a Kirrin Finch gift card? My daughter loves her birthday gift card and can't wait to go to the showroom (hopefully with me!) to find a treasure."
+//   },
+//   {
+//     name: 'Shari W. (Greensboro, US)',
+//     title: 'Great service',
+//     content: 'Great clothes. Great service.'
+//   },
+//   {
+//     name: 'J E.D. (Tucson, US)',
+//     title: 'Digital Gift Card',
+//     content: ''
+//   },
+//   {
+//     name: 'Julia B. (Sacramento, US)',
+//     title: 'Gift card EASY',
+//     content:
+//       'The process to send a gift card to my daughter was very easy. I requested delayed delivery/notification so that she received it via email on her birthday and it was delivered as requested. Will use them again.'
+//   },
+//   {
+//     name: 'Pamela R. (Sudbury, US)',
+//     title: 'very happy',
+//     content: 'the person who received the gift card was very happy!'
+//   },
+//   {
+//     name: 'Linda M. (Northville, US)',
+//     title: 'Digital Gift Card',
+//     content: ''
+//   },
+//   {
+//     name: 'Elaine H. (Freeland, US)',
+//     title: 'Gift Card',
+//     content:
+//       'I purchased for my daughter for Christmas so she has not received as yet. She left full-time military and started a civilian job 2 years ago and purchased many items from Kirrin Finch. She loves them and so do I.'
+//   },
+//   {
+//     name: 'Emma',
+//     title: 'Great!',
+//     content: 'I liked that!'
+//   },
+//   {
+//     name: 'Candice G. (Spruce Grove, CA)',
+//     title: 'Excellent customer service',
+//     content:
+//       'I was a little concerned that one egift card was not going to be sent on the requested day but I reached out to customer service and heard back from the recipient within a few hours that she had received the gift.'
+//   },
+//   {
+//     name: 'Mary G. (Oakland, US)',
+//     title: `It a Gift Card!`,
+//     content: "What's not to love about a gift card with a discount?"
+//   },
+//   {
+//     name: 'Miriam P. (Underhill Center, US)',
+//     title: 'E gift card review',
+//     content:
+//       'I purchased the gift card as a present so I was a little unsure about how it worked with me buying it but giving it to someone else to use since it was an e-card. The customer service person was great and explained how all the recipient of the E gift card needed was the code and ta-da! In business! Very easy and very helpful person on the other end of the chat box. this one too'
+//   }
+// ];
+const apiUrl =
+  'https://judge.me/api/v1/reviews?api_token=MDNdJzaFmVDpoimCC2iTWoh68OQ&shop_domain=next-ecommerce-templates.myshopify.com';
+
 interface Review {
-  name: string;
+  per_page: number;
+  id: number;
   title: string;
-  content: string;
+  body: string;
+  rating: number;
+  product_external_id: number;
+  reviews: reviews[];
+  source: string;
+  curated: string;
+  published: boolean;
+  hidden: boolean;
+  verified: string;
+  featured: boolean;
+  created_at: string;
+  updated_at: string;
+  has_published_pictures: boolean;
+  has_published_videos: boolean;
+  pictures: string[]; // You may need to define the actual data type for pictures
+  ip_address: string;
+  product_title: string;
+  product_handle: string;
 }
 
-const reviews: Review[] = [
-  {
-    name: 'Susan L. (Lancaster, US)',
-    title: 'An exciting gift',
-    content:
-      "What more could a hip Brooklynite want than a Kirrin Finch gift card? My daughter loves her birthday gift card and can't wait to go to the showroom (hopefully with me!) to find a treasure."
-  },
-  {
-    name: 'Shari W. (Greensboro, US)',
-    title: 'Great service',
-    content: 'Great clothes. Great service.'
-  },
-  {
-    name: 'J E.D. (Tucson, US)',
-    title: 'Digital Gift Card',
-    content: ''
-  },
-  {
-    name: 'Julia B. (Sacramento, US)',
-    title: 'Gift card EASY',
-    content:
-      'The process to send a gift card to my daughter was very easy. I requested delayed delivery/notification so that she received it via email on her birthday and it was delivered as requested. Will use them again.'
-  },
-  {
-    name: 'Pamela R. (Sudbury, US)',
-    title: 'very happy',
-    content: 'the person who received the gift card was very happy!'
-  },
-  {
-    name: 'Linda M. (Northville, US)',
-    title: 'Digital Gift Card',
-    content: ''
-  },
-  {
-    name: 'Elaine H. (Freeland, US)',
-    title: 'Gift Card',
-    content:
-      'I purchased for my daughter for Christmas so she has not received as yet. She left full-time military and started a civilian job 2 years ago and purchased many items from Kirrin Finch. She loves them and so do I.'
-  },
-  {
-    name: 'Emma',
-    title: 'Great!',
-    content: 'I liked that!'
-  },
-  {
-    name: 'Candice G. (Spruce Grove, CA)',
-    title: 'Excellent customer service',
-    content:
-      'I was a little concerned that one egift card was not going to be sent on the requested day but I reached out to customer service and heard back from the recipient within a few hours that she had received the gift.'
-  },
-  {
-    name: 'Mary G. (Oakland, US)',
-    title: `It a Gift Card!`,
-    content: "What's not to love about a gift card with a discount?"
-  },
-  {
-    name: 'Miriam P. (Underhill Center, US)',
-    title: 'E gift card review',
-    content:
-      'I purchased the gift card as a present so I was a little unsure about how it worked with me buying it but giving it to someone else to use since it was an e-card. The customer service person was great and explained how all the recipient of the E gift card needed was the code and ta-da! In business! Very easy and very helpful person on the other end of the chat box. this one too'
-  }
-];
-
-const GiftBox = ({ section, mainProduct }: any) => {
+interface reviews {
+  id: number;
+  external_id: number;
+  rating: number;
+  email: string;
+  name: string;
+  phone: string;
+  accepts_marketing: boolean;
+  unsubscribed_at: string | null;
+  tags: string[];
+}
+const GiftBox = async ({ section, mainProduct }: any) => {
+  const data = await getReviews<Review>(apiUrl);
   return (
     <section className="2xl:mx-96">
-      <div className="m-4 flex flex-col gap-x-8 md:m-10 md:flex-row">
+      <div className="m-5 flex flex-col gap-x-8 md:m-10 md:flex-row">
         <div className="flex justify-center md:basis-3/6 lg:basis-4/6">
           <div className="md:h-80 md:w-80 xl:h-96 xl:w-96 2xl:h-[600px] 2xl:w-[600px]">
             <Image
@@ -127,7 +169,11 @@ const GiftBox = ({ section, mainProduct }: any) => {
             <Star size={20} strokeWidth={0.5} fill="black" />
             <Star size={20} strokeWidth={0.5} fill="black" />
             <Star size={20} strokeWidth={0.5} fill="black" />
-            <div className="pl-2">11 Reviews</div>
+            <ul>
+              {data.reviews.map((review: any) => (
+                <div className="pl-2">{review.rating}</div>
+              ))}
+            </ul>
           </div>
           <div className="flex flex-col">
             <div className="my-4 capitalize tracking-widest">Select Amount</div>
@@ -204,12 +250,10 @@ const GiftBox = ({ section, mainProduct }: any) => {
               </AccordionItem>
             </Accordion>
           </div>
-          <div className="ml-5 mt-4 text-sm font-thin text-slate-600">
-            {mainProduct.description}
-          </div>
+          <div className="mt-4 text-sm font-thin text-slate-600">{mainProduct.description}</div>
         </div>
       </div>
-      <div className="mx-4 flex h-96 flex-col bg-blue-200 p-6 md:mx-16 md:h-60 md:flex-row lg:mx-32">
+      <div className="mx-5 flex h-96 flex-col bg-blue-200 p-6 md:mx-10 md:h-60 md:flex-row">
         <div className="w-full md:flex md:flex-col lg:flex-row">
           <div className="flex flex-col lg:w-[350px] xl:w-[550px] ">
             <div className="mt-1 flex items-center ">
@@ -279,7 +323,7 @@ const GiftBox = ({ section, mainProduct }: any) => {
           </Button>
         </div>
       </div>
-      <div className="mx-4 mt-4 flex flex-col md:mx-16 lg:mx-32">
+      <div className="mx-5 mt-4 flex flex-col md:mx-10">
         <div className="flex w-full justify-end">
           <Select>
             <SelectTrigger className="w-full rounded-none border-black md:w-[260px]">
@@ -297,11 +341,12 @@ const GiftBox = ({ section, mainProduct }: any) => {
           </Select>
         </div>
         <div>
-          <Reviews items={reviews} />
+          <Reviews items={data} />
+          <ReviewsComponent />
         </div>
         <div>{/* <MenProducts items={null} key={null}/> */}</div>
       </div>
-      <div className="flex flex-col items-center justify-center gap-y-4 bg-blue-200 px-4 py-6 text-center md:mt-4 md:px-0 2xl:mx-80">
+      <div className="flex flex-col items-center justify-center gap-y-4 bg-blue-200 px-5 py-6 text-center md:mt-4 md:px-0 2xl:mx-10">
         <div className="mt-2 flex h-14 w-14 items-center justify-center rounded-full bg-white">
           <Image
             src={section.featuredImage.url}

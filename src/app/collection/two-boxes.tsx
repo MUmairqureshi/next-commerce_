@@ -32,7 +32,7 @@ const TwoBoxes = ({ firstComponent, secondComponent }: any) => {
         <div className="absolute inset-0 z-10 bg-black opacity-30"></div>
 
         {/* Text */}
-        <div className="absolute top-0 z-50 flex h-full w-full flex-col justify-end p-4 text-white">
+        <div className="absolute top-0 z-50 flex h-full w-full flex-col justify-end p-6 text-white">
           <Image
             alt={firstComponent.images[1].altText}
             src={firstComponent.images[1].url}
