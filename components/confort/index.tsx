@@ -1,7 +1,6 @@
-
 export function Comfort() {
   return (
-    <div className="item-center h-full w-full px-2 md:px-6  pb-10">
+    <div className="item-center h-full w-full px-2 pb-10  md:px-6">
       <div className=" container mx-auto grid grid-cols-2 md:space-x-4 lg:grid-cols-4">
         <div className="flex-1 rounded-md p-1  text-center md:p-4 lg:border-r-2">
           <div className="text-center">

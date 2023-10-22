@@ -9,26 +9,25 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
 import SearchMobile from './searchMobile';
 
-
 export default function MobileShopDropDown() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
   const openMobileMenu = () => setIsOpen(true);
   const closeMobileMenu = () => setIsOpen(false);
-  const men=[
-    {label:'Shop',href:"#"},
-    {label:'New Arrivals',href:"#"},
-    {label:'Suits & Blazzers',href:"#"},
-    {label:'Vests',href:"#"},
-    {label:'Dress Shirts',href:"#"},
-    {label:'Dress Pants',href:"#"},
-    {label:'Sweaters & Jacket',href:"#"},
-    {label:'Casual Shirts & Sets',href:"#"},
-    {label:'Casual Pants & Shorts',href:"#"},
-    {label:'Accessories',href:"#"},
-    {label:'Gift Card',href:"#"},
-  ]
+  const men = [
+    { label: 'Shop', href: '#' },
+    { label: 'New Arrivals', href: '../collection/all-new-arrivals-1' },
+    { label: 'Suits & Blazzers', href: '../collection/suits-blazers' },
+    { label: 'Vests', href: '../collection/vests' },
+    { label: 'Dress Shirts', href: '../collection/all-adress-shirts' },
+    { label: 'Dress Pants', href: '../collection/dress-pants' },
+    { label: 'Sweaters & Jacket', href: '../collection/sweaters-jackets' },
+    { label: 'Casual Shirts & Sets', href: '../collection/casual-shirts-sets' },
+    { label: 'Casual Pants & Shorts', href: '../collection/casual-pants-shorts' },
+    { label: 'Accessories', href: '../collection/accessories' },
+    { label: 'Gift Card', href: '../gift-box' }
+  ];
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 768) {
@@ -50,9 +49,8 @@ export default function MobileShopDropDown() {
         aria-label="Open mobile menu"
         className="text-md flex w-full justify-between font-thin text-white transition-colors hover:text-neutral-500 dark:text-white"
       >
-        Shop 
-        <ChevronRight/>
-        
+        Shop
+        <ChevronRight />
       </button>
       <Transition show={isOpen}>
         <Dialog onClose={closeMobileMenu} className="relative z-50">
@@ -76,41 +74,44 @@ export default function MobileShopDropDown() {
             leaveFrom="translate-x-0"
             leaveTo="translate-x-[-100%]"
           >
-            <Dialog.Panel className="fixed overflow-y-scroll bottom-0 left-0 right-0 top-0 flex h-full w-[90%] flex-col   bg-[#003445] pb-6 dark:bg-black">
+            <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-[90%] flex-col overflow-y-scroll   bg-[#003445] pb-6 dark:bg-black">
               <div className="border-b-2  p-4 px-8  ">
-              <motion.div
-              viewport={{ once: false }}
-              initial={{ opacity: 0, x: 24 }}
-    whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.3}}
-               className="mt-4 flex w-full  items-baseline">
+                <motion.div
+                  viewport={{ once: false }}
+                  initial={{ opacity: 0, x: 24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="mt-4 flex w-full  items-baseline"
+                >
                   <button
                     onClick={closeMobileMenu}
                     aria-label="Close mobile menu"
-                    className="text-md font-bold border-b-0 pb-4 border-white flex w-full justify-between text-white transition-colors hover:text-neutral-500 dark:text-white"
-                    >
-                      Shop 
-                      <ChevronLeft/>
-                    </button>
-</motion.div>
-                <motion.div viewport={{ once: false }}
-                 initial={{ opacity: 0, x: 24 }}
-       whileInView={{ opacity: 1, x: 0 }}
-           transition={{ duration: 0.3}} className="mb-6 flex w-full  items-baseline">
-                 
-                <SearchMobile/>
-
+                    className="text-md flex w-full justify-between border-b-0 border-white pb-4 font-bold text-white transition-colors hover:text-neutral-500 dark:text-white"
+                  >
+                    Shop
+                    <ChevronLeft />
+                  </button>
                 </motion.div>
-                
+                <motion.div
+                  viewport={{ once: false }}
+                  initial={{ opacity: 0, x: 24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="mb-6 flex w-full  items-baseline"
+                >
+                  <SearchMobile />
+                </motion.div>
+
                 {men.length ? (
                   <ul className="flex w-full    flex-col">
-                    {men.map((item,ind) => (
-                      <motion.li 
-                      viewport={{ once: false }}
-                      initial={{ opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.2, delay:0.1*ind}} 
-                       className="text-sm py-2 font-thin text-white transition-colors hover:text-neutral-500 dark:text-white">
+                    {men.map((item, ind) => (
+                      <motion.li
+                        viewport={{ once: false }}
+                        initial={{ opacity: 0, x: 24 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.2, delay: 0.1 * ind }}
+                        className="py-2 text-sm font-thin text-white transition-colors hover:text-neutral-500 dark:text-white"
+                      >
                         <Link href={item.href} onClick={closeMobileMenu}>
                           {item.label}
                         </Link>
@@ -120,40 +121,44 @@ export default function MobileShopDropDown() {
                 ) : null}
 
                 <motion.div
-                 viewport={{ once: false }}
-                 initial={{ opacity: 0, x: 24 }}
-       whileInView={{ opacity: 1, x: 0 }}
-           transition={{ duration: 0.2,delay:window.innerWidth >= 768 ? 1.2 : 0}}
-                className='my-4 w-full flex justify-center items-center gap-3 border-[1px] border-white text-white p-2'>
-                <Bird size="30" className='mb-3'/>
+                  viewport={{ once: false }}
+                  initial={{ opacity: 0, x: 24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.2, delay: window.innerWidth >= 768 ? 1.2 : 0 }}
+                  className="my-4 flex w-full items-center justify-center gap-3 border-[1px] border-white p-2 text-white"
+                >
+                  <Bird size="30" className="mb-3" />
                   Our Design & Fit
-              </motion.div>
-                </div>
-              <div className="p-4 pb-10 px-6">
-                  <ul className="text-white space-y-3">
-                    <motion.li 
-                     viewport={{ once: false }}
-                     initial={{ opacity: 0, x: 24 }}
-           whileInView={{ opacity: 1, x: 0 }}
-               transition={{ duration: 0.2,delay:window.innerWidth >= 768 ? 1.4 : 0}}  className="flex text-white">
-                      <p className="flex">
-                        
-                        <UserIcon className={clsx('h-6 w-8 font-extrabold  text-white mr-2 ')} />
-                        Accounts
-                      </p>
-                    </motion.li>
-                    <motion.li viewport={{ once: false }}
-                     initial={{ opacity: 0, x: 24 }}
-           whileInView={{ opacity: 1, x: 0 }}
-               transition={{ duration: 0.2,delay:window.innerWidth >= 768 ? 1.6 : 0}}  className="flex text-white">
-                      <p className="flex">
-                        
-                        <Star className={clsx('h-6 w-8 font-extrabold  text-white mr-2')} />
-                        Reviews
-                      </p>
-                    </motion.li>
-                  </ul>
-                </div>
+                </motion.div>
+              </div>
+              <div className="p-4 px-6 pb-10">
+                <ul className="space-y-3 text-white">
+                  <motion.li
+                    viewport={{ once: false }}
+                    initial={{ opacity: 0, x: 24 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.2, delay: window.innerWidth >= 768 ? 1.4 : 0 }}
+                    className="flex text-white"
+                  >
+                    <p className="flex">
+                      <UserIcon className={clsx('mr-2 h-6 w-8  font-extrabold text-white ')} />
+                      Accounts
+                    </p>
+                  </motion.li>
+                  <motion.li
+                    viewport={{ once: false }}
+                    initial={{ opacity: 0, x: 24 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.2, delay: window.innerWidth >= 768 ? 1.6 : 0 }}
+                    className="flex text-white"
+                  >
+                    <p className="flex">
+                      <Star className={clsx('mr-2 h-6 w-8  font-extrabold text-white')} />
+                      Reviews
+                    </p>
+                  </motion.li>
+                </ul>
+              </div>
             </Dialog.Panel>
           </Transition.Child>
         </Dialog>

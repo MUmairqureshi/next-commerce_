@@ -1,12 +1,11 @@
-import { getCollectionProducts } from "lib/shopify";
-import Link from "next/link";
-
+import { getCollectionProducts } from 'lib/shopify';
+import Link from 'next/link';
 
 export async function Dressshirt() {
   const latestProduct = await getCollectionProducts({
     collection: 'all-adress-shirts'
   });
-  console.log(latestProduct)
+  console.log(latestProduct);
   return (
     <div className="  mb-b mx-auto w-full  bg-gray-100 py-6 ">
       <div className="mx-auto   max-w-[1240px]   bg-gray-100   ">
@@ -25,16 +24,15 @@ export async function Dressshirt() {
           <div className=" col-span-3 flex overflow-scroll  lg:overflow-hidden  ">
             <div className=" rounded-lg p-2  lg:p-4">
               <Link href={`/product/${latestProduct[0]?.handle}`}>
-
-              <img
-                src={latestProduct[0]?.featuredImage.url}
-                alt={latestProduct[0]?.featuredImage.altText}
-                className="h-62 mb-2 w-full object-cover"
-              />
-              <p className="text-md font-serif text-slate-800 lg:text-xl ">
-              {latestProduct[0]?.title}
-              </p>
-                </Link>
+                <img
+                  src={latestProduct[0]?.featuredImage.url}
+                  alt={latestProduct[0]?.featuredImage.altText}
+                  className="h-62 mb-2 w-full object-cover"
+                />
+                <p className="text-md font-serif text-slate-800 lg:text-xl ">
+                  {latestProduct[0]?.title}
+                </p>
+              </Link>
               <div className="flex  items-center space-x-1   overflow-hidden  text-start">
                 <svg
                   className="h-4 w-4 text-slate-800"
@@ -85,22 +83,23 @@ export async function Dressshirt() {
                   125 reviews
                 </p>
               </div>
-              <p className="  flex font-mono  text-xl text-slate-800 lg:text-2xl  ">{latestProduct[0]?.priceRange.maxVariantPrice.currencyCode} {latestProduct[0]?.priceRange.maxVariantPrice.amount}</p>
+              <p className="  flex font-mono  text-xl text-slate-800 lg:text-2xl  ">
+                {latestProduct[0]?.priceRange.maxVariantPrice.currencyCode}{' '}
+                {latestProduct[0]?.priceRange.maxVariantPrice.amount}
+              </p>
             </div>
 
             <div className=" rounded-lg p-2  lg:p-4">
-            <Link href={`/product/${latestProduct[1]?.handle}`}>
-
-
-              <img
-                src={latestProduct[1]?.featuredImage.url}
-                alt={latestProduct[1]?.featuredImage.altText}
-                className="h-62 mb-2 w-full object-cover"
-              />
-              <p className="text-md font-serif text-slate-800 lg:text-xl ">
-              {latestProduct[1]?.title}
-              </p>
-            </Link>
+              <Link href={`/product/${latestProduct[1]?.handle}`}>
+                <img
+                  src={latestProduct[1]?.featuredImage.url}
+                  alt={latestProduct[1]?.featuredImage.altText}
+                  className="h-62 mb-2 w-full object-cover"
+                />
+                <p className="text-md font-serif text-slate-800 lg:text-xl ">
+                  {latestProduct[1]?.title}
+                </p>
+              </Link>
 
               <div className="flex  items-center space-x-1   overflow-hidden  text-start">
                 <svg
@@ -152,20 +151,23 @@ export async function Dressshirt() {
                   125 reviews
                 </p>
               </div>
-              <p className="  flex font-mono  text-xl text-slate-800 lg:text-2xl  ">{latestProduct[1]?.priceRange.maxVariantPrice.currencyCode} {latestProduct[1]?.priceRange.maxVariantPrice.amount}</p>
+              <p className="  flex font-mono  text-xl text-slate-800 lg:text-2xl  ">
+                {latestProduct[1]?.priceRange.maxVariantPrice.currencyCode}{' '}
+                {latestProduct[1]?.priceRange.maxVariantPrice.amount}
+              </p>
             </div>
 
             <div className=" rounded-lg p-2  lg:p-4">
-            <Link href={`/product/${latestProduct[2]?.handle}`}>
-
-
-              <img
-                src={latestProduct[2]?.featuredImage.url}
-                alt={latestProduct[2]?.featuredImage.altText}
-                className="h-62 mb-2 w-full object-cover"
-              />
-              <p className="text-md font-serif text-slate-800 lg:text-xl ">{latestProduct[2]?.title}</p>
-            </Link>
+              <Link href={`/product/${latestProduct[2]?.handle}`}>
+                <img
+                  src={latestProduct[2]?.featuredImage.url}
+                  alt={latestProduct[2]?.featuredImage.altText}
+                  className="h-62 mb-2 w-full object-cover"
+                />
+                <p className="text-md font-serif text-slate-800 lg:text-xl ">
+                  {latestProduct[2]?.title}
+                </p>
+              </Link>
 
               <div className="flex  items-center space-x-1   overflow-hidden  text-start">
                 <svg
@@ -217,7 +219,11 @@ export async function Dressshirt() {
                   125 reviews
                 </p>
               </div>
-              <p className="  flex font-mono  text-xl text-slate-800 lg:text-2xl  "> {latestProduct[2]?.priceRange.maxVariantPrice.currencyCode} {latestProduct[2]?.priceRange.maxVariantPrice.amount} </p>
+              <p className="  flex font-mono  text-xl text-slate-800 lg:text-2xl  ">
+                {' '}
+                {latestProduct[2]?.priceRange.maxVariantPrice.currencyCode}{' '}
+                {latestProduct[2]?.priceRange.maxVariantPrice.amount}{' '}
+              </p>
             </div>
           </div>
         </div>

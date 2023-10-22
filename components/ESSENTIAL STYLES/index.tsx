@@ -1,5 +1,5 @@
-import { getCollectionProducts } from "lib/shopify";
-import Link from "next/link";
+import { getCollectionProducts } from 'lib/shopify';
+import Link from 'next/link';
 
 export async function Essential() {
   const latestProduct = await getCollectionProducts({
@@ -22,21 +22,19 @@ export async function Essential() {
             SHOP THE COLLECTION
           </button>
         </div>
-        <div className="flex overflow-auto md:grid-cols-4  md:gap-4 md:overflow-scroll ">
+        <div className="flex gap-4 overflow-auto md:grid-cols-4  md:gap-4 md:overflow-scroll ">
           <div className="group relative   rounded-lg     ">
             <img
               src={latestProduct[0].featuredImage.url}
               alt={latestProduct[0].featuredImage.altText}
-              className="h-[260PX] mb-2 w-full  object-cover"
+              className="mb-2 h-[200px] w-full object-cover  md:h-[260px]"
             />
             <div className="absolute   inset-0 flex items-center justify-center bg-opacity-70 text-white opacity-0 transition-opacity hover:opacity-100">
-            <Link href={`/product/${latestProduct[0]?.handle}`}>
-              
-              <button className="    mt-20 flex rounded-lg  bg-black px-14 py-3 text-start  font-serif text-sm  text-white opacity-0  transition-opacity   duration-300 group-hover:opacity-100">
-                QUICK ADD
-              </button>
-            </Link>
-
+              <Link href={`/product/${latestProduct[0]?.handle}`}>
+                <button className="    mt-20 flex rounded-lg  bg-black px-14 py-3 text-start  font-serif text-sm  text-white opacity-0  transition-opacity   duration-300 group-hover:opacity-100">
+                  QUICK ADD
+                </button>
+              </Link>
             </div>
             <p className="font-serif  text-slate-800 md:text-xl">{latestProduct[0].title}</p>
 
@@ -91,21 +89,24 @@ export async function Essential() {
               </p>
             </div>
 
-            <p className=" flex text-xs  text-slate-800 md:text-lg">{latestProduct[0]?.priceRange.maxVariantPrice.currencyCode} {latestProduct[0]?.priceRange.maxVariantPrice.amount}</p>
+            <p className=" flex text-xs  text-slate-800 md:text-lg">
+              {latestProduct[0]?.priceRange.maxVariantPrice.currencyCode}{' '}
+              {latestProduct[0]?.priceRange.maxVariantPrice.amount}
+            </p>
           </div>
 
           <div className="group relative   rounded-lg     ">
             <img
               src={latestProduct[1]?.featuredImage.url}
               alt={latestProduct[1]?.featuredImage.altText}
-              className="h-[260PX] mb-2 w-full  object-cover"
+              className="mb-2 h-[200px] w-full object-cover  md:h-[260px]"
             />
             <div className="absolute   inset-0 flex items-center justify-center bg-opacity-70 text-white opacity-0 transition-opacity hover:opacity-100">
-            <Link href={`/product/${latestProduct[1]?.handle}`}>
-              <button className="    mt-20 flex rounded-lg  bg-black px-14 py-3 text-start  font-serif text-sm  text-white opacity-0  transition-opacity   duration-300 group-hover:opacity-100">
-                QUICK ADD
-              </button>
-            </Link>
+              <Link href={`/product/${latestProduct[1]?.handle}`}>
+                <button className="    mt-20 flex rounded-lg  bg-black px-14 py-3 text-start  font-serif text-sm  text-white opacity-0  transition-opacity   duration-300 group-hover:opacity-100">
+                  QUICK ADD
+                </button>
+              </Link>
             </div>
             <p className="font-serif  text-slate-800 md:text-xl">{latestProduct[1]?.title}</p>
 
@@ -160,23 +161,24 @@ export async function Essential() {
               </p>
             </div>
 
-            <p className=" flex text-xs  text-slate-800 md:text-lg">{latestProduct[1]?.priceRange.maxVariantPrice.currencyCode} {latestProduct[1]?.priceRange.maxVariantPrice.amount}</p>
+            <p className=" flex text-xs  text-slate-800 md:text-lg">
+              {latestProduct[1]?.priceRange.maxVariantPrice.currencyCode}{' '}
+              {latestProduct[1]?.priceRange.maxVariantPrice.amount}
+            </p>
           </div>
 
           <div className="group relative   rounded-lg     ">
             <img
               src={latestProduct[2]?.featuredImage.url}
               alt={latestProduct[2]?.featuredImage.altText}
-              className="h-[260PX] mb-2 w-full  object-cover"
+              className="mb-2 h-[200px] w-full object-cover  md:h-[260px]"
             />
             <div className="absolute   inset-0 flex items-center justify-center bg-opacity-70 text-white opacity-0 transition-opacity hover:opacity-100">
-            <Link href={`/product/${latestProduct[2]?.handle}`}>
-
-
-              <button className="    mt-20 flex rounded-lg  bg-black px-14 py-3 text-start  font-serif text-sm  text-white opacity-0  transition-opacity   duration-300 group-hover:opacity-100">
-                QUICK ADD
-              </button>
-            </Link>
+              <Link href={`/product/${latestProduct[2]?.handle}`}>
+                <button className="    mt-20 flex rounded-lg  bg-black px-14 py-3 text-start  font-serif text-sm  text-white opacity-0  transition-opacity   duration-300 group-hover:opacity-100">
+                  QUICK ADD
+                </button>
+              </Link>
             </div>
             <p className="font-serif  text-slate-800 md:text-xl">{latestProduct[2]?.title}</p>
 
@@ -231,22 +233,24 @@ export async function Essential() {
               </p>
             </div>
 
-            <p className=" flex text-xs  text-slate-800 md:text-lg">{latestProduct[2]?.priceRange.maxVariantPrice.currencyCode} {latestProduct[2]?.priceRange.maxVariantPrice.amount}</p>
+            <p className=" flex text-xs  text-slate-800 md:text-lg">
+              {latestProduct[2]?.priceRange.maxVariantPrice.currencyCode}{' '}
+              {latestProduct[2]?.priceRange.maxVariantPrice.amount}
+            </p>
           </div>
 
           <div className="group relative   rounded-lg     ">
             <img
               src={latestProduct[3]?.featuredImage.url}
               alt={latestProduct[3]?.featuredImage.altText}
-              className="h-[260px] mb-2 w-full  object-cover"
+              className="mb-2 h-[200px] w-full object-cover  md:h-[260px]"
             />
             <div className="absolute   inset-0 flex items-center justify-center bg-opacity-70 text-white opacity-0 transition-opacity hover:opacity-100">
-            <Link href={`/product/${latestProduct[3]?.handle}`}>
-
-              <button className="    mt-20 flex rounded-lg  bg-black px-14 py-3 text-start  font-serif text-sm  text-white opacity-0  transition-opacity   duration-300 group-hover:opacity-100">
-                QUICK ADD
-              </button>
-            </Link>
+              <Link href={`/product/${latestProduct[3]?.handle}`}>
+                <button className="    mt-20 flex rounded-lg  bg-black px-14 py-3 text-start  font-serif text-sm  text-white opacity-0  transition-opacity   duration-300 group-hover:opacity-100">
+                  QUICK ADD
+                </button>
+              </Link>
             </div>
             <p className="font-serif  text-slate-800 md:text-xl">{latestProduct[3]?.title}</p>
 
@@ -301,7 +305,10 @@ export async function Essential() {
               </p>
             </div>
 
-            <p className=" flex text-xs  text-slate-800 md:text-lg">{latestProduct[3]?.priceRange.maxVariantPrice.currencyCode} {latestProduct[3]?.priceRange.maxVariantPrice.amount}</p>
+            <p className=" flex text-xs  text-slate-800 md:text-lg">
+              {latestProduct[3]?.priceRange.maxVariantPrice.currencyCode}{' '}
+              {latestProduct[3]?.priceRange.maxVariantPrice.amount}
+            </p>
           </div>
         </div>
         <div className="mt-6 hidden justify-start text-start sm:justify-center md:flex md:text-center">
