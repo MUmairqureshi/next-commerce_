@@ -52,9 +52,7 @@ async function RelatedProd({ id }: { id: string }) {
   const relatedProducts = await getProductRecommendations(id);
   console.log('id', id);
   if (!relatedProducts.length) return <p>null</p>;
-  return (
-    <RelatedProducts Data={relatedProducts}/>
-  );
+  return <RelatedProducts Data={relatedProducts} />;
 }
 export default async function ProductPage({ params }: { params: { handle: string } }) {
   const product = await getProduct(params.handle);
@@ -92,7 +90,6 @@ export default async function ProductPage({ params }: { params: { handle: string
           <ProductDetailsSection data={product} />
           <RelatedProd id={product.id} />
           {/* <RelatedProducts /> */}
-
         </div>
       </div>
     </>

@@ -1,5 +1,5 @@
-import { getCollectionProducts } from "lib/shopify";
-import Link from "next/link";
+import { getCollectionProducts } from 'lib/shopify';
+import Link from 'next/link';
 
 export async function Formallwear() {
   const latestProduct = await getCollectionProducts({
@@ -17,22 +17,20 @@ export async function Formallwear() {
           <p className="mb-4 font-serif text-lg   text-slate-700"> FORMAL WEAR</p>
           <p className="mb-4 font-serif text-4xl text-slate-700">{latestProduct[0].title}</p>
           <p className="w-18   text-md mb-8 font-serif text-slate-600">
-           {latestProduct[0].description}
+            {latestProduct[0].description}
           </p>
           <button className="  rounded-sm bg-black px-12 py-3 font-sans text-white">
             SHOP SUITS
           </button>
         </div>
         <div className="h-full w-full border-b   border-zinc-950 pb-6 md:border-none xl:w-2/3 ">
-        <Link href={`/product/${latestProduct[0]?.handle}`}>
-
-          
-          <img
-            src={latestProduct[0].featuredImage.url}
-            alt={latestProduct[0].featuredImage.altText}
-            className="h-full  w-full "
+          <Link href={`/product/${latestProduct[0]?.handle}`}>
+            <img
+              src={latestProduct[0].featuredImage.url}
+              alt={latestProduct[0].featuredImage.altText}
+              className="h-full  w-full "
             />
-            </Link>
+          </Link>
         </div>
 
         <div className=" flex  flex-col   ">
@@ -44,10 +42,10 @@ export async function Formallwear() {
             <p className="mb-4 font-serif text-lg text-slate-700"> FORMAL WEAR</p>
 
             <p className="mb-2 font-serif text-slate-700 md:text-start md:text-2xl lg:mb-4 lg:text-center lg:text-4xl">
-            {latestProduct[0]?.title}
+              {latestProduct[0]?.title}
             </p>
             <p className="w-18   text-md font-serif text-slate-600  md:mb-4 md:text-start lg:mb-8 lg:text-center">
-            {latestProduct[0]?.description}
+              {latestProduct[0]?.description}
             </p>
             <button className="  bg-black px-16 py-4 font-serif text-white">SHOP SUITS</button>
           </div>
@@ -55,35 +53,35 @@ export async function Formallwear() {
 
           <div className="flex gap-4 lg:gap-8 ">
             <div className="relative">
-            <Link href={`/product/${latestProduct[1]?.handle}`}>
-              <img
-                src={latestProduct[1]?.featuredImage.url}
-                alt={latestProduct[1]?.featuredImage.altText}
-                className="mb-2 h-[170px] md:h-[220px] w-64"
-              />
-              <p className="  text-md font-serif text-slate-600">
-              {latestProduct[1]?.title}
-              </p>
+              <Link href={`/product/${latestProduct[1]?.handle}`}>
+                <img
+                  src={latestProduct[1]?.featuredImage.url}
+                  alt={latestProduct[1]?.featuredImage.altText}
+                  className="mb-2 h-[170px] w-64 md:h-[220px]"
+                />
+                <p className="  text-md font-serif text-slate-600">{latestProduct[1]?.title}</p>
               </Link>
 
-              <p className="text-md text-slate-600">{latestProduct[1]?.priceRange.maxVariantPrice.currencyCode} {latestProduct[1]?.priceRange.maxVariantPrice.amount}</p>
+              <p className="text-md text-slate-600">
+                {latestProduct[1]?.priceRange.maxVariantPrice.currencyCode}{' '}
+                {latestProduct[1]?.priceRange.maxVariantPrice.amount}
+              </p>
             </div>
 
             <div className="     relative">
-            <Link href={`/product/${latestProduct[2]?.handle}`}>
+              <Link href={`/product/${latestProduct[2]?.handle}`}>
+                <img
+                  src={latestProduct[2]?.featuredImage.url}
+                  alt={latestProduct[2]?.featuredImage.altText}
+                  className="mb-2 h-[170px] w-64 md:h-[220px]"
+                />
+                <p className="    text-md font-serif text-slate-600">{latestProduct[2]?.title}</p>
+              </Link>
 
-
-              <img
-                src={latestProduct[2]?.featuredImage.url}
-                alt={latestProduct[2]?.featuredImage.altText}
-                className="mb-2 w-64 h-[170px] md:h-[220px]"
-              />
-              <p className="    text-md font-serif text-slate-600">
-              {latestProduct[2]?.title}
+              <p className="text-md text-slate-600">
+                {latestProduct[2]?.priceRange.maxVariantPrice.currencyCode}{' '}
+                {latestProduct[2]?.priceRange.maxVariantPrice.amount}
               </p>
-            </Link>
-
-              <p className="text-md text-slate-600">{latestProduct[2]?.priceRange.maxVariantPrice.currencyCode} {latestProduct[2]?.priceRange.maxVariantPrice.amount}</p>
             </div>
           </div>
         </div>

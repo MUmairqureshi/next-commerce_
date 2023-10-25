@@ -7,7 +7,7 @@ const ImageCarousel = ({ imgData }: { imgData: any }) => {
   return (
     <>
       <div className="border-content box-content grid h-full w-full  grid-cols-4 gap-4 ">
-        <div className="border-content relative col-span-4 box-content grid h-[490px] md:h-[600px] w-full overflow-hidden">
+        <div className="border-content relative col-span-4 box-content grid h-[490px] w-full overflow-hidden md:h-[600px]">
           <Image
             src={selectedImage.url}
             alt={selectedImage.altText}

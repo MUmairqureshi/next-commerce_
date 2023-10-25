@@ -124,7 +124,7 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
 
                               <div className="flex flex-1 flex-col text-base">
                                 <span className="leading-tight">
-                                  {item.merchandise.product.title.slice(0,16)}...
+                                  {item.merchandise.product.title.slice(0, 16)}...
                                 </span>
                                 {item.merchandise.title !== DEFAULT_OPTION ? (
                                   <p className="text-sm text-neutral-500 dark:text-neutral-400">
@@ -153,19 +153,19 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                     })}
                   </ul>
                   <div className="py-4 text-sm text-neutral-500 dark:text-neutral-400">
-                    <div className="mb-3  text-white flex items-center justify-between border-b border-neutral-200 pb-1 dark:border-neutral-700">
-                      <p >Taxes</p>
+                    <div className="mb-3  flex items-center justify-between border-b border-neutral-200 pb-1 text-white dark:border-neutral-700">
+                      <p>Taxes</p>
                       <Price
                         className="text-right text-base text-white dark:text-white"
                         amount={cart.cost.totalTaxAmount.amount}
                         currencyCode={cart.cost.totalTaxAmount.currencyCode}
                       />
                     </div>
-                    <div className="mb-3 flex items-center justify-between border-b text-white border-neutral-200 pb-1 pt-1 dark:border-neutral-700">
+                    <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 pt-1 text-white dark:border-neutral-700">
                       <p>Shipping</p>
                       <p className="text-right text-white">Calculated at checkout</p>
                     </div>
-                    <div className="mb-3 text-white flex items-center justify-between border-b border-neutral-200 pb-1 pt-1 dark:border-neutral-700">
+                    <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 pt-1 text-white dark:border-neutral-700">
                       <p>Total</p>
                       <Price
                         className="text-right text-base  text-white dark:text-white"
@@ -175,11 +175,10 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                     </div>
                   </div>
                   <a
-                    href={"/cart"}
-                    className="block w-full mb-3 rounded-sm bg-white p-3 text-center text-sm font-medium text-black opacity-90 hover:opacity-100"
-                  
+                    href={'/cart'}
+                    className="mb-3 block w-full rounded-sm bg-white p-3 text-center text-sm font-medium text-black opacity-90 hover:opacity-100"
                   >
-                   GO TO CART
+                    GO TO CART
                   </a>
                   <a
                     href={cart.checkoutUrl}

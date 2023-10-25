@@ -66,7 +66,9 @@ const Login = () => {
               />
             </div>
             <div className="grid  w-full max-w-sm items-center gap-1.5 text-slate-200 shadow-xl ">
-              <Button className='bg-[#003445]' variant="default">Login</Button>
+              <Button className="bg-[#003445]" variant="default">
+                Login
+              </Button>
             </div>
             <div className="mb-4 flex w-full max-w-sm items-center justify-center gap-1.5 space-x-2 text-sm font-semibold text-sky-950 ">
               <label>
@@ -84,4 +86,4 @@ const Login = () => {
   );
 };
 
-export default Login
+export default Login;

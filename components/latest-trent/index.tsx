@@ -1,14 +1,13 @@
-import { getCollectionProducts } from "lib/shopify";
-import Link from "next/link";
+import { getCollectionProducts } from 'lib/shopify';
+import Link from 'next/link';
 
 export async function Latestproduct() {
   const latestProduct = await getCollectionProducts({
     collection: 'the-latest-product'
   });
-  console.log("oooo",latestProduct)
+  console.log('oooo', latestProduct);
   if (!latestProduct[0]) return null;
   const [firstProduct] = latestProduct;
-
 
   const trendingProduct = await getCollectionProducts({
     collection: 'Trending'
@@ -40,23 +39,22 @@ export async function Latestproduct() {
 
     //         </div>
 
-    <div className="container mx-auto w-full my-6">
+    <div className="container mx-auto my-6 w-full">
       <div className="  flex  flex-col gap-14   md:p-8 lg:flex-row lg:p-12">
         <div className="relative   flex    h-96   w-full     items-end      overflow-hidden  md:h-[600px]">
           <img
-          src={firstProduct.featuredImage.url}
-          alt={firstProduct.featuredImage.altText}
-          
+            src={firstProduct.featuredImage.url}
+            alt={firstProduct.featuredImage.altText}
             className="absolute h-full  w-full     object-cover"
           />
           <div className="relative items-end p-4 text-white lg:text-left">
-            <p className="w-17 mb-2 font-serif text-4xl  lg:w-96 lg:text-6xl text-slate-100">
+            <p className="w-17 mb-2 font-serif text-4xl  text-slate-100 lg:w-96 lg:text-6xl">
               The Latest Product
             </p>
             <Link href="/collections/new-arrivals">
-            <button className="text-ellipsis rounded-sm border bg-white px-3 font-serif text-lg  text-black lg:px-12 lg:py-4">
-              SHOP NEW ARRIVALS
-            </button>
+              <button className="text-ellipsis rounded-sm border bg-white px-3 font-serif text-lg  text-black lg:px-12 lg:py-4">
+                SHOP NEW ARRIVALS
+              </button>
             </Link>
           </div>
         </div>
@@ -72,9 +70,9 @@ export async function Latestproduct() {
               What's Trending
             </p>
             <Link href="/collections/trending">
-            <button className="text-ellipsis rounded-sm border bg-white px-3 font-serif text-lg  text-black lg:px-12 lg:py-4">
-              SHOP BEST SELLERS
-            </button>
+              <button className="text-ellipsis rounded-sm border bg-white px-3 font-serif text-lg  text-black lg:px-12 lg:py-4">
+                SHOP BEST SELLERS
+              </button>
             </Link>
           </div>
         </div>

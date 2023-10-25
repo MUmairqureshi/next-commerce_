@@ -1,54 +1,50 @@
 import Image from 'next/image';
-interface HeroProps{
-    title : string,
-    description : string
-    imageSrc : string
-    altText : string
+interface HeroProps {
+  title: string;
+  description: string;
+  imageSrc: string;
+  altText: string;
 }
-function BlogPostSection({ imageSrc, title, description,altText }:HeroProps) {
+function BlogPostSection({ imageSrc, title, description, altText }: HeroProps) {
   return (
-      <section className=' h-auto w-full px-7  mb-10'>
-        <div className='relative w-full '>
-              <div className='mt-3 h-full  '>
-                <div className='relative md:h-[500px] h-[300px] w-full'>
-                <Image
-                  src={imageSrc}
-                  alt={altText}
-                  layout="fill"
-                  objectFit="cover"
-                  className='object-cover  h-full w-full'
-                  />
-                </div>
-                  <div className='block font-serif md:hidden bg-[#e0e7ed] py-8 px-4'>
-                  <span className='font-semibold font-serif mb-3 border-t-[1px] border-[#003445] pt-2 tracking-wider leading-4 uppercase text-[#003445]'>
-                Featured  
-              </span>
-              <h4 className='text-[#003445] text-4xl leading-[48px] my-4 tracking-normal capitalize font-bold '>
-                {title}
-              </h4>
-              <p className=' text-sm md:px-10 m-0 text-black'>
-                {description}
-              </p>
-                  </div>
-
-            </div>
-            
-            <div className='w-full md:flex justify-center hidden   absolute  -bottom-40   text-center z-10 box-border'>
-            <div className='hidden  md:block p-12 lg:p-16 xl:p-20 w-5/6 bg-[#003445]   text-center z-10 box-border'>
-              <div className='font-semibold mb-3 tracking-wider leading-4 uppercase text-white'>
-                Featured  
-              </div>
-              <h4 className='text-white text-4xl leading-[48px] mb-4 tracking-normal capitalize font-bold '>
-                {title}
-              </h4>
-              <p className='text font-thin md:px-10 tracking-normal leading-6 m-0 text-white'>
-                {description}
-              </p>
-            </div>
-            </div>
+    <section className=" mb-10 h-auto w-full  px-7">
+      <div className="relative w-full ">
+        <div className="mt-3 h-full  ">
+          <div className="relative h-[300px] w-full md:h-[500px]">
+            <Image
+              src={imageSrc}
+              alt={altText}
+              layout="fill"
+              objectFit="cover"
+              className="h-full  w-full object-cover"
+            />
           </div>
-          
-      </section>
+          <div className="block bg-[#e0e7ed] px-4 py-8 font-serif md:hidden">
+            <span className="mb-3 border-t-[1px] border-[#003445] pt-2 font-serif font-semibold uppercase leading-4 tracking-wider text-[#003445]">
+              Featured
+            </span>
+            <h4 className="my-4 text-4xl font-bold capitalize leading-[48px] tracking-normal text-[#003445] ">
+              {title}
+            </h4>
+            <p className=" m-0 text-sm text-black md:px-10">{description}</p>
+          </div>
+        </div>
+
+        <div className="absolute -bottom-40 z-10 box-border   hidden  w-full   justify-center text-center md:flex">
+          <div className="z-10  box-border hidden w-5/6 bg-[#003445] p-12 text-center   md:block lg:p-16 xl:p-20">
+            <div className="mb-3 font-semibold uppercase leading-4 tracking-wider text-white">
+              Featured
+            </div>
+            <h4 className="mb-4 text-4xl font-bold capitalize leading-[48px] tracking-normal text-white ">
+              {title}
+            </h4>
+            <p className="text m-0 font-thin leading-6 tracking-normal text-white md:px-10">
+              {description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 

@@ -1,13 +1,12 @@
-import { Product } from "lib/shopify/types";
+import { Product } from 'lib/shopify/types';
 import Image from 'next/image';
 import Link from "next/link";
 
-const RelatedProducts = ({Data}:{Data:Product[]}) => {
+const RelatedProducts = ({ Data }: { Data: Product[] }) => {
   return (
     <div className="mt-16 w-full">
       <h3 className="m-0 mb-10 p-0 text-2xl font-semibold md:text-3xl">Related Products</h3>
-<div className=" grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 overflow-scroll  lg:overflow-hidden gap-x-4 gap-y-6 ">
-
+      <div className=" grid grid-cols-1 gap-x-4 gap-y-6 overflow-scroll  sm:grid-cols-3 lg:grid-cols-4 lg:overflow-hidden ">
         {Data.map((item, ind) => {
           return (
             <div className=" rounded-lg ">
@@ -75,9 +74,7 @@ const RelatedProducts = ({Data}:{Data:Product[]}) => {
                 125 reviews
               </p>
             </div>
-            <p className="  flex font-mono  text-xl text-slate-800 lg:text-2xl  ">{item.priceRange.maxVariantPrice.amount}</p>
-          </div>
-            // </motion.div>
+            </div>
           );
         })}
       </div>
@@ -86,5 +83,3 @@ const RelatedProducts = ({Data}:{Data:Product[]}) => {
 };
 
 export default RelatedProducts;
-
-           

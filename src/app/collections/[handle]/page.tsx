@@ -1,8 +1,5 @@
-
 const CollectionsPage = () => {
-  return (
-    <div>CollectionsPage</div>
-  )
-}
+  return <div>CollectionsPage</div>;
+};
 
-export default CollectionsPage
+export default CollectionsPage;

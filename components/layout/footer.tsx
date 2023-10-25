@@ -1,6 +1,6 @@
 // import Link from 'next/link';
 
-import { getMenu } from "lib/shopify";
+import { getMenu } from 'lib/shopify';
 
 // import FooterMenu from 'components/layout/footer-menu';
 // import LogoSquare from 'components/logo-square';
@@ -71,7 +71,6 @@ import { getMenu } from "lib/shopify";
 //   );
 // }
 
-
 const ForHimData = [
   { label: 'Men jeans', href: '#' },
   { label: 'Men jeans', href: '#' },
@@ -81,74 +80,79 @@ const ForHimData = [
 const ForHerData = [
   { label: 'Women jeans', href: '#' },
   { label: 'Women jeans', href: '#' },
-  { label: 'Women jeans', href: '#' },
+  { label: 'Women jeans', href: '#' }
 ];
 
 const footer = async () => {
   const menu = await getMenu('footer');
   return (
     <div className="bg-white pt-10">
-      <div className="mx-auto grid max-w-screen-2xl border-y-2 bg-white border-gray-300 gap-y-4 px-6 md:px-10 py-10 sm:grid-cols-5">
-        <div className="col-span-2 md:pr-20 border-r-2 border-[#003445]">
-          <h2 className="mt-2 text-2xl	text-[#003445] font-bold leading-10 tracking-wider">
+      <div className="mx-auto grid max-w-screen-2xl gap-y-4 border-y-2 border-gray-300 bg-white px-6 py-10 sm:grid-cols-5 md:px-10">
+        <div className="col-span-2 border-r-2 border-[#003445] md:pr-20">
+          <h2 className="mt-2 text-2xl	font-bold leading-10 tracking-wider text-[#003445]">
             Free Shipping & Returns
           </h2>
-          <p className="mt-2 text-[#003445] text-base ">
-          Kirrin Finch is proud to offer free shipping and returns in the US on all orders of $95 and above. We also offer low rates to international destinations.
+          <p className="mt-2 text-base text-[#003445] ">
+            Kirrin Finch is proud to offer free shipping and returns in the US on all orders of $95
+            and above. We also offer low rates to international destinations.
           </p>
         </div>
-        <div className="sm:px-6  col-span-3 gap-y-2 grid grid-cols-2 sm:grid-cols-3 md:pl-20">
-        <div className="px-3">
-          <h2 className="trading-wider text-[#003445]  mb-2 text-lg font-medium">{menu[0]?.title}</h2>
-          <ul>
-            {ForHerData.map((item, index) => {
-              return (
-                <li
-                  key={index}
-                  className="mb-1 text-sm font-light text-gray-600 hover:cursor-pointer hover:text-primary"
-                >
-                  <a href={item.href}>{item.label}</a>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-        <div className="px-3">
-        <h2 className="trading-wider text-[#003445]  mb-2 text-lg font-medium">{menu[1]?.title}</h2>
+        <div className="col-span-3  grid grid-cols-2 gap-y-2 sm:grid-cols-3 sm:px-6 md:pl-20">
+          <div className="px-3">
+            <h2 className="trading-wider mb-2  text-lg font-medium text-[#003445]">
+              {menu[0]?.title}
+            </h2>
+            <ul>
+              {ForHerData.map((item, index) => {
+                return (
+                  <li
+                    key={index}
+                    className="mb-1 text-sm font-light text-gray-600 hover:cursor-pointer hover:text-primary"
+                  >
+                    <a href={item.href}>{item.label}</a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <div className="px-3">
+            <h2 className="trading-wider mb-2  text-lg font-medium text-[#003445]">
+              {menu[1]?.title}
+            </h2>
 
-          <ul>
-            {ForHimData.map((item, index) => {
-              return (
-                <li
-                  key={index}
-                  className="mb-1 text-sm font-light text-gray-600 hover:cursor-pointer hover:text-primary"
-
-                >
-                  <a href={item.href}>{item.label}</a>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-        <div className="px-3">
-        <h2 className="trading-wider text-[#003445]  mb-2 text-lg font-medium">{menu[2]?.title}</h2>
-          <ul>
-            {ForHimData.map((item, index) => {
-              return (
-                <li
-                  key={index}
-                  className="mb-1 text-sm font-light text-gray-600 hover:cursor-pointer hover:text-primary"
-
-                >
-                  <a href={item.href}>{item.label}</a>
-                </li>
-              );
-            })}
-          </ul>
+            <ul>
+              {ForHimData.map((item, index) => {
+                return (
+                  <li
+                    key={index}
+                    className="mb-1 text-sm font-light text-gray-600 hover:cursor-pointer hover:text-primary"
+                  >
+                    <a href={item.href}>{item.label}</a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <div className="px-3">
+            <h2 className="trading-wider mb-2  text-lg font-medium text-[#003445]">
+              {menu[2]?.title}
+            </h2>
+            <ul>
+              {ForHimData.map((item, index) => {
+                return (
+                  <li
+                    key={index}
+                    className="mb-1 text-sm font-light text-gray-600 hover:cursor-pointer hover:text-primary"
+                  >
+                    <a href={item.href}>{item.label}</a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
       </div>
-      </div>
-      <div className="mx-auto bg-white w-full p-6 text-center">
+      <div className="mx-auto w-full bg-white p-6 text-center">
         <p>Copyright © 2023 Panacloud</p>
       </div>
     </div>

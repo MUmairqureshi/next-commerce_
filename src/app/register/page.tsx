@@ -7,10 +7,10 @@ import React, { useState } from 'react';
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    userName:'',
+    userName: '',
     email: '',
     password: '',
-    confirmPassword:''
+    confirmPassword: ''
   });
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,7 +57,7 @@ const Login = () => {
                 onChange={(e: any) => setFormData({ ...formData, userName: e.target.value })}
               />
             </div>
-           
+
             <div className="grid w-full max-w-sm items-center gap-1.5 border-sky-500	text-slate-800	">
               <Input
                 type="email"
@@ -86,7 +86,9 @@ const Login = () => {
               />
             </div>
             <div className="grid  w-full max-w-sm items-center gap-1.5 text-slate-200 shadow-xl ">
-              <Button className='bg-[#003445]' variant="default">Sign Up</Button>
+              <Button className="bg-[#003445]" variant="default">
+                Sign Up
+              </Button>
             </div>
             <div className="mb-4 flex w-full max-w-sm items-center justify-center gap-1.5 space-x-2 text-sm font-semibold text-sky-950 ">
               <label>
@@ -104,4 +106,4 @@ const Login = () => {
   );
 };
 
-export default Login
+export default Login;

@@ -10,9 +10,9 @@ import { Fragment, useEffect, useState } from 'react';
 import MobileShopDropDown from './mobile-menu-shop';
 import SearchMobile from './searchMobile';
 
-interface PropType{
-  title:string,
-  path:string
+interface PropType {
+  title: string;
+  path: string;
 }
 
 export default function MobileMenu({ men }: { men: PropType[] }) {
@@ -70,11 +70,12 @@ export default function MobileMenu({ men }: { men: PropType[] }) {
             <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-[90%] flex-col   bg-[#003445] pb-6 dark:bg-black">
               <div className="border-b-2  p-4 px-8  ">
                 <motion.div
-                 viewport={{ once: false }}
-                 initial={{ opacity: 0, x: 24 }}
-       whileInView={{ opacity: 1, x: 0 }}
-           transition={{ duration: 0.3}}
-                 className=" mt-4 -ml-8 flex w-full  items-baseline">
+                  viewport={{ once: false }}
+                  initial={{ opacity: 0, x: 24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className=" -ml-8 mt-4 flex w-full  items-baseline"
+                >
                   <button
                     className="  flex h-11 w-11 items-center justify-center rounded-md font-extrabold     text-white transition-colors dark:border-neutral-700 dark:text-white"
                     onClick={closeMobileMenu}
@@ -84,62 +85,64 @@ export default function MobileMenu({ men }: { men: PropType[] }) {
                   </button>
                 </motion.div>
                 <motion.div
-                viewport={{ once: false }}
-                initial={{ opacity: 0, x: 24 }}
-      whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3}}
-           className='mb-6' >
-                <SearchMobile/>
+                  viewport={{ once: false }}
+                  initial={{ opacity: 0, x: 24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="mb-6"
+                >
+                  <SearchMobile />
                 </motion.div>
                 {men.length ? (
                   <ul className="flex w-full    flex-col">
-                    {men.map((item,ind) => (
-                      
+                    {men.map((item, ind) => (
                       <motion.li
-                      viewport={{ once: false }}
-                  initial={{ opacity: 0, x: 24 }}
-        whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay:0.12*ind}} 
-        className="text-sm py-2 font-thin text-white transition-colors hover:text-neutral-500 dark:text-white">
-                        {item.title === "Shop" ? (
-                      <MobileShopDropDown />
-                        ) : (       
-                        <Link                       href={`/${item.path.split("/")[2]}`}
-                        onClick={closeMobileMenu}>
-                          {item.title}
-                        </Link>)}
+                        viewport={{ once: false }}
+                        initial={{ opacity: 0, x: 24 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 0.12 * ind }}
+                        className="py-2 text-sm font-thin text-white transition-colors hover:text-neutral-500 dark:text-white"
+                      >
+                        {item.title === 'Shop' ? (
+                          <MobileShopDropDown />
+                        ) : (
+                          <Link href={`/${item.path.split('/')[2]}`} onClick={closeMobileMenu}>
+                            {item.title}
+                          </Link>
+                        )}
                       </motion.li>
                     ))}
                   </ul>
                 ) : null}
-
-                
               </div>
               <div className="p-4 px-6">
-                  <ul className="text-white space-y-3">
-                    <motion.li 
-                     viewport={{ once: false }}
-                     initial={{ opacity: 0, x: 24 }}
-           whileInView={{ opacity: 1, x: 0 }}
-               transition={{ duration: 0.3, delay:0.7}}  className="flex text-white">
-                      <p className="flex">
-                        
-                        <UserIcon className={clsx('h-6 w-8 font-extrabold  text-white mr-2 ')} />
-                        Accounts
-                      </p>
-                    </motion.li>
-                    <motion.li viewport={{ once: false }}
-                     initial={{ opacity: 0, x: 24 }}
-           whileInView={{ opacity: 1, x: 0 }}
-               transition={{ duration: 0.3, delay:0.8}}  className="flex text-white">
-                      <p className="flex">
-                        
-                        <Star className={clsx('h-6 w-8 font-extrabold  text-white mr-2')} />
-                        Reviews
-                      </p>
-                    </motion.li>
-                  </ul>
-                </div>
+                <ul className="space-y-3 text-white">
+                  <motion.li
+                    viewport={{ once: false }}
+                    initial={{ opacity: 0, x: 24 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: 0.7 }}
+                    className="flex text-white"
+                  >
+                    <p className="flex">
+                      <UserIcon className={clsx('mr-2 h-6 w-8  font-extrabold text-white ')} />
+                      Accounts
+                    </p>
+                  </motion.li>
+                  <motion.li
+                    viewport={{ once: false }}
+                    initial={{ opacity: 0, x: 24 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: 0.8 }}
+                    className="flex text-white"
+                  >
+                    <p className="flex">
+                      <Star className={clsx('mr-2 h-6 w-8  font-extrabold text-white')} />
+                      Reviews
+                    </p>
+                  </motion.li>
+                </ul>
+              </div>
             </Dialog.Panel>
           </Transition.Child>
         </Dialog>
