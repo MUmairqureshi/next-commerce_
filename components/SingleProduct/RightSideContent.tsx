@@ -1,7 +1,6 @@
 import Price from 'components/price';
 import Link from 'next/link';
 
-import { Input } from '@/components/ui/input';
 import { AddToCart } from 'components/cart/add-to-cart';
 import { VariantSelector } from '../product/variant-selector';
 
@@ -30,11 +29,11 @@ const RightSideContent = ({ data }: any) => {
       <h4 className="text-sm leading-8 md:text-base">{data.description}</h4>
 
       <div className="mt-6 flex gap-4 border-y-2 border-gray-200 py-6">
-        <Input
+        {/* <Input
           defaultValue={1}
           className="w-16 bg-white focus:border-0 focus:outline-none focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
           type="number"
-        />
+        /> */}
         <AddToCart variants={data.variants} availableForSale={data.availableForSale} />
 
         {/* <Button className="text-white">Add To Cart</Button> */}

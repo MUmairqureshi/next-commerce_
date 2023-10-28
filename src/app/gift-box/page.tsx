@@ -1,17 +1,17 @@
 /* eslint-disable react/jsx-key */
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue
 } from '@/components/ui/select';
 import { getCollectionProducts } from 'lib/shopify';
 import { Star } from 'lucide-react';

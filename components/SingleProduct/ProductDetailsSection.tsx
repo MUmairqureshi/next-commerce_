@@ -4,9 +4,10 @@ import { useState } from 'react';
 import AdditionalInfo from './AdditionalInfo';
 import Reviews from './Reviews';
 
-const ProductDetailsSection = ({ data }: any) => {
+const ProductDetailsSection = ({ data  }: any) => {
   const [showContent, setShowContent] = useState('description');
   let noOfReviews = 8;
+  // console.log(data.id.split("/")[data.id.split("/").length-1],"ppop")
   return (
     <>
       <div className="mt-14 flex flex-col gap-x-8 gap-y-4 border-t-2 border-gray-200 p-0 md:flex-row">
@@ -51,7 +52,7 @@ const ProductDetailsSection = ({ data }: any) => {
       ) : showContent == 'addInfo' ? (
         <AdditionalInfo data={data?.options} />
       ) : (
-        <Reviews />
+        <Reviews params={data?.id} />
       )}
     </>
   );
