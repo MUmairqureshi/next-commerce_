@@ -60,6 +60,7 @@ export function SheetSide() {
               </Button>
             </div>
           </SheetTrigger>
+
           <SheetContent side={side} className="flex w-full flex-col place-items-end bg-white">
             <div className="flex w-full flex-col items-start">
               <div className="text-xl">Colors</div>
@@ -121,6 +122,8 @@ export function SheetSide() {
               </Button>
             </div>
           </SheetTrigger>
+          {/* @ts-ignore */}
+
           <SheetContent side={side} className="flex w-full flex-col place-items-end bg-white">
             <div className="flex w-full flex-col items-start">
               <div className="text-xl">Size</div>
@@ -178,6 +181,7 @@ export function SheetSide() {
               </Button>
             </div>
           </SheetTrigger>
+          {/* @ts-ignore */}
           <SheetContent side={side} className="flex w-full flex-col place-items-end bg-white">
             <div className="flex w-full flex-col items-start">
               <div className="text-xl">Style</div>
@@ -231,6 +235,9 @@ export function SheetSide() {
               </Button>
             </div>
           </SheetTrigger>
+
+          {/* @ts-ignore */}
+
           <SheetContent side={side} className="flex w-full flex-col place-items-end bg-white">
             <div className="flex w-full flex-col items-start">
               <div className="flex text-xl ">Sort</div>
