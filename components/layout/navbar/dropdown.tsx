@@ -44,9 +44,9 @@ export function DropdownMenuCheckboxes() {
           <ChevronDown />
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="border-0 p-0">
+      <DropdownMenuContent className="border-0 p-0 flex justify-center w-[98.7vw]">
         <motion.div
-          className="mt-8 flex h-[380px] w-[98.6vw] justify-center rounded-none  border-0 bg-[#003445] lg:h-[460px]"
+          className=" max-w-screen-2xl mt-8 flex h-[380px] w-[98.6vw] justify-center rounded-none  border-0 bg-[#003445] lg:h-[460px]"
           viewport={{ once: false }}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
