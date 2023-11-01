@@ -1,11 +1,14 @@
-import { getCollectionProducts } from 'lib/shopify';
+import { getCollection, getCollectionProducts } from 'lib/shopify';
 import Link from 'next/link';
 
 export async function Formallwear() {
+ const Collection = await getCollection('suit-blazer')
   const latestProduct = await getCollectionProducts({
-    collection: 'suits-blazer'
+    collection: 'suit-blazer'
   });
+  console.log(Collection)
   if (!latestProduct[0]) return null;
+  if (!Collection) return null;
   return (
     <div className="item-center    min-h- relative w-full p-4 md:p-12">
       <div className=" min-h- container mx-auto  flex flex-col  gap-8 bg-gray-200  p-6 md:flex-row md:p-12">
@@ -15,19 +18,21 @@ export async function Formallwear() {
             className="mb-2 w-10"
           />
           <p className="mb-4 font-serif text-lg   text-slate-700"> FORMAL WEAR</p>
-          <p className="mb-4 font-serif text-4xl text-slate-700">{latestProduct[0].title}</p>
+          <p className="mb-4 font-serif text-4xl text-slate-700">{Collection?.title}</p>
           <p className="w-18   text-md mb-8 font-serif text-slate-600">
-            {latestProduct[0].description}
+            {Collection?.description}
           </p>
+          <Link href={`/collection/${Collection?.handle}`}>
           <button className="  rounded-sm bg-black px-12 py-3 font-sans text-white">
             SHOP SUITS
           </button>
+          </Link>
         </div>
         <div className="h-full w-full border-b   border-zinc-950 pb-6 md:border-none xl:w-2/3 ">
           <Link href={`/product/${latestProduct[0]?.handle}`}>
             <img
-              src={latestProduct[0].featuredImage.url}
-              alt={latestProduct[0].featuredImage.altText}
+              src={Collection?.image?.originalSrc}
+              alt={Collection?.title}
               className="h-full  w-full "
             />
           </Link>
@@ -47,7 +52,9 @@ export async function Formallwear() {
             <p className="w-18   text-md font-serif text-slate-600  md:mb-4 md:text-start lg:mb-8 lg:text-center">
               {latestProduct[0]?.description}
             </p>
+          <Link href={`/collection/${Collection?.handle}`}>
             <button className="  bg-black px-16 py-4 font-serif text-white">SHOP SUITS</button>
+          </Link>
           </div>
           <p></p>
 
