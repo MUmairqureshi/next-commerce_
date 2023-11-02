@@ -1,14 +1,14 @@
 import Grid from 'components/grid';
-import { GridTileImage } from 'components/grid/tile';
 import { Product } from 'lib/shopify/types';
-import Link from 'next/link';
+import ProductCart from 'src/app/collection/product-cart';
 
 export default function ProductGridItems({ products }: { products: Product[] }) {
   return (
     <>
       {products.map((product) => (
         <Grid.Item key={product.handle} className="animate-fadeIn">
-          <Link className="relative inline-block h-full w-full" href={`/product/${product.handle}`}>
+          <ProductCart item={product} />
+          {/* <Link className="relative inline-block h-full w-full" href={`/product/${product.handle}`}>
             <GridTileImage
               alt={product.title}
               label={{
@@ -20,7 +20,7 @@ export default function ProductGridItems({ products }: { products: Product[] }) 
               fill
               sizes="(min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
             />
-          </Link>
+          </Link> */}
         </Grid.Item>
       ))}
     </>

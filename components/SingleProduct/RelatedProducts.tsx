@@ -1,5 +1,6 @@
 import { Product } from 'lib/shopify/types';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const RelatedProducts = ({ Data }: { Data: Product[] }) => {
   return (
@@ -9,15 +10,18 @@ const RelatedProducts = ({ Data }: { Data: Product[] }) => {
         {Data.map((item, ind) => {
           return (
             <div className=" rounded-lg ">
-              <div className="relative h-[200px] md:h-[260px]">
-                <Image
-                  layout="fill"
-                  src={item?.featuredImage?.url}
-                  alt={item?.featuredImage.altText}
-                  className="h-62 mb-2 w-full object-cover"
-                />
-              </div>
-              <p className="text-md font-serif text-slate-800 lg:text-xl ">{item.title}</p>
+              <Link href={`/product/${item?.handle}`}>
+                <div className="relative h-[200px] md:h-[260px]">
+                  <Image
+                    layout="fill"
+                    src={item?.featuredImage?.url}
+                    alt={item?.featuredImage.altText}
+                    className="h-62 mb-2 w-full object-cover"
+                  />
+                </div>
+                <p className="text-md font-serif text-slate-800 lg:text-xl ">{item.title}</p>
+              </Link>
+
               <div className="flex  items-center space-x-1   overflow-hidden  text-start">
                 <svg
                   className="h-4 w-4 text-slate-800"
@@ -68,11 +72,7 @@ const RelatedProducts = ({ Data }: { Data: Product[] }) => {
                   125 reviews
                 </p>
               </div>
-              <p className="  flex font-mono  text-xl text-slate-800 lg:text-2xl  ">
-                {item.priceRange.maxVariantPrice.amount}
-              </p>
             </div>
-            // </motion.div>
           );
         })}
       </div>

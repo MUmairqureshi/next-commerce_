@@ -1,3 +1,5 @@
+import { getProducts } from 'lib/shopify';
+
 import {
   Accordion,
   AccordionContent,
@@ -7,31 +9,21 @@ import {
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import category_hero from 'components/images/category_hero.webp';
-import { getCollection, getCollectionProducts } from 'lib/shopify';
 import { Product } from 'lib/shopify/types';
-import Image from 'next/image';
-import MenProducts from '../men-products';
-import StyleInspiration from '../style-inspiration';
-import TwoBoxes from '../two-boxes';
+import MenProducts from 'src/app/collection/men-products';
+import StyleInspiration from 'src/app/collection/style-inspiration';
+import TwoBoxes from 'src/app/collection/two-boxes';
 
-export default async function Hero({ params }: { params: { handle: string } }) {
-  // console.log(params)
-  const latestProduct = await getCollectionProducts({
-    collection: `${params.handle}`
-  });
+export default async function Hero() {
+  const products = await getProducts({});
 
-  const collection = await getCollection(`${params.handle}`);
-  // console.log(collection)
   return (
     <section>
-      <CategoryPage item={latestProduct} collection={collection} />
+      <CategoryPage item={products} />
     </section>
   );
 }
-
 const SHEET_SIDES = ['bottom'] as const;
-
 type SheetSide = (typeof SHEET_SIDES)[number];
 
 export function SheetSide() {
@@ -279,30 +271,10 @@ export function SheetSide() {
   );
 }
 
-async function CategoryPage({ collection, item }: { item: Product[]; collection: any }) {
+async function CategoryPage({ item }: { item: Product[] }) {
   return (
     <>
       <section className="mx-2 flex flex-col px-2 md:mx-5 md:px-5 2xl:mx-40 2xl:px-40">
-        <div className="relative mt-5 md:mt-11">
-          <div className="relative md:h-[430px]">
-            <Image
-              src={category_hero}
-              alt={'params.handle'}
-              height={500}
-              width={400}
-              className="h-full w-full object-cover object-top "
-            />
-            {/* Dull black overlay */}
-            <div className="absolute inset-0 z-10 bg-black opacity-30"></div>
-            {/* Text */}
-            <div className="absolute top-0 z-50 flex h-full w-full flex-col justify-center p-6 text-end text-white md:items-end md:justify-end md:gap-y-10 md:p-11">
-              <h1 className="hidden font-serif text-2xl capitalize md:block lg:text-6xl">
-                {collection.title}
-              </h1>
-              <h4 className="lg:text-xl">{collection.description}</h4>
-            </div>
-          </div>
-        </div>
         <div className="mt-16 flex flex-col gap-x-2 gap-y-8 md:flex-row">
           <div className=" basis-4/12 lg:basis-1/4 xl:basis-1/5 ">
             {/* <MenProductSideBar /> */}
@@ -465,28 +437,6 @@ async function CategoryPage({ collection, item }: { item: Product[]; collection:
           {/* <MenProducts /> */}
 
           <MenProducts items={item} />
-
-          {/* <div className="basis-8/12 lg:basis-3/4 xl:basis-4/5">
-
-            <section className="">
-              <div className=" grid grid-cols-2 py-3 md:grid-cols-3 lg:px-3">
-                {item.map((product: Product) => (
-                  <ProductCart key={product.id} item={product} />
-                ))}
-              </div>
-              <div className="mt-12 flex items-center justify-center gap-x-2 py-4 lg:mt-4 lg:py-10">
-                <div>
-                  <ChevronLeft strokeWidth={1} />
-                </div>
-                <Button className="border-none bg-white px-2 font-thin text-black">1</Button>
-                <Button className="bg-white px-2 font-thin text-black">2</Button>
-                <Button className="bg-white px-2 font-thin text-black">3</Button>
-                <Button className="bg-white px-2 font-thin text-black">
-                  <ChevronRight strokeWidth={1} />
-                </Button>
-              </div>
-            </section>
-          </div> */}
         </div>
       </section>
 

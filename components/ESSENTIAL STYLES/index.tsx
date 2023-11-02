@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export async function Essential() {
   const latestProduct = await getCollectionProducts({
-    collection: 'home-products'
+    collection: 'dress-pant'
   });
 
   if (!latestProduct[0]) return null;
@@ -22,12 +22,12 @@ export async function Essential() {
             SHOP THE COLLECTION
           </button>
         </div>
-        <div className="flex gap-4 overflow-auto md:grid-cols-4  md:gap-4 md:overflow-scroll ">
+        <div className="mt-10 flex gap-4 overflow-auto md:grid-cols-4  md:gap-4 md:overflow-scroll ">
           <div className="group relative   rounded-lg     ">
             <img
               src={latestProduct[0].featuredImage.url}
               alt={latestProduct[0].featuredImage.altText}
-              className="mb-2 h-[200px] w-full object-cover  md:h-[260px]"
+              className="mb-2 h-[200px] w-[300px] object-cover  md:h-[260px]"
             />
             <div className="absolute   inset-0 flex items-center justify-center bg-opacity-70 text-white opacity-0 transition-opacity hover:opacity-100">
               <Link href={`/product/${latestProduct[0]?.handle}`}>
@@ -99,7 +99,7 @@ export async function Essential() {
             <img
               src={latestProduct[1]?.featuredImage.url}
               alt={latestProduct[1]?.featuredImage.altText}
-              className="mb-2 h-[200px] w-full object-cover  md:h-[260px]"
+              className="mb-2 h-[200px] w-[300px] object-cover  md:h-[260px]"
             />
             <div className="absolute   inset-0 flex items-center justify-center bg-opacity-70 text-white opacity-0 transition-opacity hover:opacity-100">
               <Link href={`/product/${latestProduct[1]?.handle}`}>
@@ -171,7 +171,7 @@ export async function Essential() {
             <img
               src={latestProduct[2]?.featuredImage.url}
               alt={latestProduct[2]?.featuredImage.altText}
-              className="mb-2 h-[200px] w-full object-cover  md:h-[260px]"
+              className="mb-2 h-[200px] w-[300px] object-cover  md:h-[260px]"
             />
             <div className="absolute   inset-0 flex items-center justify-center bg-opacity-70 text-white opacity-0 transition-opacity hover:opacity-100">
               <Link href={`/product/${latestProduct[2]?.handle}`}>
@@ -243,7 +243,7 @@ export async function Essential() {
             <img
               src={latestProduct[3]?.featuredImage.url}
               alt={latestProduct[3]?.featuredImage.altText}
-              className="mb-2 h-[200px] w-full object-cover  md:h-[260px]"
+              className="mb-2 h-[200px] w-[300px] object-cover  md:h-[260px]"
             />
             <div className="absolute   inset-0 flex items-center justify-center bg-opacity-70 text-white opacity-0 transition-opacity hover:opacity-100">
               <Link href={`/product/${latestProduct[3]?.handle}`}>
@@ -313,9 +313,11 @@ export async function Essential() {
         </div>
         <div className="mt-6 hidden justify-start text-start sm:justify-center md:flex md:text-center">
           {' '}
-          <button className="reunded-md rounded-sm bg-black px-4 py-2 text-center font-sans text-white md:justify-center md:px-14    md:py-6 ">
-            SHOP THE COLLECTION
-          </button>
+          <Link href="/collection/dress-pant">
+            <button className="reunded-md rounded-sm bg-black px-4 py-2 text-center font-sans text-white md:justify-center md:px-14    md:py-6 ">
+              SHOP THE COLLECTION
+            </button>
+          </Link>
         </div>
       </div>
     </div>

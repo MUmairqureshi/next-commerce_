@@ -1,4 +1,5 @@
 import { getCollectionProducts } from 'lib/shopify';
+import Link from 'next/link';
 
 export async function Commutiny() {
   const product = await getCollectionProducts({
@@ -18,9 +19,11 @@ export async function Commutiny() {
               />
               <h2 className="mt-6 text-2xl font-semibold text-[#003445]">{product[0]?.title}</h2>
               <p className="mt-2 text-base text-gray-600">{product[0]?.description}</p>{' '}
-              <button className="marker:  mt-2  rounded bg-white px-8 py-3 font-serif text-black transition-colors">
-                READ MORE
-              </button>
+              <Link href="/blog">
+                <button className="marker:  mt-2  rounded bg-white px-8 py-3 font-serif text-black transition-colors">
+                  READ MORE
+                </button>
+              </Link>
             </div>
 
             <div className="bg-gray-100 p-6 font-serif md:w-1/2">
@@ -31,9 +34,11 @@ export async function Commutiny() {
               />
               <h2 className="mt-6 text-2xl font-semibold text-[#003445]">{product[1]?.title}</h2>
               <p className="mt-2 text-base text-gray-600">{product[1]?.description}</p>
-              <button className="marker:  mt-2  rounded bg-white px-8 py-3 font-serif text-black transition-colors">
-                READ MORE
-              </button>
+              <Link href="/blog">
+                <button className="marker:  mt-2  rounded bg-white px-8 py-3 font-serif text-black transition-colors">
+                  READ MORE
+                </button>
+              </Link>
             </div>
           </div>
         </div>
