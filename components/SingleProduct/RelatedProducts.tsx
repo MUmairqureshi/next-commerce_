@@ -9,7 +9,7 @@ const RelatedProducts = ({ Data }: { Data: Product[] }) => {
       <div className=" grid grid-cols-1 gap-x-4 gap-y-6 overflow-scroll  sm:grid-cols-3 lg:grid-cols-4 lg:overflow-hidden ">
         {Data.map((item, ind) => {
           return (
-            <div className=" rounded-lg ">
+            <div className=" rounded-lg " key={ind}>
               <Link href={`/product/${item?.handle}`}>
                 <div className="relative h-[200px] md:h-[260px]">
                   <Image

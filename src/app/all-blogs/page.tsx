@@ -9,17 +9,18 @@ export default async function Blogs() {
   if (!latestProduct[0]) return null;
 
   const Blogs = await getCollectionProducts({
-    collection: 'all-blogs'
+    collection: 'blogs-page'
   });
+
   if (!Blogs[0]) return null;
 
   return (
     <div className="mx-auto w-full max-w-screen-2xl ">
       <Hero
-        altText={latestProduct[0]?.featuredImage.altText}
-        imageSrc={latestProduct[0]?.featuredImage.url}
-        title={latestProduct[0]?.title}
-        description={latestProduct[0]?.description}
+        altText={Blogs[0]?.featuredImage.altText}
+        imageSrc={Blogs[0]?.featuredImage.url}
+        title={Blogs[0]?.title}
+        description={Blogs[0]?.description}
       />
 
       <section className="mt-20 md:mt-60">
