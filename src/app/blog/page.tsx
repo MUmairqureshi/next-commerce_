@@ -1,22 +1,20 @@
 import CardListingScetion from 'components/Dapper-Hero/CardListingScetion';
 import Hero from 'components/Dapper-Hero/DapperHero';
-import { getCollectionProducts } from 'lib/shopify';
+import { getAllArticles, getArticlesById, getCollectionProducts } from 'lib/shopify';
 
 export default async function Blogs() {
   const latestProduct = await getCollectionProducts({
     collection: 'blogs-page-images'
   });
   if (!latestProduct[0]) return null;
-
-  const Blogs = await getCollectionProducts({
-    collection: 'all-blogs'
-  });
+  const Blogs= await getAllArticles()
+  const Blo= await getArticlesById("gid://shopify/Article/606157930774")
   if (!Blogs[0]) return null;
-
+  console.log("Blo",Blo)
   return (
     <div className="mx-auto w-full max-w-screen-2xl ">
       <Hero
-        altText={latestProduct[0]?.featuredImage.altText}
+        altText={latestProduct[0]?.featuredImage?.altText}
         imageSrc={latestProduct[0]?.featuredImage.url}
         title={latestProduct[0]?.title}
         description={latestProduct[0]?.description}
@@ -29,7 +27,7 @@ export default async function Blogs() {
           </h1>
         </div>
 
-        <CardListingScetion Products={Blogs} />
+        <CardListingScetion Blogs={Blogs} />
       </section>
     </div>
   );
