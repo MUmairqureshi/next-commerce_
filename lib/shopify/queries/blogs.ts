@@ -31,14 +31,15 @@ export const getArticlesQuery =`
     //   }
     // }
 export const getArticlesByIdQuery =`
-query GetArticleById($articleId: ID!) {
-      node(id: $articleId) {
-            ... on Article {
+query GetArticleById($blogHandle: String!,$articleHandle:String!) {
+  blogByHandle(handle: $blogHandle) {
+    articleByHandle(handle: $articleHandle) {
               id
               title
               contentHtml
                 content
                 publishedAt
+                tags
                 author {
                   firstName
                   lastName
@@ -46,6 +47,8 @@ query GetArticleById($articleId: ID!) {
                 }
                 image {
                 src
+                height
+                width
                 altText
               }
             }

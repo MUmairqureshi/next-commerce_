@@ -283,16 +283,18 @@ export async function getCollection(handle: string): Promise<Collection | undefi
 
   return reshapeCollection(res.body.data.collection);
 }
-export async function getArticlesById(articleId:string): Promise<Collection | any> {
-  if(articleId){
+export async function getArticlesById({blogHandle,articleHandle}:{blogHandle:string,articleHandle:string}): Promise<Collection | any> {
+  if(articleHandle||blogHandle){
     const res = await shopifyFetch<any>({
     // @ts-ignore
     query: getArticlesByIdQuery,
     variables: {
-      articleId
+      blogHandle,
+      articleHandle
     }
   });
-  return res.body.data.node;
+  console.log(res.body.data)
+  return res.body.data.blogByHandle.articleByHandle;
 }
   // return res.body.data.articles.edges;
 }

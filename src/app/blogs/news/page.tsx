@@ -1,6 +1,6 @@
 import CardListingScetion from 'components/Dapper-Hero/CardListingScetion';
 import Hero from 'components/Dapper-Hero/DapperHero';
-import { getAllArticles, getArticlesById, getCollectionProducts } from 'lib/shopify';
+import { getAllArticles, getCollectionProducts } from 'lib/shopify';
 
 export default async function Blogs() {
   const latestProduct = await getCollectionProducts({
@@ -8,9 +8,7 @@ export default async function Blogs() {
   });
   if (!latestProduct[0]) return null;
   const Blogs= await getAllArticles()
-  const Blo= await getArticlesById("gid://shopify/Article/606157930774")
   if (!Blogs[0]) return null;
-  console.log("Blo",Blo)
   return (
     <div className="mx-auto w-full max-w-screen-2xl ">
       <Hero

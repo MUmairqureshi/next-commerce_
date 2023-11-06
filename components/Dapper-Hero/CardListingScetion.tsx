@@ -6,7 +6,7 @@ const CardListingScetion = ({ Blogs }: { Blogs: any }) => {
       {Blogs?.map((item:any, ind:any) => {
         return (
           <Card
-          url={item.node?.handle}
+          url={`/blogs/news/${item.node?.handle}`}
             altText={item.node?.image?.altText}
             name={item.node?.title}
             description={item?.node?.content}

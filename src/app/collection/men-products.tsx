@@ -42,7 +42,7 @@ const MenProducts = ({ items }: { items: Product[] }) => {
       <section className="">
         <div className="grid grid-cols-2 py-3 md:grid-cols-3 lg:px-3">
           {paginatedItems.map((product: Product) => (
-            <ProductCart key={product.id} item={product} />
+          <ProductCart key={product.id} item={product} />
           ))}
         </div>
         <div className="mt-12 flex items-center justify-center gap-x-2 py-4 lg:mt-4 lg:py-10">
