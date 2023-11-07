@@ -22,7 +22,7 @@ export async function Essential() {
             SHOP THE COLLECTION
           </button>
         </div>
-        <div className="flex gap-4 overflow-auto md:grid-cols-4 mt-10  md:gap-4 md:overflow-scroll ">
+        <div className="mt-10 flex gap-4 overflow-auto md:grid-cols-4  md:gap-4 md:overflow-scroll ">
           <div className="group relative   rounded-lg     ">
             <img
               src={latestProduct[0].featuredImage.url}
@@ -314,9 +314,9 @@ export async function Essential() {
         <div className="mt-6 hidden justify-start text-start sm:justify-center md:flex md:text-center">
           {' '}
           <Link href="/collection/dress-pant">
-          <button className="reunded-md rounded-sm bg-black px-4 py-2 text-center font-sans text-white md:justify-center md:px-14    md:py-6 ">
-            SHOP THE COLLECTION
-          </button>
+            <button className="reunded-md rounded-sm bg-black px-4 py-2 text-center font-sans text-white md:justify-center md:px-14    md:py-6 ">
+              SHOP THE COLLECTION
+            </button>
           </Link>
         </div>
       </div>

@@ -86,7 +86,7 @@ export default async function ProductPage({ params }: { params: { handle: string
       <div className="flex w-full justify-center bg-background">
         <div className="max-w-screen-xl bg-background px-6 py-16">
           <HeroSection data={product} />
-          <ProductDetailsSection data={product} />
+          <ProductDetailsSection data={product} params={params.handle} />
           <RelatedProd id={product.id} />
           {/* <RelatedProducts /> */}
         </div>

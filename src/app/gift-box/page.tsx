@@ -1,24 +1,24 @@
 /* eslint-disable react/jsx-key */
 import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
 } from '@/components/ui/select';
 import { getCollectionProducts } from 'lib/shopify';
 import { Star } from 'lucide-react';
 import Image from 'next/image';
 import { Suspense } from 'react';
 import TwoBoxes from '../collection/two-boxes';
-import { getReviews } from '../service';
+import { Review, getReviews } from '../service';
 import Reviews from './reviews';
 import ReviewsComponent from './reviews-component';
 import cloud from '/components/images/cloud.webp';
@@ -110,41 +110,6 @@ export default async function gift_box() {
 const apiUrl =
   'https://judge.me/api/v1/reviews?api_token=MDNdJzaFmVDpoimCC2iTWoh68OQ&shop_domain=next-ecommerce-templates.myshopify.com';
 
-interface Review {
-  per_page: number;
-  id: number;
-  title: string;
-  body: string;
-  rating: number;
-  product_external_id: number;
-  reviews: reviews[];
-  source: string;
-  curated: string;
-  published: boolean;
-  hidden: boolean;
-  verified: string;
-  featured: boolean;
-  created_at: string;
-  updated_at: string;
-  has_published_pictures: boolean;
-  has_published_videos: boolean;
-  pictures: string[]; // You may need to define the actual data type for pictures
-  ip_address: string;
-  product_title: string;
-  product_handle: string;
-}
-
-interface reviews {
-  id: number;
-  external_id: number;
-  rating: number;
-  email: string;
-  name: string;
-  phone: string;
-  accepts_marketing: boolean;
-  unsubscribed_at: string | null;
-  tags: string[];
-}
 const GiftBox = async ({ section, mainProduct }: any) => {
   const data = await getReviews<Review>(apiUrl);
   return (

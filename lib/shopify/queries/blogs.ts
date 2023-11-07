@@ -1,5 +1,4 @@
-
-export const getArticlesQuery =`
+export const getArticlesQuery = `
   query getAllArticles {
     articles(first: 10) {
       edges {
@@ -17,20 +16,20 @@ export const getArticlesQuery =`
     }
   }
 `;
-  // node(id: "gid://shopify/Article/606157930774") {
+// node(id: "gid://shopify/Article/606157930774") {
 
-    // node(handle: "hehe") {
-    //   ... on Article {
-    //     id
-    //     title
-    //     content
-    //     image {
-    //       src
-    //       altText
-    //     }
-    //   }
-    // }
-export const getArticlesByIdQuery =`
+// node(handle: "hehe") {
+//   ... on Article {
+//     id
+//     title
+//     content
+//     image {
+//       src
+//       altText
+//     }
+//   }
+// }
+export const getArticlesByIdQuery = `
 query GetArticleById($blogHandle: String!,$articleHandle:String!) {
   blogByHandle(handle: $blogHandle) {
     articleByHandle(handle: $articleHandle) {
@@ -112,5 +111,4 @@ export const getBlogsByid = `query getBlogById($blogId: ID!) {
       }
     }
   }
-}`
-
+}`;

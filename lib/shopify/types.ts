@@ -264,7 +264,7 @@ export type ShopifyProductsOperation = {
   };
 };
 
-export type articleAuthor= {
+export type articleAuthor = {
   firstName: string;
   lastName: string;
   email: string;
@@ -274,7 +274,7 @@ type ArticleImage = {
   src: string;
   altText: string;
 };
-export type articles={
+export type articles = {
   edges: {
     node: {
       id: string;
@@ -282,10 +282,10 @@ export type articles={
       content: string;
       image: ArticleImage;
       publishedAt: string;
-      author:articleAuthor
+      author: articleAuthor;
     }[];
   };
-}
+};
 export type AllBlogsQueryResponse = {
   data: {
     blogs: {
@@ -293,7 +293,7 @@ export type AllBlogsQueryResponse = {
         node: {
           id: string;
           title: string;
-          articles: articles ;
+          articles: articles;
         }[];
       };
     };

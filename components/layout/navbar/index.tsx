@@ -13,7 +13,7 @@ const { SITE_NAME } = process.env;
 export default async function Navbar() {
   const menu = await getMenu('main-menu');
   return (
-    <div className="h-full w-full mx-auto  max-w-screen-2xl">
+    <div className="mx-auto h-full w-full  max-w-screen-2xl">
       <div className="ceontent-center flex h-12 items-center justify-center bg-slate-400 text-center text-black">
         <p className=" items-center text-center font-sans text-sm  font-light">
           THE GEORGIE SUIT - RESTOCKED IN BURGUNDY, OLIVE, ROYAL & SLATE BLUE! SHOP NOW{' '}
@@ -39,7 +39,11 @@ export default async function Navbar() {
                       <DropdownMenuCheckboxes />
                     ) : (
                       <Link
-                        href={`/${item.path.split('/')[2]=="blog"?`${item.path.split('/')[2]}s/news`:item.path.split('/')[2]}`}
+                        href={`/${
+                          item.path.split('/')[2] == 'blog'
+                            ? `${item.path.split('/')[2]}s/news`
+                            : item.path.split('/')[2]
+                        }`}
                         className="text-baseline w-full items-baseline text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300 "
                       >
                         {item.title}
