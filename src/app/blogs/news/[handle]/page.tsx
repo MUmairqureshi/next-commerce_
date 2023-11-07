@@ -1,29 +1,31 @@
-import { getArticlesById, getCollectionProducts, getProduct } from 'lib/shopify';
+import { getArticlesById } from 'lib/shopify';
 import { Product } from 'lib/shopify/types';
 import Image from 'next/image';
 
-export default async function Hero2({ params }: { params: { handle: string } }) {
+export default async function Articles({ params }: { params: { handle: string } }) {
   const BlogData = await getArticlesById({ blogHandle: 'news', articleHandle: params.handle });
-  console.log('Blo', BlogData);
-  const latestProduct = await getCollectionProducts({
-    collection: `${params.handle}`
-  });
+  // console.log('Blo', BlogData);
+  // const latestProduct = await getCollectionProducts({
+  //   collection: `${params.handle}`
+  // });
+
   if (!BlogData) return null;
-  const [firstProduct, secondProduct, thirdProduct, fourthProduct] = latestProduct;
 
-  const product = await getProduct(params.handle);
+  // const [firstProduct, secondProduct, thirdProduct, fourthProduct] = latestProduct;
 
-  const share = await getProduct('share');
+  // const product = await getProduct(params.handle);
+
+  // const share = await getProduct('share');
 
   return (
     <section>
       <CategoryPage
-        share={share}
-        firstProduct={firstProduct}
-        secondProduct={secondProduct}
-        thirdProduct={thirdProduct}
-        fourthProduct={fourthProduct}
-        product={product}
+        // share={share}
+        // firstProduct={firstProduct}
+        // secondProduct={secondProduct}
+        // thirdProduct={thirdProduct}
+        // fourthProduct={fourthProduct}
+        // product={product}
         BlogData={BlogData}
         item={[]}
       />
@@ -32,24 +34,24 @@ export default async function Hero2({ params }: { params: { handle: string } }) 
 }
 
 async function CategoryPage({
-  share,
-  firstProduct,
-  secondProduct,
-  thirdProduct,
-  fourthProduct,
-  product,
+  // share,
+  // firstProduct,
+  // secondProduct,
+  // thirdProduct,
+  // fourthProduct,
+  // product,
   BlogData
 }: {
-  share: any;
+  // share: any;
   item: Product[];
-  product: any;
-  firstProduct: any;
-  secondProduct: any;
-  thirdProduct: any;
-  fourthProduct: any;
+  // product: any;
+  // firstProduct: any;
+  // secondProduct: any;
+  // thirdProduct: any;
+  // fourthProduct: any;
   BlogData: any;
 }) {
-  console.log('BlogData', BlogData);
+  // console.log('BlogData', BlogData);
   return (
     <>
       <div className="mx-auto w-full max-w-screen-2xl ">
