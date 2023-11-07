@@ -15,10 +15,7 @@ const Login = () => {
     console.log('login');
     try {
       axios
-        .post('/api/login', {
-          email: formData.email,
-          password: formData.password
-        })
+        .post('/api/login', formData)
         .then((response: any) => {
           if (response.data.status === 200) {
             console.log('success', response.data.message, response);

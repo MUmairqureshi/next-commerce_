@@ -3,18 +3,19 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import axios from 'axios';
 import Link from 'next/link';
+// import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-
 const Login = () => {
+  // const router = useRouter()
   const [formData, setFormData] = useState({
-    userName: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    acceptsMarketing: false
   });
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('login');
     try {
       axios
         .post('/api/register', {
@@ -24,6 +25,7 @@ const Login = () => {
           if (response.data.status === 200) {
             console.log('success', response.data.message, response);
             window.alert(response.data.message);
+            // router.push("/login")
           } else {
             console.log('err', response.data.message);
             window.alert(response.data.message);
@@ -51,10 +53,19 @@ const Login = () => {
             <div className="grid w-full max-w-sm items-center gap-1.5 border-sky-500	text-slate-800	">
               <Input
                 type="text"
-                placeholder="User Name"
-                id="userName"
-                value={formData.userName}
-                onChange={(e: any) => setFormData({ ...formData, userName: e.target.value })}
+                placeholder="First Name"
+                id="firstName"
+                value={formData.firstName}
+                onChange={(e: any) => setFormData({ ...formData, firstName: e.target.value })}
+              />
+            </div>
+            <div className="grid w-full max-w-sm items-center gap-1.5 border-sky-500	text-slate-800	">
+              <Input
+                type="text"
+                placeholder="Last Name"
+                id="lastName"
+                value={formData.lastName}
+                onChange={(e: any) => setFormData({ ...formData, lastName: e.target.value })}
               />
             </div>
 
@@ -76,14 +87,15 @@ const Login = () => {
                 onChange={(e: any) => setFormData({ ...formData, password: e.target.value })}
               />
             </div>
-            <div className="grid w-full max-w-sm items-center gap-1.5 border-sky-500	 text-slate-800	">
+            <div className="flex w-full max-w-sm items-center  justify-start gap-2 border-sky-500	 text-slate-800	">
               <Input
-                type="password"
-                placeholder="Confirm Password"
-                id="Confirm Password"
-                value={formData.confirmPassword}
-                onChange={(e: any) => setFormData({ ...formData, confirmPassword: e.target.value })}
-              />
+                type="checkbox"
+                id="marketing"
+                className="h-4 w-4"
+                // size={2}
+                onChange={(e: any) => setFormData({ ...formData, acceptsMarketing: !formData.acceptsMarketing })}
+                />
+               <label  className="text-sm font-normal">You want Email Marketing</label>
             </div>
             <div className="grid  w-full max-w-sm items-center gap-1.5 text-slate-200 shadow-xl ">
               <Button className="bg-[#003445]" variant="default">
