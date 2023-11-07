@@ -9,12 +9,11 @@ import StyleInspiration from 'src/app/collection/style-inspiration';
 import TwoBoxes from 'src/app/collection/two-boxes';
 
 export default async function Hero() {
-
   const products = await getProducts({});
 
   return (
     <section>
-      <CategoryPage item={products}  />
+      <CategoryPage item={products} />
     </section>
   );
 }
@@ -266,35 +265,34 @@ type SheetSide = (typeof SHEET_SIDES)[number];
 //   );
 // }
 
-async function CategoryPage({ item }: { item: Product[]}) {
+async function CategoryPage({ item }: { item: Product[] }) {
   return (
     <>
       <section className=" mx-auto w-full">
-      <div className="relative md:h-[430px]">
-            <Image
-              src={category_hero}
-              alt={'params.handle'}
-              height={500}
-              width={400}
-              className="h-full w-full object-cover object-top "
-            />
-            {/* Dull black overlay */}
-            <div className="absolute inset-0 z-10 bg-black opacity-30"></div>
-            {/* Text */}
-            <div className="absolute top-0 z-50 flex h-full w-full flex-col justify-center p-6 text-end text-white md:items-end md:justify-end md:gap-y-10 md:p-11">
-              <h1 className="hidden font-serif text-2xl capitalize md:block lg:text-6xl">
-                {"Our Collections"}
-              </h1>
-              <h4 className="lg:text-xl">{"Shop Our Androgynous Clothing"}</h4>
-            </div>
+        <div className="relative md:h-[430px]">
+          <Image
+            src={category_hero}
+            alt={'params.handle'}
+            height={500}
+            width={400}
+            className="h-full w-full object-cover object-top "
+          />
+          {/* Dull black overlay */}
+          <div className="absolute inset-0 z-10 bg-black opacity-30"></div>
+          {/* Text */}
+          <div className="absolute top-0 z-50 flex h-full w-full flex-col justify-center p-6 text-end text-white md:items-end md:justify-end md:gap-y-10 md:p-11">
+            <h1 className="hidden font-serif text-2xl capitalize md:block lg:text-6xl">
+              {'Our Collections'}
+            </h1>
+            <h4 className="lg:text-xl">{'Shop Our Androgynous Clothing'}</h4>
           </div>
-        
-            <CollectionBox CollectionName="all-new-arrivals-1"/>
-            <CollectionBox2 CollectionName="dress-pant"/>
-            <CollectionBox CollectionName="all-new-arrivals-1"/>
-            {/* <CollectionBox CollectionName="trendings"/> */}
-            <CollectionBox2 CollectionName="all-dress-shirt"/>
-         
+        </div>
+
+        <CollectionBox CollectionName="all-new-arrivals-1" />
+        <CollectionBox2 CollectionName="dress-pant" />
+        <CollectionBox CollectionName="all-new-arrivals-1" />
+        {/* <CollectionBox CollectionName="trendings"/> */}
+        <CollectionBox2 CollectionName="all-dress-shirt" />
       </section>
 
       <StyleInspiration />

@@ -2,16 +2,9 @@ import { getCollection } from 'lib/shopify';
 import Link from 'next/link';
 
 export async function Latestproduct() {
- 
-
-  
-  const trendingProduct = await getCollection(
-    'Trendings'
-  )
+  const trendingProduct = await getCollection('Trendings');
   if (!trendingProduct) return null;
-  const latestProduct = await getCollection(
-    'the-latest-products'
-  )
+  const latestProduct = await getCollection('the-latest-products');
   if (!latestProduct) return null;
   return (
     <div className="container mx-auto my-6 w-full">
@@ -24,11 +17,11 @@ export async function Latestproduct() {
           />
           <div className="relative items-end p-4 text-white lg:text-left">
             <p className="w-17 mb-2 font-serif text-4xl  text-slate-100 lg:w-96 lg:text-6xl">
-            {latestProduct?.title}
+              {latestProduct?.title}
             </p>
             <Link href={`/collection/${latestProduct?.handle}`}>
               <button className="text-ellipsis rounded-sm border bg-white px-3 font-serif text-lg  text-black lg:px-12 lg:py-4">
-              {latestProduct?.description}
+                {latestProduct?.description}
               </button>
             </Link>
           </div>
