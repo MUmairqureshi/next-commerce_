@@ -39,7 +39,6 @@ interface reviews {
   tags: string[];
 }
 const Reviews = ({ items }: { items: Review }) => {
-  console.log('items', items);
   const itemsPerPage = items.per_page; // Number of items to display per page
   const [currentPage, setCurrentPage] = useState(1);
 

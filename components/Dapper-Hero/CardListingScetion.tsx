@@ -1,18 +1,16 @@
-import { Product } from 'lib/shopify/types';
 import Card from './cardcomponent';
 
-const CardListingScetion = ({ Products }: { Products: Product[] }) => {
+const CardListingScetion = ({ Blogs }: { Blogs: any }) => {
   return (
     <div className="grid w-full grid-cols-1  gap-x-6 gap-y-8 bg-white px-7 py-10 md:grid-cols-2 lg:grid-cols-3">
-      {Products?.slice(1).map((item, ind) => {
+      {Blogs?.map((item: any, ind: any) => {
         return (
           <Card
-            key={ind}
-            handle={item.handle}
-            altText={item.featuredImage.altText}
-            name={item.title}
-            description={item.description}
-            imageSrc={item.featuredImage.url}
+            url={`/blogs/news/${item.node?.handle}`}
+            altText={item.node?.image?.altText}
+            name={item.node?.title}
+            description={item?.node?.content}
+            imageSrc={item.node?.image?.src}
           />
         );
       })}

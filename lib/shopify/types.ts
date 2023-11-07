@@ -263,3 +263,39 @@ export type ShopifyProductsOperation = {
     sortKey?: string;
   };
 };
+
+export type articleAuthor = {
+  firstName: string;
+  lastName: string;
+  email: string;
+};
+
+type ArticleImage = {
+  src: string;
+  altText: string;
+};
+export type articles = {
+  edges: {
+    node: {
+      id: string;
+      title: string;
+      content: string;
+      image: ArticleImage;
+      publishedAt: string;
+      author: articleAuthor;
+    }[];
+  };
+};
+export type AllBlogsQueryResponse = {
+  data: {
+    blogs: {
+      edges: {
+        node: {
+          id: string;
+          title: string;
+          articles: articles;
+        }[];
+      };
+    };
+  };
+};
