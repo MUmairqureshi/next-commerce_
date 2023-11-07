@@ -101,8 +101,6 @@ export async function shopifyFetch<T>({
       body
     };
   } catch (e) {
-    // @ts-ignore
-    console.log("err",e)
     if (isShopifyError(e)) {
       throw {
         cause: e.cause?.toString() || 'unknown',
