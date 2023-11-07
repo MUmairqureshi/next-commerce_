@@ -37,20 +37,23 @@ interface reviews {
 }
 
 const ReviewsComponent = async () => {
-  const data = await getReviews<Review>(apiUrl);
+  const data = await getReviews<any>(apiUrl);
+  const markup = { __html: data.widget };
   // const reviews = data.reviews
-  console.log('data', data);
-  const res = data.reviews;
+  console.log('data', markup);
+  // const res = data.reviews;
   return (
     <div>
       <h2>Customer Reviews</h2>
       <ul>
-        {res.map((review: any) => (
+        <div dangerouslySetInnerHTML={markup} />;
+        {/* <div dangerouslySetInnerHTML={{ __html: data.widget.contentHtml }} /> */}
+        {/* {res.map((review: any) => (
           <li key={review.id}>
             <p>{review.content}</p>
             <p>Rating: {review.rating}</p>
           </li>
-        ))}
+        ))} */}
       </ul>
     </div>
   );

@@ -13,24 +13,28 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select';
-import { getCollectionProducts } from 'lib/shopify';
+import { getCollectionProducts, getProduct } from 'lib/shopify';
 import { Star } from 'lucide-react';
 import Image from 'next/image';
 import { Suspense } from 'react';
-import TwoBoxes from '../collection/two-boxes';
-import { Review, getReviews } from '../service';
-import Reviews from './reviews';
-import ReviewsComponent from './reviews-component';
+import TwoBoxes from '../../collection/two-boxes';
+import { Review, getReviews } from '../../service';
+import Reviews from '../reviews';
+import ReviewsComponent from '../reviews-component';
 import cloud from '/components/images/cloud.webp';
 import flag from '/components/images/flag.webp';
 import message from '/components/images/message.webp';
 
-export default async function gift_box() {
+export default async function gift_box({ params }: { params: { handle: string } }) {
+  const mainProduct = await getProduct(params.handle);
+
+  if (!mainProduct) return null;
+
   const styleComponents = await getCollectionProducts({
     collection: 'all-gift-card'
   });
 
-  const [section, mainProduct] = styleComponents;
+  const [section] = styleComponents;
 
   return (
     <section>
@@ -111,6 +115,7 @@ const apiUrl =
   'https://judge.me/api/v1/reviews?api_token=MDNdJzaFmVDpoimCC2iTWoh68OQ&shop_domain=next-ecommerce-templates.myshopify.com';
 
 const GiftBox = async ({ section, mainProduct }: any) => {
+  // console.log("mainProduct", mainProduct);
   const data = await getReviews<Review>(apiUrl);
   return (
     <section className="2xl:mx-96">
@@ -127,7 +132,7 @@ const GiftBox = async ({ section, mainProduct }: any) => {
         </div>
         <div className="md:basis-3/6 lg:basis-2/6">
           <div className="mt-6 text-2xl">{mainProduct.title}</div>
-          <div className="mt-2 font-thin">${mainProduct.priceRange.minVariantPrice.amount}</div>
+          <div className="mt-2 font-light">${mainProduct.priceRange.minVariantPrice.amount}</div>
           <div className="mt-4 flex items-center">
             <Star size={20} strokeWidth={0.5} fill="black" />
             <Star size={20} strokeWidth={0.5} fill="black" />
@@ -147,14 +152,17 @@ const GiftBox = async ({ section, mainProduct }: any) => {
                 <SelectValue placeholder="$25" />
               </SelectTrigger>
               <SelectContent className="w-full min-w-full border-none bg-white px-0">
-                <SelectItem value="25">$25</SelectItem>
+                {mainProduct.variants.map((v: any) => (
+                  <SelectItem value={v.price.amount}>${v.price.amount}</SelectItem>
+                ))}
+                {/* <SelectItem value="25">$25</SelectItem>
                 <SelectItem value="50">$50</SelectItem>
                 <SelectItem value="100">$100</SelectItem>
                 <SelectItem value="150">$150</SelectItem>
                 <SelectItem value="200">$200</SelectItem>
                 <SelectItem value="250">$250</SelectItem>
                 <SelectItem value="500">$500</SelectItem>
-                <SelectItem value="1000">$1000</SelectItem>
+                <SelectItem value="1000">$1000</SelectItem> */}
               </SelectContent>
             </Select>
           </div>
@@ -189,7 +197,7 @@ const GiftBox = async ({ section, mainProduct }: any) => {
               </div>
             </div>
           </div>
-          <div className="mt-4 text-sm font-thin text-slate-600">{mainProduct.description}</div>
+          <div className="mt-4 text-sm font-light text-slate-600">{mainProduct.description}</div>
           <div>
             <Accordion type="single" collapsible>
               <AccordionItem value="item-1">
@@ -215,7 +223,7 @@ const GiftBox = async ({ section, mainProduct }: any) => {
               </AccordionItem>
             </Accordion>
           </div>
-          <div className="mt-4 text-sm font-thin text-slate-600">{mainProduct.description}</div>
+          <div className="mt-4 text-sm font-light text-slate-600">{mainProduct.description}</div>
         </div>
       </div>
       <div className="mx-5 flex h-96 flex-col bg-blue-200 p-6 md:mx-10 md:h-60 md:flex-row">
@@ -321,7 +329,7 @@ const GiftBox = async ({ section, mainProduct }: any) => {
           />
         </div>
         <h1 className="text-3xl text-slate-900">{section.title}</h1>
-        <p className="font-thin">{section.description}</p>
+        <p className="font-light">{section.description}</p>
         <Button className="tracking-widest underline">{section.tags}</Button>
       </div>
       <div className="my-8">
