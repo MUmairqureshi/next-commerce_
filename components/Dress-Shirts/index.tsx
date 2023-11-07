@@ -1,7 +1,8 @@
 import { getCollection, getCollectionProducts } from 'lib/shopify';
 import Link from 'next/link';
 
-export async function Dressshirt() {
+export async function Dressshirt(
+) {
   const latestProduct = await getCollectionProducts({
     collection: 'all-dress-shirt'
   });

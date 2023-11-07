@@ -25,7 +25,7 @@ const CardComponent = ({ name, description, url, imageSrc, altText }: CardProps)
       </Link>
       <div className="py-6">
         <div>
-          <Link href={`/product/${url}`}>
+          <Link href={`${url}`}>
             <h3 className=" m-0 mb-3 text-xl  text-slate-800  underline underline-offset-8 ">
               {name}
             </h3>

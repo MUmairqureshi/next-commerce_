@@ -50,7 +50,6 @@ export async function generateMetadata({
 
 async function RelatedProd({ id }: { id: string }) {
   const relatedProducts = await getProductRecommendations(id);
-  console.log('id', id);
   if (!relatedProducts.length) return <p>null</p>;
   return <RelatedProducts Data={relatedProducts} />;
 }
