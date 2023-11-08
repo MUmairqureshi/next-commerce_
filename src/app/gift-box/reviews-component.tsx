@@ -40,7 +40,7 @@ const ReviewsComponent = async () => {
   const data = await getReviews<any>(apiUrl);
   const markup = { __html: data.widget };
   // const reviews = data.reviews
-  console.log('data', markup);
+  // console.log('data', markup);
   // const res = data.reviews;
   return (
     <div>

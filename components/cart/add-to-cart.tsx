@@ -52,7 +52,7 @@ export function AddToCart({
         });
       }}
       className={clsx(
-        'relative flex w-full items-center justify-center rounded-sm bg-[#003445] p-4 tracking-wide text-white hover:opacity-90',
+        'relative flex w-full items-center justify-center rounded-sm bg-[#003445] p-3 tracking-wide text-white hover:opacity-90',
         {
           'cursor-not-allowed opacity-60 hover:opacity-60': !availableForSale || !selectedVariantId,
           'cursor-not-allowed': isPending

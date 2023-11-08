@@ -13,6 +13,9 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select';
+import { AddToCart } from 'components/cart/add-to-cart';
+import Price from 'components/price';
+import { VariantSelector } from 'components/product/variant-selector';
 import { getCollectionProducts, getProduct } from 'lib/shopify';
 import { Star } from 'lucide-react';
 import Image from 'next/image';
@@ -115,6 +118,7 @@ const apiUrl =
   'https://judge.me/api/v1/reviews?api_token=MDNdJzaFmVDpoimCC2iTWoh68OQ&shop_domain=next-ecommerce-templates.myshopify.com';
 
 const GiftBox = async ({ section, mainProduct }: any) => {
+  // console.log("mainProduct", mainProduct.variants.map((v:any) => v.price.amount));
   // console.log("mainProduct", mainProduct);
   const data = await getReviews<Review>(apiUrl);
   return (
@@ -132,7 +136,12 @@ const GiftBox = async ({ section, mainProduct }: any) => {
         </div>
         <div className="md:basis-3/6 lg:basis-2/6">
           <div className="mt-6 text-2xl">{mainProduct.title}</div>
-          <div className="mt-2 font-light">${mainProduct.priceRange.minVariantPrice.amount}</div>
+          {/* <div className="mt-2 font-light">${mainProduct.priceRange.minVariantPrice.amount}</div> */}
+          <Price
+            className="mt-2 font-light"
+            amount={mainProduct.priceRange.maxVariantPrice.amount}
+            currencyCode={mainProduct.priceRange.maxVariantPrice.currencyCode}
+          />
           <div className="mt-4 flex items-center">
             <Star size={20} strokeWidth={0.5} fill="black" />
             <Star size={20} strokeWidth={0.5} fill="black" />
@@ -145,7 +154,10 @@ const GiftBox = async ({ section, mainProduct }: any) => {
               ))}
             </ul>
           </div>
-          <div className="flex flex-col">
+
+          <VariantSelector options={mainProduct.options} variants={mainProduct.variants} />
+
+          {/* <div className="flex flex-col">
             <div className="my-4 capitalize tracking-widest">Select Amount</div>
             <Select>
               <SelectTrigger className="w-full">
@@ -155,22 +167,18 @@ const GiftBox = async ({ section, mainProduct }: any) => {
                 {mainProduct.variants.map((v: any) => (
                   <SelectItem value={v.price.amount}>${v.price.amount}</SelectItem>
                 ))}
-                {/* <SelectItem value="25">$25</SelectItem>
-                <SelectItem value="50">$50</SelectItem>
-                <SelectItem value="100">$100</SelectItem>
-                <SelectItem value="150">$150</SelectItem>
-                <SelectItem value="200">$200</SelectItem>
-                <SelectItem value="250">$250</SelectItem>
-                <SelectItem value="500">$500</SelectItem>
-                <SelectItem value="1000">$1000</SelectItem> */}
               </SelectContent>
             </Select>
-          </div>
+          </div> */}
           <div className="mt-2 flex flex-col gap-y-4">
-            <Button className="w-full rounded-sm bg-slate-500 py-3 tracking-widest text-white">
+            <AddToCart
+              variants={mainProduct.variants}
+              availableForSale={mainProduct.availableForSale}
+            />
+            {/* <Button className="w-full rounded-sm bg-slate-500 py-3 tracking-widest text-white">
               SELECT A SIZE
-            </Button>
-            <Button className="w-full rounded-sm bg-gray-900 py-3 tracking-widest text-white">
+            </Button> */}
+            <Button className="w-full rounded-sm bg-gray-900 p-3 tracking-widest text-white">
               SEND AS A GIFT
             </Button>
           </div>
