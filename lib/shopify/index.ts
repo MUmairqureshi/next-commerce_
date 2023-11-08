@@ -299,7 +299,7 @@ export async function getArticlesById({
         articleHandle
       }
     });
-    console.log(res.body.data);
+    // console.log(res.body.data);
     return res.body.data.blogByHandle.articleByHandle;
   }
   // return res.body.data.articles.edges;
