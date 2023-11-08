@@ -1,26 +1,19 @@
 import CardListingScetion from 'components/Dapper-Hero/CardListingScetion';
 import Hero from 'components/Dapper-Hero/DapperHero';
-import { getCollectionProducts } from 'lib/shopify';
+import { SignIn, getAllArticles, getCollectionProducts } from 'lib/shopify';
 
 export default async function Blogs() {
   const latestProduct = await getCollectionProducts({
     collection: 'blogs-page-images'
   });
+  SignIn({ email: 'jf@gmail.com', password: 'jf123467890' });
+
   if (!latestProduct[0]) return null;
-
-  const Blogs = await getCollectionProducts({
-    collection: 'blogs-page'
-  });
-
-  //   const Blogs = await getAllArticles();
-  //   if (!Blogs[0]) return null;
+  const Blogs = await getAllArticles();
+  if (!Blogs[0]) return null;
   return (
     <div className="mx-auto w-full max-w-screen-2xl ">
       <Hero
-        // altText={Blogs[0]?.featuredImage.altText}
-        // imageSrc={Blogs[0]?.featuredImage.url}
-        // title={Blogs[0]?.title}
-        // description={Blogs[0]?.description}
         altText={latestProduct[0]?.featuredImage?.altText}
         imageSrc={latestProduct[0]?.featuredImage.url}
         title={latestProduct[0]?.title}

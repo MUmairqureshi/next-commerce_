@@ -1,6 +1,6 @@
 export const getArticlesQuery = `
   query getAllArticles {
-    articles(first: 10) {
+    articles(first: 40) {
       edges {
         node {
           handle

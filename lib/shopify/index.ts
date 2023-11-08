@@ -5,6 +5,10 @@ import { revalidateTag } from 'next/cache';
 import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import {
+  CreateCustomerMutation,
+  SignInWithEmailAndPasswordMutataion
+} from './mutations/authentication';
+import {
   addToCartMutation,
   createCartMutation,
   editCartItemsMutation,
@@ -100,7 +104,6 @@ export async function shopifyFetch<T>({
       body
     };
   } catch (e) {
-    console.log('err', e);
     if (isShopifyError(e)) {
       throw {
         cause: e.cause?.toString() || 'unknown',
@@ -299,10 +302,8 @@ export async function getArticlesById({
         articleHandle
       }
     });
-    // console.log(res.body.data);
     return res.body.data.blogByHandle.articleByHandle;
   }
-  // return res.body.data.articles.edges;
 }
 export async function getAllArticles(): Promise<articles | any> {
   const res = await shopifyFetch<{ data: { articles: articles } }>({
@@ -310,15 +311,39 @@ export async function getAllArticles(): Promise<articles | any> {
   });
 
   return res.body.data.articles.edges;
-  // gid://shopify/Blog/105689350422
-  // const res2 = await shopifyFetch<any>({
-  //   query: getBlogsByid,
-  //   variables: { blogId:"gid://shopify/Blog/105689350422" }
-  // });
-  // console.log(res2.body.data.blog.articles);
-  // console.log("su22",res.body.data.blogs?.edges[1].node.articles.edges.length)
-  // console.log("su22",res.body.data.blogs?.edges.length)
-  // return reshapeCart(res.body.data.blogs);
+}
+export async function SignIn(modal: { email: string; password: string }): Promise<articles | any> {
+  const res = await shopifyFetch<any>({
+    query: SignInWithEmailAndPasswordMutataion,
+    variables: {
+      email: modal.email,
+      password: modal.password
+    }
+  });
+  return res.body.data.customerAccessTokenCreate;
+}
+export async function SignUp(modal: {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  acceptsMarketing: boolean;
+}): Promise<articles | any> {
+  const res = await shopifyFetch<any>({
+    query: CreateCustomerMutation,
+    variables: {
+      firstName: modal.firstName,
+      lastName: modal.lastName,
+      email: modal.email,
+      password: modal.password,
+      acceptsMarketing: modal.acceptsMarketing
+    }
+  });
+  if (res.body.data.customerCreate) {
+    return res.body.data.customerCreate;
+  } else {
+    return null;
+  }
 }
 
 export async function getCollectionProducts({
