@@ -56,7 +56,9 @@ export default async function Navbar() {
                 <Search />
               </div>
               <div className="right-0 top-0 flex h-full items-center font-extrabold">
+                <Link href="/account">
                 <UserIcon className="h-6  font-extrabold " />
+                </Link>
               </div>
             </div>
 

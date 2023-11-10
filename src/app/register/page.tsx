@@ -2,11 +2,15 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import axios from 'axios';
+import AlertModal from 'components/AlertModal/page';
 import Link from 'next/link';
-// import { useRouter } from 'next/router';
+
 import React, { useState } from 'react';
 const Login = () => {
   // const router = useRouter()
+  const [showModal,setShowModal]=useState(false)
+  const [modalData,setModalData]=useState({})
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -23,25 +27,29 @@ const Login = () => {
         })
         .then((response: any) => {
           if (response.data.status === 200) {
-            console.log('success', response.data.message, response);
-            window.alert(response.data.message);
-            // router.push("/login")
-          } else {
-            console.log('err', response.data.message);
-            window.alert(response.data.message);
+            console.log(response)
+            setShowModal(true)
+            setModalData({title:'Success!',message:response.data.message,href:"/",closeState:setShowModal})
+          } 
+          else {
+            setShowModal(true)
+            setModalData({title:'Error!',message:response.data.message,closeState:setShowModal})
           }
         })
         .catch((error: any) => {
-          console.log('err', error);
+          setShowModal(true)
+            setModalData({title:'Error!',message:"Error",closeState:setShowModal})
         });
     } catch (error) {
-      console.log('Error Logging Shopify customer:', error);
+      setShowModal(true)
+            setModalData({title:'Error!',message:"Error Signing Up Shopify customer: Please Try Again",closeState:setShowModal})
     }
   };
 
   return (
     <>
-      <div className="flex h-screen w-screen items-center justify-center bg-slate-100">
+
+      <div className="flex h-screen w-full items-center justify-center bg-slate-100 relative">
         <div className="mb-4 flex w-full max-w-sm items-center justify-center gap-1.5 space-x-2 space-y-12 px-8 pb-8 pt-12 text-2xl font-semibold text-sky-950 sm:bg-white sm:shadow-xl">
           <form
             className="w-full	space-y-5 rounded-full border-sky-500 sm:w-[400px]"
@@ -102,7 +110,11 @@ const Login = () => {
                 Sign Up
               </Button>
             </div>
+
+  
             <div className="mb-4 flex w-full max-w-sm items-center justify-center gap-1.5 space-x-2 text-sm font-semibold text-sky-950 ">
+  
+
               <label>
                 Have an account?{' '}
                 <Link href="/login" className="text-indigo-500 hover:underline">
@@ -113,7 +125,10 @@ const Login = () => {
             </div>
           </form>
         </div>
+      {showModal&&(<AlertModal Data={modalData}/>)}
       </div>
+
+
     </>
   );
 };

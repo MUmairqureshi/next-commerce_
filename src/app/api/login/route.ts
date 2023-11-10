@@ -1,4 +1,5 @@
 import { SignIn } from 'lib/shopify';
+import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req:NextRequest){
@@ -8,7 +9,8 @@ export async function POST(req:NextRequest){
         if(!res.customerAccessToken){
         throw Error
         }
-        console.log(res)
+        cookies().set('accessToken', res.customerAccessToken?.accessToken);
+        console.log(res.customerAccessToken?.accessToken)
         return NextResponse.json({ message: 'Login In Successful', status: 200,customerAccessToken:res.customerAccessToken });
     
     }catch(err){

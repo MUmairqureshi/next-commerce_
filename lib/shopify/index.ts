@@ -18,6 +18,7 @@ import {
   getCollectionQuery,
   getCollectionsQuery
 } from './queries/collection';
+import { getLoginCustomerDataQuery } from './queries/customer';
 import { getMenuQuery } from './queries/menu';
 import { getPageQuery, getPagesQuery } from './queries/page';
 import {
@@ -302,6 +303,16 @@ export async function getArticlesById({blogHandle,articleHandle}:{blogHandle:str
   });
   
   return res.body.data.articles.edges;
+}
+  export async function getLoginCustomerData(accessToken:string): Promise<articles | any> {
+  const res = await shopifyFetch<any>({
+    query: getLoginCustomerDataQuery,
+    variables:{
+      accessToken:accessToken
+    }
+  });
+  return res.body.data.customer
+  
 }
   export async function SignIn(modal:{
   email: string;

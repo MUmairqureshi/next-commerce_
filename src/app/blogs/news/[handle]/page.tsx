@@ -5,7 +5,7 @@ import Image from 'next/image';
 export default async function Hero2({ params }: { params: { handle: string } }) {
 
   const BlogData= await getArticlesById({blogHandle:"news",articleHandle:params.handle})
-    console.log("Blo",BlogData)
+    // console.log("Blo",BlogData)
     const latestProduct = await getCollectionProducts({
     collection: `${params.handle}`
   });
@@ -50,7 +50,7 @@ async function CategoryPage({
   fourthProduct: any;
   BlogData:any
 }) {
-  console.log("BlogData",BlogData)
+  // console.log("BlogData",BlogData)
   return (
     <>
       <div className="mx-auto w-full max-w-screen-2xl ">
