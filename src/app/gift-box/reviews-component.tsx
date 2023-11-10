@@ -1,5 +1,5 @@
 const apiUrl =
-  'https://judge.me/api/v1/reviews?api_token=MDNdJzaFmVDpoimCC2iTWoh68OQ&shop_domain=next-ecommerce-templates.myshopify.com';
+  'https://judge.me/api/v1/widgets/product_review?handle=digital-gift-card&api_token=MDNdJzaFmVDpoimCC2iTWoh68OQ&shop_domain=next-ecommerce-templates.myshopify.com';
 import { getReviews } from '../service';
 
 interface Review {

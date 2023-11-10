@@ -2,19 +2,19 @@ import productFragment from '../fragments/product';
 import seoFragment from '../fragments/seo';
 
 const collectionFragment = /* GraphQL */ `
-fragment collection on Collection {
-  id
-  handle
-  title
-  description
-  image {
-    originalSrc
+  fragment collection on Collection {
+    id
+    handle
+    title
+    description
+    image {
+      originalSrc
+    }
+    seo {
+      ...seo
+    }
+    updatedAt
   }
-  seo {
-    ...seo
-  }
-  updatedAt
-}
   ${seoFragment}
 `;
 

@@ -14,7 +14,7 @@ export default async function Navbar() {
   const menu = await getMenu('main-menu');
   console.log(menu,"menu")
   return (
-    <div className="h-full w-full mx-auto  max-w-screen-2xl">
+    <div className="mx-auto h-full w-full  max-w-screen-2xl">
       <div className="ceontent-center flex h-12 items-center justify-center bg-slate-400 text-center text-black">
         <p className=" items-center text-center font-sans text-sm  font-light">
           THE GEORGIE SUIT - RESTOCKED IN BURGUNDY, OLIVE, ROYAL & SLATE BLUE! SHOP NOW{' '}
