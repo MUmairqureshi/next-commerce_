@@ -413,11 +413,18 @@ export async function getMenu(handle: string): Promise<Menu[]> {
     variables: {
       handle
     }
+
   });
+  console.log(res.body.data.menu?.items,"sbjbhv")
   return (
-    res.body?.data?.menu?.items.map((item: { title: string; url: string }) => ({
+    res.body?.data?.menu?.items?.map((item: any) =>(
+      {
       title: item.title,
-      path: item.url.replace(domain, '').replace('/collections', '/search').replace('/pages', '')
+      subMenu:item?.items.map((e:any)=>({
+        title:e.title,
+        path:e.url.replace(domain,'').replace('/page','')
+      })),
+      path: item.url.replace(domain, '').replace('/collections', '').replace('/pages', '')
     })) || []
   );
 }

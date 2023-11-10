@@ -12,6 +12,7 @@ const { SITE_NAME } = process.env;
 
 export default async function Navbar() {
   const menu = await getMenu('main-menu');
+  console.log(menu,"menu")
   return (
     <div className="h-full w-full mx-auto  max-w-screen-2xl">
       <div className="ceontent-center flex h-12 items-center justify-center bg-slate-400 text-center text-black">
@@ -36,10 +37,10 @@ export default async function Navbar() {
                 {menu.map((item) => (
                   <li className=" w-full">
                     {item.title === 'Shop' ? (
-                      <DropdownMenuCheckboxes />
+                      <DropdownMenuCheckboxes items={item?.subMenu} />
                     ) : (
                       <Link
-                        href={`/${item.path.split('/')[2]=="blog"?`${item.path.split('/')[2]}s/news`:item.path.split('/')[2]}`}
+                        href={`${item.path=="/blog"?`${item.path}s/news`:item.path}`}
                         className="text-baseline w-full items-baseline text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300 "
                       >
                         {item.title}
@@ -52,7 +53,7 @@ export default async function Navbar() {
           </div>
           <div className="flex items-center justify-end text-xl ">
             <div className="relative flex items-center justify-center gap-x-6">
-              <div className="hidden sm:block">
+              <div className="hidden lg:block">
                 <Search />
               </div>
               <div className="right-0 top-0 flex h-full items-center font-extrabold">

@@ -6,7 +6,7 @@ export async function GET(){
     try{
         let accessToken = cookies().get('accessToken')?.value;
         console.log("in api",accessToken);
-        if (!accessToken) {
+        if (accessToken==undefined) {
             return NextResponse.redirect('/login');
           }
     if(accessToken){
