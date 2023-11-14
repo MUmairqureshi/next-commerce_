@@ -1,17 +1,31 @@
-import { getArticlesById } from 'lib/shopify';
+import { getArticlesById, getCollectionProducts, getProduct } from 'lib/shopify';
 import { Product } from 'lib/shopify/types';
 import Image from 'next/image';
+import Link from 'next/link';
 
-export default async function Articles({ params }: { params: { handle: string } }) {
-  const BlogData = await getArticlesById({ blogHandle: 'news', articleHandle: params.handle });
-
+export default async function Hero2({ params }: { params: { handle: string } }) {
+  console.log(params.handle)
+  const BlogData= await getArticlesById(params.handle)
+  
+    const latestProduct = await getCollectionProducts({
+    collection: `${params.handle}`
+  });
   if (!BlogData) return null;
+  const [firstProduct, secondProduct, thirdProduct, fourthProduct] = latestProduct;
 
+  const product = await getProduct(params.handle);
+
+  const share = await getProduct('share');
 
   return (
     <section>
       <CategoryPage
-        BlogData={BlogData}
+        share={share}
+        firstProduct={firstProduct}
+        secondProduct={secondProduct}
+        thirdProduct={thirdProduct}
+        fourthProduct={fourthProduct}
+        product={product}
         item={[]}
       />
     </section>
@@ -19,13 +33,20 @@ export default async function Articles({ params }: { params: { handle: string } 
 }
 
 async function CategoryPage({
- 
-  BlogData
+  share,
+  firstProduct,
+  secondProduct,
+  thirdProduct,
+  fourthProduct,
+  product
 }: {
-  // share: any;
+  share: any;
   item: Product[];
-  
-  BlogData: any;
+  product: any;
+  firstProduct: any;
+  secondProduct: any;
+  thirdProduct: any;
+  fourthProduct: any;
 }) {
   return (
     <>
@@ -35,10 +56,10 @@ async function CategoryPage({
             <div className="h-full  ">
               <div className="relative h-[100px] w-full md:h-[260px] lg:h-[500px]">
                 <Image
-                  src={BlogData?.image.src}
-                  alt={'product.featuredImage.altText'}
-                  height={BlogData?.image.height}
-                  width={BlogData?.image.width}
+                  src={product.featuredImage.url}
+                  alt={product.featuredImage.altText}
+                  height={product.featuredImage.height}
+                  width={product.featuredImage.width}
                   className="h-full w-full object-cover object-top"
                 />
                 {/* Dull black overlay */}
@@ -49,10 +70,10 @@ async function CategoryPage({
                     Featured
                   </div>
                   <h4 className="mb-4 text-4xl font-semibold capitalize leading-[48px] tracking-normal text-white ">
-                    {BlogData.title}
+                    {product.title}
                   </h4>
                   <span className="mb-6 font-semibold uppercase tracking-wider">
-                    {BlogData.tags ? BlogData.tags.join(',') : null}
+                    {product.tags}
                   </span>
                 </div>
               </div>
@@ -60,18 +81,18 @@ async function CategoryPage({
                 <span className="font-serif text-sm uppercase tracking-wider text-slate-500">
                   Featured
                 </span>
-                <h4 className="my-3 text-2xl capitalize md:text-3xl">{BlogData.title}</h4>
-                {/* <span className="font-serif text-sm uppercase tracking-wider">{product.tags}</span> */}
+                <h4 className="my-3 text-2xl capitalize md:text-3xl">{product.title}</h4>
+                <span className="font-serif text-sm uppercase tracking-wider">{product.tags}</span>
                 <div className="mt-1 w-14 border-b-[1px] border-black"></div>
               </div>
             </div>
 
             <div className="mx-2 xl:mx-52 2xl:mx-72">
               <p className="my-4 mt-48 text-justify text-sm text-slate-900 md:mt-28 lg:mt-6">
-                <div dangerouslySetInnerHTML={{ __html: BlogData.contentHtml }} />
+                {product.description}
               </p>
 
-              {/* <div>
+              <div>
                 <div className="mx-auto mt-3 flex w-full max-w-sm">
                   <Image
                     src={fourthProduct.featuredImage.url}
@@ -125,10 +146,10 @@ async function CategoryPage({
                 <div className="mt-1 font-semibold">{firstProduct.title}</div>
                 <div className="my-3 font-light italic text-slate-900">{firstProduct.tags}</div>
                 <div className="font-sans text-sm text-slate-900">{firstProduct.description}</div>
-              </div>*/}
+              </div>
             </div>
 
-            {/* <div className="my-6 flex items-center justify-center gap-x-4 border-y-[1px] border-y-blue-950 py-6">
+            <div className="my-6 flex items-center justify-center gap-x-4 border-y-[1px] border-y-blue-950 py-6">
               <div className="text-lg font-bold text-blue-950">{share.title}</div>
               {share.images.map((item: any, key: number) => (
                 <div key={key}>
@@ -137,7 +158,7 @@ async function CategoryPage({
                   </Link>
                 </div>
               ))}
-            </div> */}
+            </div>
 
             {/* <Suspense><RelatedProd id={product.id}/></Suspense> */}
           </div>

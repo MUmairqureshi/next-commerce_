@@ -6,7 +6,6 @@ import { Product } from 'lib/shopify/types';
 import RightSideContent from './RightSideContent';
 
 const HeroSection = ({ data }: { data: Product }) => {
-  console.log('hello', data);
   return (
     <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
       <motion.span

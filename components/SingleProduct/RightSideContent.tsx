@@ -5,7 +5,6 @@ import { AddToCart } from 'components/cart/add-to-cart';
 import { VariantSelector } from '../product/variant-selector';
 
 const RightSideContent = ({ data }: any) => {
-  console.log(data);
   return (
     <div className="py-1 md:px-4">
       <p className="mb-3 text-sm  text-gray-400">

@@ -36,4 +36,10 @@ export const SignInWithEmailAndPasswordMutataion=`
             message
         }
     }
+    customer(email=$email) {
+      id
+      firstName
+      lastName
+      email
+    }
 }`
