@@ -15,21 +15,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 type Checked = DropdownMenuCheckboxItemProps['checked'];
-const shpoMenu1 = [
-  { label: 'Shop', href: '#' },
-  { label: 'New Arrivals', href: '../collection/all-new-arrivals-1' },
-  { label: 'Suits & Blazzers', href: '../collection/suits-blazers' },
-  { label: 'Vests', href: '../collection/vests' },
-  { label: 'Dress Shirts', href: '../collection/all-adress-shirts' },
-  { label: 'Dress Pants', href: '../collection/dress-pants' },
-  { label: 'Sweaters & Jacket', href: '../collection/sweaters-jackets' }
-];
-const shpoMenu2 = [
-  { label: 'Casual Shirts & Sets', href: '../collection/casual-shirts-sets' },
-  { label: 'Casual Pants & Shorts', href: '../collection/casual-pants-shorts' },
-  { label: 'Accessories', href: '../collection/accessories' },
-  { label: 'Gift Card', href: '../gift-box' }
-];
+
 export function DropdownMenuCheckboxes({items}:{items:{title:string,path:string}[]}) {
   return (
     <DropdownMenu>

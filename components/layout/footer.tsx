@@ -71,20 +71,10 @@ import { getMenu } from 'lib/shopify';
 //   );
 // }
 
-const ForHimData = [
-  { label: 'Men jeans', href: '#' },
-  { label: 'Men jeans', href: '#' },
-  { label: 'Men jeans', href: '#' },
-  { label: 'Men jeans', href: '#' }
-];
-const ForHerData = [
-  { label: 'Women jeans', href: '#' },
-  { label: 'Women jeans', href: '#' },
-  { label: 'Women jeans', href: '#' }
-];
 
 const footer = async () => {
   const menu = await getMenu('footer');
+  console.log("menu",menu)
   return (
     <div className="bg-white pt-10">
       <div className="mx-auto grid max-w-screen-2xl gap-y-4 border-y-2 border-gray-300 bg-white px-6 py-10 sm:grid-cols-5 md:px-10">
@@ -98,58 +88,28 @@ const footer = async () => {
           </p>
         </div>
         <div className="col-span-3  grid grid-cols-2 gap-y-2 sm:grid-cols-3 sm:px-6 md:pl-20">
+        {menu&&menu.map((items,ind)=>{
+          return(
           <div className="px-3">
             <h2 className="trading-wider mb-2  text-lg font-medium text-[#003445]">
-              {menu[0]?.title}
+              {items?.title}
             </h2>
             <ul>
-              {ForHerData.map((item, index) => {
+              {items?.subMenu?.map((item, index) => {
                 return (
                   <li
                     key={index}
                     className="mb-1 text-sm font-light text-gray-600 hover:cursor-pointer hover:text-primary"
                   >
-                    <a href={item.href}>{item.label}</a>
+                    <a href={item.path}>{item.title}</a>
                   </li>
                 );
               })}
             </ul>
           </div>
-          <div className="px-3">
-            <h2 className="trading-wider mb-2  text-lg font-medium text-[#003445]">
-              {menu[1]?.title}
-            </h2>
-
-            <ul>
-              {ForHimData.map((item, index) => {
-                return (
-                  <li
-                    key={index}
-                    className="mb-1 text-sm font-light text-gray-600 hover:cursor-pointer hover:text-primary"
-                  >
-                    <a href={item.href}>{item.label}</a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          <div className="px-3">
-            <h2 className="trading-wider mb-2  text-lg font-medium text-[#003445]">
-              {menu[2]?.title}
-            </h2>
-            <ul>
-              {ForHimData.map((item, index) => {
-                return (
-                  <li
-                    key={index}
-                    className="mb-1 text-sm font-light text-gray-600 hover:cursor-pointer hover:text-primary"
-                  >
-                    <a href={item.href}>{item.label}</a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          )
+        })} 
+         
         </div>
       </div>
       <div className="mx-auto w-full bg-white p-6 text-center">

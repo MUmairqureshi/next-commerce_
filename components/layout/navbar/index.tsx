@@ -11,8 +11,7 @@ import Search from './search';
 const { SITE_NAME } = process.env;
 
 export default async function Navbar() {
-  const menu = await getMenu('main-menu');
-  console.log(menu,"menu")
+  const menu = await getMenu('main_menu');
   return (
     <div className="mx-auto h-full w-full  max-w-screen-2xl">
       <div className="ceontent-center flex h-12 items-center justify-center bg-slate-400 text-center text-black">
@@ -40,7 +39,7 @@ export default async function Navbar() {
                       <DropdownMenuCheckboxes items={item?.subMenu} />
                     ) : (
                       <Link
-                        href={`${item.path=="/blog"?`${item.path}s/news`:item.path}`}
+                        href={`${item.path}`}
                         className="text-baseline w-full items-baseline text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300 "
                       >
                         {item.title}
