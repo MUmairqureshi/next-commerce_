@@ -15,22 +15,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 type Checked = DropdownMenuCheckboxItemProps['checked'];
-const shpoMenu1 = [
-  { label: 'Shop', href: '#' },
-  { label: 'New Arrivals', href: '../collection/all-new-arrivals-1' },
-  { label: 'Suits & Blazzers', href: '../collection/suits-blazers' },
-  { label: 'Vests', href: '../collection/vests' },
-  { label: 'Dress Shirts', href: '../collection/all-adress-shirts' },
-  { label: 'Dress Pants', href: '../collection/dress-pants' },
-  { label: 'Sweaters & Jacket', href: '../collection/sweaters-jackets' }
-];
-const shpoMenu2 = [
-  { label: 'Casual Shirts & Sets', href: '../collection/casual-shirts-sets' },
-  { label: 'Casual Pants & Shorts', href: '../collection/casual-pants-shorts' },
-  { label: 'Accessories', href: '../collection/accessories' },
-  { label: 'Gift Card', href: '../gift-box' }
-];
-export function DropdownMenuCheckboxes() {
+
+export function DropdownMenuCheckboxes({items}:{items:{title:string,path:string}[]}) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -55,15 +41,15 @@ export function DropdownMenuCheckboxes() {
           <div className="grid w-full grid-cols-5 p-12 2xl:w-5/6 ">
             <div className="col-span-2 flex items-center justify-end border-r-2 border-white pr-14">
               <div>
-                {shpoMenu1.length ? (
+                {items.length ? (
                   <ul className=" ml-14 hidden w-full gap-6   text-sm md:flex md:flex-col  ">
-                    {shpoMenu1.map((item) => (
+                    {items.slice(0,6)?.map((item) => (
                       <li>
                         <Link
-                          href={`/${item.href}`}
+                          href={`${item.path}`}
                           className="text-baseline  w-full    items-baseline text-white underline-offset-4 hover:text-white/70 hover:underline dark:text-neutral-400 dark:hover:text-neutral-300 "
                         >
-                          {item.label}
+                          {item.title}
                         </Link>
                       </li>
                     ))}
@@ -71,15 +57,15 @@ export function DropdownMenuCheckboxes() {
                 ) : null}
               </div>
               <div>
-                {shpoMenu2.length ? (
+                {items.length ? (
                   <ul className=" ml-14 hidden w-full gap-6  text-sm md:flex md:flex-col ">
-                    {shpoMenu2.map((item) => (
+                    {items.slice(6)?.map((item) => (
                       <li>
                         <Link
-                          href={`/${item.href}`}
+                          href={`${item.path}`}
                           className="text-baseline  items-baseline text-white underline-offset-4 hover:text-white/70  hover:underline dark:text-neutral-400 dark:hover:text-neutral-300 "
                         >
-                          {item.label}
+                          {item.title}
                         </Link>
                       </li>
                     ))}

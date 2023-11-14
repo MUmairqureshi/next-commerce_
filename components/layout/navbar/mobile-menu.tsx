@@ -13,6 +13,7 @@ import SearchMobile from './searchMobile';
 interface PropType {
   title: string;
   path: string;
+  subMenu:{title:string,path:string}[]
 }
 
 export default function MobileMenu({ men }: { men: PropType[] }) {
@@ -104,9 +105,9 @@ export default function MobileMenu({ men }: { men: PropType[] }) {
                         className="py-2 text-sm font-thin text-white transition-colors hover:text-neutral-500 dark:text-white"
                       >
                         {item.title === 'Shop' ? (
-                          <MobileShopDropDown />
+                          <MobileShopDropDown menu={item?.subMenu} />
                         ) : (
-                          <Link href={`/${item.path.split('/')[2]}`} onClick={closeMobileMenu}>
+                          <Link href={`${item.path}`} onClick={closeMobileMenu}>
                             {item.title}
                           </Link>
                         )}

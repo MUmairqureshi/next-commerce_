@@ -5,8 +5,8 @@ import { getProducts } from 'lib/shopify';
 
 import { Product } from 'lib/shopify/types';
 import Image from 'next/image';
-import StyleInspiration from 'src/app/collection/style-inspiration';
-import TwoBoxes from 'src/app/collection/two-boxes';
+import StyleInspiration from 'src/app/collections/style-inspiration';
+import TwoBoxes from 'src/app/collections/two-boxes';
 
 export default async function Hero() {
   const products = await getProducts({});
