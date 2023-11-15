@@ -45,6 +45,17 @@ export type Menu = {
   path: string;
 };
 
+export type SubMenu = {
+  title: string;
+  path: string;
+};
+
+export type Menu2 = {
+  title: string;
+  path: string;
+  subcategories: SubMenu[];
+};
+
 export type Money = {
   amount: string;
   currencyCode: string;
@@ -283,6 +294,7 @@ export type articles = {
       image: ArticleImage;
       publishedAt: string;
       author: articleAuthor;
+      blog: any;
     }[];
   };
 };

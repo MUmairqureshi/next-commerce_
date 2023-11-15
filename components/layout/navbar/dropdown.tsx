@@ -15,22 +15,23 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 type Checked = DropdownMenuCheckboxItemProps['checked'];
-const shpoMenu1 = [
-  { label: 'Shop', href: '#' },
-  { label: 'New Arrivals', href: '../collection/all-new-arrivals-1' },
-  { label: 'Suits & Blazzers', href: '../collection/suits-blazers' },
-  { label: 'Vests', href: '../collection/vests' },
-  { label: 'Dress Shirts', href: '../collection/all-dress-shirt' },
-  { label: 'Dress Pants', href: '../collection/dress-pants' },
-  { label: 'Sweaters & Jacket', href: '../collection/sweaters-jackets' }
-];
-const shpoMenu2 = [
-  { label: 'Casual Shirts & Sets', href: '../collection/casual-shirts-sets' },
-  { label: 'Casual Pants & Shorts', href: '../collection/casual-pants-shorts' },
-  { label: 'Accessories', href: '../collection/accessories' },
-  { label: 'Gift Card', href: '../gift-box/digital-gift-card-1' }
-];
-export function DropdownMenuCheckboxes() {
+// const shpoMenu1 = [
+//   { label: 'Shop', href: '#' },
+//   { label: 'New Arrivals', href: '../collection/all-new-arrivals-1' },
+//   { label: 'Suits & Blazzers', href: '../collection/suits-blazers' },
+//   { label: 'Vests', href: '../collection/vests' },
+//   { label: 'Dress Shirts', href: '../collection/all-dress-shirt' },
+//   { label: 'Dress Pants', href: '../collection/dress-pants' },
+//   { label: 'Sweaters & Jacket', href: '../collection/sweaters-jackets' }
+// ];
+// const shpoMenu2 = [
+//   { label: 'Casual Shirts & Sets', href: '../collection/casual-shirts-sets' },
+//   { label: 'Casual Pants & Shorts', href: '../collection/casual-pants-shorts' },
+//   { label: 'Accessories', href: '../collection/accessories' },
+//   { label: 'Gift Card', href: '../gift-box/digital-gift-card-1' }
+// ];
+export function DropdownMenuCheckboxes({ item }: { item: { subcategories: any } }) {
+  // console.log("item", item.subcategories)
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -53,17 +54,23 @@ export function DropdownMenuCheckboxes() {
           transition={{ duration: 0.6 }}
         >
           <div className="grid w-full grid-cols-5 p-12 2xl:w-5/6 ">
-            <div className="col-span-2 flex items-center justify-end border-r-2 border-white pr-14">
+            <div className="col-span-2 flex justify-end border-r-2 border-white pr-14">
               <div>
-                {shpoMenu1.length ? (
-                  <ul className=" ml-14 hidden w-full gap-6   text-sm md:flex md:flex-col  ">
-                    {shpoMenu1.map((item) => (
-                      <li>
+                {item.subcategories.length ? (
+                  <ul className=" ml-14 hidden w-full gap-4 text-sm md:flex md:flex-col  ">
+                    {item.subcategories.slice(0, 5).map((item: any, key: number) => (
+                      <li key={key}>
                         <Link
-                          href={`/${item.href}`}
+                          // href={`../collection/${
+                          // item.path.split('/')[2] == 'search'
+                          // ? `${item.path.split('/')[2]}collection`
+                          // : item.path.split('/')[2]
+                          // }`}
+
+                          href={`..${item.path.replace('/search', '/collection')}`}
                           className="text-baseline  w-full    items-baseline text-white underline-offset-4 hover:text-white/70 hover:underline dark:text-neutral-400 dark:hover:text-neutral-300 "
                         >
-                          {item.label}
+                          {item.title}
                         </Link>
                       </li>
                     ))}
@@ -71,15 +78,25 @@ export function DropdownMenuCheckboxes() {
                 ) : null}
               </div>
               <div>
-                {shpoMenu2.length ? (
-                  <ul className=" ml-14 hidden w-full gap-6  text-sm md:flex md:flex-col ">
-                    {shpoMenu2.map((item) => (
-                      <li>
+                {item.subcategories.length ? (
+                  <ul className=" ml-14 hidden w-full gap-4 text-sm md:flex md:flex-col ">
+                    {item.subcategories.slice(5).map((item: any, key: number) => (
+                      <li key={key}>
                         <Link
-                          href={`/${item.href}`}
-                          className="text-baseline  items-baseline text-white underline-offset-4 hover:text-white/70  hover:underline dark:text-neutral-400 dark:hover:text-neutral-300 "
+                          href={`..${item.path
+                            .replace('/search', '/collection')
+                            .replace(
+                              '/collection/all-gift-card',
+                              '/gift-box/digital-gift-card-1'
+                            )}`}
+                          // href={`../collection/${
+                          //   item.path.split('/')[2] == 'search'
+                          //   ? `${item.path.split('/')[2]}collection`
+                          //   : item.path.split('/')[2]
+                          //   }${item.path === '/all-gift-card' ? '' : item.path.replace('/collection/all-gift-card','../all-gift-card')}`}
+                          className="text-baseline items-baseline text-white underline-offset-4 hover:text-white/70  hover:underline dark:text-neutral-400 dark:hover:text-neutral-300 "
                         >
-                          {item.label}
+                          {item.title}
                         </Link>
                       </li>
                     ))}

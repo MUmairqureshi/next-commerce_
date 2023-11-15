@@ -14,14 +14,14 @@ import {
   editCartItemsMutation,
   removeFromCartMutation
 } from './mutations/cart';
-import { getArticlesByIdQuery, getArticlesQuery } from './queries/blogs';
+import { getArticlesByBlogQuery, getArticlesByIdQuery, getArticlesQuery } from './queries/blogs';
 import { getCartQuery } from './queries/cart';
 import {
   getCollectionProductsQuery,
   getCollectionQuery,
   getCollectionsQuery
 } from './queries/collection';
-import { getMenuQuery } from './queries/menu';
+import { getMenuQuery, getSubMenuQuery } from './queries/menu';
 import { getPageQuery, getPagesQuery } from './queries/page';
 import {
   getProductQuery,
@@ -34,6 +34,7 @@ import {
   Connection,
   Image,
   Menu,
+  Menu2,
   Page,
   Product,
   ShopifyAddToCartOperation,
@@ -286,6 +287,36 @@ export async function getCollection(handle: string): Promise<Collection | undefi
 
   return reshapeCollection(res.body.data.collection);
 }
+
+export async function getArticlesByBlog(blogHandle: string): Promise<articles[] | null> {
+  try {
+    if (blogHandle) {
+      // Execute the GraphQL query using your shopifyFetch utility
+      const res = await shopifyFetch<any>({
+        query: getArticlesByBlogQuery,
+        variables: {
+          blogHandle
+        }
+      });
+
+      // if (res.errors) {
+      //   console.error('GraphQL request errors:', res.errors);
+      //   return null;
+      // }
+
+      // Extract the articles data from the query result
+      const articles = res.body.data?.blogByHandle?.articles?.edges.map((edge: any) => edge?.node);
+
+      return articles || null;
+    }
+
+    return null;
+  } catch (error) {
+    console.error('Error in getArticlesByBlog function:', error);
+    return null;
+  }
+}
+
 export async function getArticlesById({
   blogHandle,
   articleHandle
@@ -305,11 +336,12 @@ export async function getArticlesById({
     return res.body.data.blogByHandle.articleByHandle;
   }
 }
+
 export async function getAllArticles(): Promise<articles | any> {
   const res = await shopifyFetch<{ data: { articles: articles } }>({
     query: getArticlesQuery
   });
-
+  // console.log("res",res.body.data.articles.edges)
   return res.body.data.articles.edges;
 }
 export async function SignIn(modal: { email: string; password: string }): Promise<articles | any> {
@@ -400,6 +432,33 @@ export async function getCollections(): Promise<Collection[]> {
   return collections;
 }
 
+export async function getSubMenu(handle: string): Promise<Menu2[]> {
+  const res = await shopifyFetch<ShopifyMenuOperation>({
+    query: getSubMenuQuery,
+    tags: [TAGS.collections],
+    variables: {
+      handle
+    }
+  });
+  // console.log("res1",res.body?.data?.menu?.items?.map(item => item.title))
+  return (
+    res.body?.data?.menu?.items.map(
+      (item: { title: string; url: string; items?: { title: string; url: string }[] }) => ({
+        title: item.title,
+        path: item.url.replace(domain, '').replace('/collections', '/search').replace('/pages', ''),
+        subcategories:
+          item.items?.map((sub: { title: string; url: string }) => ({
+            title: sub.title,
+            path: sub.url
+              .replace(domain, '')
+              .replace('/collections', '/search')
+              .replace('/pages', '')
+          })) || []
+      })
+    ) || []
+  );
+}
+
 export async function getMenu(handle: string): Promise<Menu[]> {
   const res = await shopifyFetch<ShopifyMenuOperation>({
     query: getMenuQuery,
@@ -408,6 +467,7 @@ export async function getMenu(handle: string): Promise<Menu[]> {
       handle
     }
   });
+  // console.log("res1",res.body?.data?.menu)
   return (
     res.body?.data?.menu?.items.map((item: { title: string; url: string }) => ({
       title: item.title,

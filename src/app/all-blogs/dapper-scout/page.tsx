@@ -1,7 +1,7 @@
 import CardListingScetion from 'components/Dapper-Hero/CardListingScetion';
 import Hero from 'components/Dapper-Hero/DapperHero';
 import ImageScrollSection from 'components/Dapper-Hero/ImageScrollSection';
-import { getCollectionProducts } from 'lib/shopify';
+import { getArticlesByBlog, getCollectionProducts } from 'lib/shopify';
 
 export default async function DapperScout() {
   const latestProduct = await getCollectionProducts({
@@ -14,6 +14,14 @@ export default async function DapperScout() {
   });
   if (!ScoutlistingData[0]) return null;
 
+  const DPBlogs = await getArticlesByBlog('dapper-scouts');
+  if (!DPBlogs) return null;
+
+  // const BlogData = await getAllArticles()
+  // const a = getArticlesByBlog({blogHandle: 'news'})
+  // const blogs = getBlogs()
+
+  // console.log("Blogs",BlogData)
   return (
     <div className="mx-auto w-full max-w-screen-2xl ">
       <Hero
@@ -33,7 +41,7 @@ export default async function DapperScout() {
           style={{ backgroundImage: `url(${latestProduct[1]?.featuredImage.url})` }}
           className="w-full  border-0  bg-cover bg-fixed bg-center bg-no-repeat "
         >
-          <CardListingScetion Products={ScoutlistingData} />
+          <CardListingScetion Products={DPBlogs} />
           <ImageScrollSection data={latestProduct[1]} />
         </div>
       </section>

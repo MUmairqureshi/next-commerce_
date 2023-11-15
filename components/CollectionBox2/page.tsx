@@ -8,7 +8,7 @@ export async function CollectionBox2({ CollectionName }: { CollectionName: strin
   });
   const Collection = await getCollection('all-dress-shirt');
   if (!Collection) return null;
-  console.log(latestProduct);
+  // console.log(latestProduct);
   return (
     <div className="  mb-b mx-auto w-full  bg-gray-100 px-12 py-6">
       <div className="mx-auto   max-w-[1240px]   bg-gray-100   ">

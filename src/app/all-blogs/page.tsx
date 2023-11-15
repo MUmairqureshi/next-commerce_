@@ -1,6 +1,6 @@
-import CardListingScetion from 'components/Dapper-Hero/CardListingScetion';
 import Hero from 'components/Dapper-Hero/DapperHero';
-import { getAllArticles, getCollectionProducts } from 'lib/shopify';
+import { getArticlesByBlog, getCollectionProducts } from 'lib/shopify';
+import CardListingSection from './CardListingSection';
 
 export default async function Blogs() {
   const latestProduct = await getCollectionProducts({
@@ -8,8 +8,9 @@ export default async function Blogs() {
   });
   if (!latestProduct[0]) return null;
 
-  const Blogs = await getAllArticles();
-  if (!Blogs[0]) return null;
+  // const Blogs = await getAllArticles();
+  const Blogs = await getArticlesByBlog(`news`);
+  if (!Blogs) return null;
 
   // console.log("Blogs",Blogs)
   return (
@@ -26,7 +27,7 @@ export default async function Blogs() {
             MOST RECENT
           </h1>
         </div>
-        <CardListingScetion Blogs={Blogs} />
+        <CardListingSection Blogs={Blogs} />
       </section>
     </div>
   );

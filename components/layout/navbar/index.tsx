@@ -3,7 +3,7 @@ import Cart from 'components/cart';
 import OpenCart from 'components/cart/open-cart';
 import { Suspense } from 'react';
 // import { LuBird } from "react-icons/lu";
-import { getMenu } from 'lib/shopify';
+import { getSubMenu } from 'lib/shopify';
 import Link from 'next/link';
 import { DropdownMenuCheckboxes } from './dropdown';
 import MobileMenu from './mobile-menu';
@@ -11,7 +11,9 @@ import Search from './search';
 const { SITE_NAME } = process.env;
 
 export default async function Navbar() {
-  const menu = await getMenu('main-menu');
+  // const menu = await getMenu('main-menu');
+  const menu = await getSubMenu('main-menu');
+  // console.log("Menu",menu)
   return (
     <div className="mx-auto h-full w-full  max-w-screen-2xl">
       <div className="ceontent-center flex h-12 items-center justify-center bg-slate-400 text-center text-black">
@@ -33,17 +35,26 @@ export default async function Navbar() {
 
             {menu.length ? (
               <ul className="ml-20 hidden gap-8  text-sm lg:flex lg:items-center ">
-                {menu.map((item) => (
-                  <li className=" w-full">
+                {menu.map((item, key) => (
+                  // <li className='w-full' key={key}>
+                  //   {item.title}
+                  // </li>
+                  <li className=" w-full" key={key}>
                     {item.title === 'Shop' ? (
-                      <DropdownMenuCheckboxes />
+                      // item.subcategories.map((category) => category.title)
+                      <DropdownMenuCheckboxes item={item} />
                     ) : (
                       <Link
-                        href={`/${
-                          item.path.split('/')[2] == 'blog'
-                            ? `${item.path.split('/')[2]}s/news`
-                            : item.path.split('/')[2]
-                        }`}
+                        href={`${item.path
+                          .replace('/search', '')
+                          .replace('blogs-page', 'all-blogs')
+                          .replace('all-our-storys', 'our-story')
+                          .replace('the-dapper-scouts-image', '../all-blogs/dapper-scout')}`}
+                        // href={`/${
+                        //   item.path.split('/')[2] == 'blog'
+                        //     ? `${item.path.split('/')[2]}s/news`
+                        //     : item.path.split('/')[2]
+                        // }`}
                         className="text-baseline w-full items-baseline text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300 "
                       >
                         {item.title}

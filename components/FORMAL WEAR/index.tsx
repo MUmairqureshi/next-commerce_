@@ -6,7 +6,7 @@ export async function Formallwear() {
   const latestProduct = await getCollectionProducts({
     collection: 'suit-blazer'
   });
-  console.log(Collection);
+  // console.log(Collection);
   if (!latestProduct[0]) return null;
   if (!Collection) return null;
   return (
