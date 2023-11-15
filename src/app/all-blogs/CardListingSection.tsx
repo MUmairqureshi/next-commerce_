@@ -32,11 +32,9 @@ const CardListingScetion = ({ Blogs }: { Blogs: any }) => {
                   className="h-full w-full overflow-hidden object-cover object-top"
                 />
               </div>
-              <div className="py-6">
+              <div className="py-5">
                 <div>
-                  <h3 className=" m-0 mb-3 text-xl text-slate-800 underline underline-offset-8 ">
-                    {item.title}
-                  </h3>
+                  <h3 className="m-0 text-xl text-slate-800 ">{item.title}</h3>
                   <p className="line-clamp-3 text-sm font-light leading-5 text-black xl:text-sm ">
                     {item.content}
                   </p>

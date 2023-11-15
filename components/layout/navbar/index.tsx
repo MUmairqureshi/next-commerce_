@@ -42,7 +42,10 @@ export default async function Navbar() {
                       <DropdownMenuCheckboxes items={item?.subMenu} />
                     ) : (
                       <Link
-                        href={`${item.path.replace('blogs', 'all-blogs').replace('/news', '')}`}
+                        href={`${item.path
+                          .replace('blogs/blogs', 'all-blogs')
+                          .replace('blogs/dapper-scouts', 'all-blogs/dapper-scouts')
+                          .replace('/news', '')}`}
                         className="text-baseline w-full items-baseline text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300 "
                       >
                         {item.title}
