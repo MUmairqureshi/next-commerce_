@@ -43,6 +43,10 @@ export type Image = {
 export type Menu = {
   title: string;
   path: string;
+  subMenu: {
+    title: string;
+    path: string;
+  }[];
 };
 
 export type SubMenu = {

@@ -1,5 +1,5 @@
 const apiUrl =
-  'https://judge.me/api/v1/widgets/product_review?handle=digital-gift-card&api_token=MDNdJzaFmVDpoimCC2iTWoh68OQ&shop_domain=next-ecommerce-templates.myshopify.com';
+  'https://judge.me/api/v1/reviews?api_token=MDNdJzaFmVDpoimCC2iTWoh68OQ&shop_domain=next-ecommerce-templates.myshopify.com';
 import { getReviews } from '../service';
 
 interface Review {
@@ -40,8 +40,7 @@ const ReviewsComponent = async () => {
   const data = await getReviews<any>(apiUrl);
   const markup = { __html: data.widget };
   // const reviews = data.reviews
-  // console.log('data', markup);
-  // const res = data.reviews;
+  const res = data.reviews;
   return (
     <div>
       <h2>Customer Reviews</h2>

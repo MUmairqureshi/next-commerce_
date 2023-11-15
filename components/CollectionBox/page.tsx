@@ -1,11 +1,9 @@
-import { getAllArticles, getCollection, getCollectionProducts } from 'lib/shopify';
+import { getCollection, getCollectionProducts } from 'lib/shopify';
 import Link from 'next/link';
-import ProductCart from 'src/app/collection/product-cart';
+import ProductCart from 'src/app/collections/product-cart';
 
 export async function CollectionBox({ CollectionName }: { CollectionName: string }) {
   const Collection = await getCollection('suit-blazer');
-  const data = await getAllArticles();
-  console.log('dat333a', data);
 
   const latestProduct = await getCollectionProducts({
     collection: CollectionName

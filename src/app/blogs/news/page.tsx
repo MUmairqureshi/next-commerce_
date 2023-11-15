@@ -1,12 +1,11 @@
 import CardListingScetion from 'components/Dapper-Hero/CardListingScetion';
 import Hero from 'components/Dapper-Hero/DapperHero';
-import { SignIn, getAllArticles, getCollectionProducts } from 'lib/shopify';
+import { getAllArticles, getCollectionProducts } from 'lib/shopify';
 
 export default async function Blogs() {
   const latestProduct = await getCollectionProducts({
     collection: 'blogs-page-images'
   });
-  SignIn({ email: 'jf@gmail.com', password: 'jf123467890' });
 
   if (!latestProduct[0]) return null;
   const Blogs = await getAllArticles();

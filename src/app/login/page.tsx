@@ -2,10 +2,15 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import axios from 'axios';
+import AlertModal from 'components/AlertModal/page';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
 const Login = () => {
+  const router = useRouter();
+  const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState({});
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -18,24 +23,35 @@ const Login = () => {
         .post('/api/login', formData)
         .then((response: any) => {
           if (response.data.status === 200) {
-            console.log('success', response.data.message, response);
-            window.alert(response.data.message);
+            router.push('/');
+            // setShowModal(true)
+            // setModalData({title:'Success!',message:response.data.message,href:"/",closeState:setShowModal})
           } else {
-            console.log('err', response.data.message);
-            window.alert(response.data.message);
+            setShowModal(true);
+            setModalData({
+              title: 'Error!',
+              message: response.data.message,
+              closeState: setShowModal
+            });
           }
         })
         .catch((error: any) => {
-          console.log('err', error);
+          setShowModal(true);
+          setModalData({ title: 'Error!', message: 'Error', closeState: setShowModal });
         });
     } catch (error) {
-      console.log('Error Logging Shopify customer:', error);
+      setShowModal(true);
+      setModalData({
+        title: 'Error!',
+        message: 'Error Logging Shopify customer: Please Try Again',
+        closeState: setShowModal
+      });
     }
   };
 
   return (
     <>
-      <div className="flex h-screen w-screen items-center justify-center bg-slate-100">
+      <div className="flex h-screen w-full items-center justify-center bg-slate-100">
         <div className="mb-4 flex w-full max-w-sm items-center justify-center gap-1.5 space-x-2 space-y-12 px-8 pb-8 pt-12 text-2xl font-semibold text-sky-950 sm:bg-white sm:shadow-xl">
           <form
             className="w-full	space-y-5 rounded-full border-sky-500 sm:w-[400px]"
@@ -78,6 +94,7 @@ const Login = () => {
             </div>
           </form>
         </div>
+        {showModal && <AlertModal Data={modalData} />}
       </div>
     </>
   );

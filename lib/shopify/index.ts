@@ -21,7 +21,8 @@ import {
   getCollectionQuery,
   getCollectionsQuery
 } from './queries/collection';
-import { getMenuQuery, getSubMenuQuery } from './queries/menu';
+import { getLoginCustomerDataQuery } from './queries/customer';
+import { getMenuQuery } from './queries/menu';
 import { getPageQuery, getPagesQuery } from './queries/page';
 import {
   getProductQuery,
@@ -344,6 +345,15 @@ export async function getAllArticles(): Promise<articles | any> {
   // console.log("res",res.body.data.articles.edges)
   return res.body.data.articles.edges;
 }
+export async function getLoginCustomerData(accessToken: string): Promise<articles | any> {
+  const res = await shopifyFetch<any>({
+    query: getLoginCustomerDataQuery,
+    variables: {
+      accessToken: accessToken
+    }
+  });
+  return res.body.data.customer;
+}
 export async function SignIn(modal: { email: string; password: string }): Promise<articles | any> {
   const res = await shopifyFetch<any>({
     query: SignInWithEmailAndPasswordMutataion,
@@ -467,11 +477,15 @@ export async function getMenu(handle: string): Promise<Menu[]> {
       handle
     }
   });
-  // console.log("res1",res.body?.data?.menu)
+  console.log(res.body.data.menu?.items, 'sbjbhv');
   return (
-    res.body?.data?.menu?.items.map((item: { title: string; url: string }) => ({
+    res.body?.data?.menu?.items?.map((item: any) => ({
       title: item.title,
-      path: item.url.replace(domain, '').replace('/collections', '/search').replace('/pages', '')
+      subMenu: item?.items.map((e: any) => ({
+        title: e.title,
+        path: e.url.replace(domain, '').replace('/page', '')
+      })),
+      path: item.url.replace(domain, '').replace('/collections', '').replace('/pages', '')
     })) || []
   );
 }

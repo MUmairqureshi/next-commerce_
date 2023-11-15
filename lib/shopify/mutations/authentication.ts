@@ -30,9 +30,16 @@ export const SignInWithEmailAndPasswordMutataion = `
             accessToken
             expiresAt
         }
+        
         customerUserErrors {
             code
             message
         }
+    }
+    customer(email=$email) {
+      id
+      firstName
+      lastName
+      email
     }
 }`;

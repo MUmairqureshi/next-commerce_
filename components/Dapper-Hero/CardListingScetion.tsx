@@ -26,7 +26,7 @@ const CardListingScetion = ({ Products }: { Products: any }) => {
             key={ind}
             className="border-content hover:brightness-805 group relative box-content h-full w-full  overflow-hidden  rounded-sm hover:cursor-pointer"
           >
-            <Link href={`/all-blogs/dapper-scout/${item.handle}`}>
+            <Link href={`/all-blogs/dapper-scouts/${item.handle}`}>
               <div className="border-content box-content h-[200px] w-full transform overflow-hidden transition-transform group-hover:scale-105 lg:h-[260px] ">
                 <Image
                   alt={item.image?.altText}

@@ -1,23 +1,28 @@
-import { getArticlesById, getProduct } from 'lib/shopify';
+import { getArticlesById } from 'lib/shopify';
 import { Product } from 'lib/shopify/types';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default async function Articles({ params }: { params: { handle: string } }) {
   const BlogData = await getArticlesById({ blogHandle: 'news', articleHandle: params.handle });
-  const share = await getProduct('share');
 
   if (!BlogData) return null;
 
   return (
     <section>
-      <CategoryPage share={share} BlogData={BlogData} item={[]} />
+      <CategoryPage BlogData={BlogData} item={[]} />
     </section>
   );
 }
 
-async function CategoryPage({ share, BlogData }: { share: any; item: Product[]; BlogData: any }) {
-  // console.log(BlogData.author)
+async function CategoryPage({
+  BlogData
+}: {
+  // share: any;
+  item: Product[];
+
+  BlogData: any;
+}) {
   return (
     <>
       <div className="mx-auto w-full max-w-screen-2xl ">

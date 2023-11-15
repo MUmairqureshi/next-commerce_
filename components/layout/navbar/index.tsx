@@ -3,7 +3,7 @@ import Cart from 'components/cart';
 import OpenCart from 'components/cart/open-cart';
 import { Suspense } from 'react';
 // import { LuBird } from "react-icons/lu";
-import { getSubMenu } from 'lib/shopify';
+import { getMenu } from 'lib/shopify';
 import Link from 'next/link';
 import { DropdownMenuCheckboxes } from './dropdown';
 import MobileMenu from './mobile-menu';
@@ -11,9 +11,7 @@ import Search from './search';
 const { SITE_NAME } = process.env;
 
 export default async function Navbar() {
-  // const menu = await getMenu('main-menu');
-  const menu = await getSubMenu('main-menu');
-  // console.log("Menu",menu)
+  const menu = await getMenu('main_menu');
   return (
     <div className="mx-auto h-full w-full  max-w-screen-2xl">
       <div className="ceontent-center flex h-12 items-center justify-center bg-slate-400 text-center text-black">
@@ -41,20 +39,10 @@ export default async function Navbar() {
                   // </li>
                   <li className=" w-full" key={key}>
                     {item.title === 'Shop' ? (
-                      // item.subcategories.map((category) => category.title)
-                      <DropdownMenuCheckboxes item={item} />
+                      <DropdownMenuCheckboxes items={item?.subMenu} />
                     ) : (
                       <Link
-                        href={`${item.path
-                          .replace('/search', '')
-                          .replace('blogs-page', 'all-blogs')
-                          .replace('all-our-storys', 'our-story')
-                          .replace('the-dapper-scouts-image', '../all-blogs/dapper-scout')}`}
-                        // href={`/${
-                        //   item.path.split('/')[2] == 'blog'
-                        //     ? `${item.path.split('/')[2]}s/news`
-                        //     : item.path.split('/')[2]
-                        // }`}
+                        href={`${item.path.replace('blogs', 'all-blogs').replace('/news', '')}`}
                         className="text-baseline w-full items-baseline text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300 "
                       >
                         {item.title}
@@ -67,11 +55,13 @@ export default async function Navbar() {
           </div>
           <div className="flex items-center justify-end text-xl ">
             <div className="relative flex items-center justify-center gap-x-6">
-              <div className="hidden sm:block">
+              <div className="hidden lg:block">
                 <Search />
               </div>
               <div className="right-0 top-0 flex h-full items-center font-extrabold">
-                <UserIcon className="h-6  font-extrabold " />
+                <Link href="/account">
+                  <UserIcon className="h-6  font-extrabold " />
+                </Link>
               </div>
             </div>
 

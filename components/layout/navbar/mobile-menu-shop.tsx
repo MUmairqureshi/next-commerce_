@@ -9,7 +9,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
 import SearchMobile from './searchMobile';
 
-export default function MobileShopDropDown() {
+export default function MobileShopDropDown({ menu }: any) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
@@ -102,9 +102,9 @@ export default function MobileShopDropDown() {
                   <SearchMobile />
                 </motion.div>
 
-                {men.length ? (
+                {menu.length ? (
                   <ul className="flex w-full    flex-col">
-                    {men.map((item, ind) => (
+                    {menu.map((item: any, ind: any) => (
                       <motion.li
                         viewport={{ once: false }}
                         initial={{ opacity: 0, x: 24 }}
@@ -112,8 +112,8 @@ export default function MobileShopDropDown() {
                         transition={{ duration: 0.2, delay: 0.1 * ind }}
                         className="py-2 text-sm font-thin text-white transition-colors hover:text-neutral-500 dark:text-white"
                       >
-                        <Link href={item.href} onClick={closeMobileMenu}>
-                          {item.label}
+                        <Link href={item.path} onClick={closeMobileMenu}>
+                          {item.title}
                         </Link>
                       </motion.li>
                     ))}
