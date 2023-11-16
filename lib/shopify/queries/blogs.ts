@@ -11,6 +11,9 @@ export const getArticlesQuery = `
           }
           title
           content
+          blog {
+            handle
+          }
         }
       }
     }
@@ -29,6 +32,33 @@ export const getArticlesQuery = `
 //     }
 //   }
 // }
+export const getArticlesByBlogQuery = `
+query getArticlesByBlog($blogHandle: String!) {
+  blogByHandle(handle: $blogHandle) {
+    id
+    title
+    articles(first: 10) {
+      edges {
+        node {
+          handle
+          id
+          title
+          contentHtml
+          content
+          publishedAt
+          image {
+            url
+            width
+            height
+            altText
+          }
+        }
+      }
+    }
+  }
+}
+`;
+
 export const getArticlesByIdQuery = `
 query GetArticleById($blogHandle: String!,$articleHandle:String!) {
   blogByHandle(handle: $blogHandle) {

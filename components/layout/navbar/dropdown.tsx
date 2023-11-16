@@ -16,7 +16,7 @@ import Link from 'next/link';
 
 type Checked = DropdownMenuCheckboxItemProps['checked'];
 
-export function DropdownMenuCheckboxes({items}:{items:{title:string,path:string}[]}) {
+export function DropdownMenuCheckboxes({ items }: { items: { title: string; path: string }[] }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -39,11 +39,11 @@ export function DropdownMenuCheckboxes({items}:{items:{title:string,path:string}
           transition={{ duration: 0.6 }}
         >
           <div className="grid w-full grid-cols-5 p-12 2xl:w-5/6 ">
-            <div className="col-span-2 flex items-center justify-end border-r-2 border-white pr-14">
+            <div className="col-span-2 flex justify-end border-r-2 border-white pr-14">
               <div>
                 {items.length ? (
                   <ul className=" ml-14 hidden w-full gap-6   text-sm md:flex md:flex-col  ">
-                    {items.slice(0,6)?.map((item) => (
+                    {items.slice(0, 6)?.map((item) => (
                       <li>
                         <Link
                           href={`${item.path}`}

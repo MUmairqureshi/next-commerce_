@@ -6,9 +6,9 @@ export default async function Blogs() {
   const latestProduct = await getCollectionProducts({
     collection: 'blogs-page-images'
   });
-  
+
   if (!latestProduct[0]) return null;
-  const Blogs= await getAllArticles()
+  const Blogs = await getAllArticles();
   if (!Blogs[0]) return null;
   return (
     <div className="mx-auto w-full max-w-screen-2xl ">

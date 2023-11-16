@@ -177,7 +177,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default async function Articles({ params }: { params: { handle: string } }) {
-  const BlogData = await getArticlesById({ blogHandle: 'news', articleHandle: params.handle });
+  const BlogData = await getArticlesById({
+    blogHandle: 'dapper-scouts',
+    articleHandle: params.handle
+  });
+
   const share = await getProduct('share');
 
   if (!BlogData) return null;
@@ -190,7 +194,7 @@ export default async function Articles({ params }: { params: { handle: string } 
 }
 
 async function CategoryPage({ share, BlogData }: { share: any; item: Product[]; BlogData: any }) {
-  // console.log(BlogData.author)
+  // console.log("BlogData",BlogData)
   return (
     <>
       <div className="mx-auto w-full max-w-screen-2xl ">

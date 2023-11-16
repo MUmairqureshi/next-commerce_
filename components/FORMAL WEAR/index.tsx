@@ -2,7 +2,7 @@ import { getCollection, getCollectionProducts } from 'lib/shopify';
 import Link from 'next/link';
 
 export async function Formallwear() {
- const Collection = await getCollection('suit-blazer')
+  const Collection = await getCollection('suit-blazer');
   const latestProduct = await getCollectionProducts({
     collection: 'suit-blazer'
   });
@@ -18,13 +18,11 @@ export async function Formallwear() {
           />
           <p className="mb-4 font-serif text-lg   text-slate-700"> FORMAL WEAR</p>
           <p className="mb-4 font-serif text-4xl text-slate-700">{Collection?.title}</p>
-          <p className="w-18   text-md mb-8 font-serif text-slate-600">
-            {Collection?.description}
-          </p>
+          <p className="w-18   text-md mb-8 font-serif text-slate-600">{Collection?.description}</p>
           <Link href={`/collection/${Collection?.handle}`}>
-          <button className="  rounded-sm bg-black px-12 py-3 font-sans text-white">
-            SHOP SUITS
-          </button>
+            <button className="  rounded-sm bg-black px-12 py-3 font-sans text-white">
+              SHOP SUITS
+            </button>
           </Link>
         </div>
         <div className="h-full w-full border-b   border-zinc-950 pb-6 md:border-none xl:w-2/3 ">
@@ -51,9 +49,9 @@ export async function Formallwear() {
             <p className="w-18   text-md font-serif text-slate-600  md:mb-4 md:text-start lg:mb-8 lg:text-center">
               {latestProduct[0]?.description}
             </p>
-          <Link href={`/collection/${Collection?.handle}`}>
-            <button className="  bg-black px-16 py-4 font-serif text-white">SHOP SUITS</button>
-          </Link>
+            <Link href={`/collection/${Collection?.handle}`}>
+              <button className="  bg-black px-16 py-4 font-serif text-white">SHOP SUITS</button>
+            </Link>
           </div>
           <p></p>
 

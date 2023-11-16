@@ -71,10 +71,9 @@ import { getMenu } from 'lib/shopify';
 //   );
 // }
 
-
 const footer = async () => {
   const menu = await getMenu('footer');
-  console.log("menu",menu)
+  console.log('menu', menu);
   return (
     <div className="bg-white pt-10">
       <div className="mx-auto grid max-w-screen-2xl gap-y-4 border-y-2 border-gray-300 bg-white px-6 py-10 sm:grid-cols-5 md:px-10">
@@ -88,28 +87,28 @@ const footer = async () => {
           </p>
         </div>
         <div className="col-span-3  grid grid-cols-2 gap-y-2 sm:grid-cols-3 sm:px-6 md:pl-20">
-        {menu&&menu.map((items,ind)=>{
-          return(
-          <div className="px-3">
-            <h2 className="trading-wider mb-2  text-lg font-medium text-[#003445]">
-              {items?.title}
-            </h2>
-            <ul>
-              {items?.subMenu?.map((item, index) => {
-                return (
-                  <li
-                    key={index}
-                    className="mb-1 text-sm font-light text-gray-600 hover:cursor-pointer hover:text-primary"
-                  >
-                    <a href={item.path}>{item.title}</a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          )
-        })} 
-         
+          {menu &&
+            menu.map((items, ind) => {
+              return (
+                <div className="px-3">
+                  <h2 className="trading-wider mb-2  text-lg font-medium text-[#003445]">
+                    {items?.title}
+                  </h2>
+                  <ul>
+                    {items?.subMenu?.map((item, index) => {
+                      return (
+                        <li
+                          key={index}
+                          className="mb-1 text-sm font-light text-gray-600 hover:cursor-pointer hover:text-primary"
+                        >
+                          <a href={item.path}>{item.title}</a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              );
+            })}
         </div>
       </div>
       <div className="mx-auto w-full bg-white p-6 text-center">

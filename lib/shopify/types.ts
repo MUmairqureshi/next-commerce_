@@ -46,7 +46,18 @@ export type Menu = {
   subMenu: {
     title: string;
     path: string;
-  }[] ;
+  }[];
+};
+
+export type SubMenu = {
+  title: string;
+  path: string;
+};
+
+export type Menu2 = {
+  title: string;
+  path: string;
+  subcategories: SubMenu[];
 };
 
 export type Money = {
@@ -287,6 +298,7 @@ export type articles = {
       image: ArticleImage;
       publishedAt: string;
       author: articleAuthor;
+      blog: any;
     }[];
   };
 };

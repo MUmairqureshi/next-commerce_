@@ -8,4 +8,4 @@ query getLoginCustomerDataQuery($accessToken: String!) {
       email
       phone
     }
-  }`
+  }`;
