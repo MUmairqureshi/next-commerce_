@@ -9,7 +9,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
 import SearchMobile from './searchMobile';
 
-export default function MobileShopDropDown({menu}:any) {
+export default function MobileShopDropDown({ menu }: any) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
@@ -20,13 +20,13 @@ export default function MobileShopDropDown({menu}:any) {
     { label: 'New Arrivals', href: '../collection/all-new-arrivals-1' },
     { label: 'Suits & Blazzers', href: '../collection/suits-blazers' },
     { label: 'Vests', href: '../collection/vests' },
-    { label: 'Dress Shirts', href: '../collection/all-adress-shirts' },
+    { label: 'Dress Shirts', href: '../collection/all-dress-shirt' },
     { label: 'Dress Pants', href: '../collection/dress-pants' },
     { label: 'Sweaters & Jacket', href: '../collection/sweaters-jackets' },
     { label: 'Casual Shirts & Sets', href: '../collection/casual-shirts-sets' },
     { label: 'Casual Pants & Shorts', href: '../collection/casual-pants-shorts' },
     { label: 'Accessories', href: '../collection/accessories' },
-    { label: 'Gift Card', href: '../gift-box' }
+    { label: 'Gift Card', href: '../gift-box/digital-gift-card-1' }
   ];
   useEffect(() => {
     const handleResize = () => {
@@ -104,7 +104,7 @@ export default function MobileShopDropDown({menu}:any) {
 
                 {menu.length ? (
                   <ul className="flex w-full    flex-col">
-                    {menu.map((item:any, ind:any) => (
+                    {menu.map((item: any, ind: any) => (
                       <motion.li
                         viewport={{ once: false }}
                         initial={{ opacity: 0, x: 24 }}

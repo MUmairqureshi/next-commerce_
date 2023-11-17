@@ -71,7 +71,6 @@ import { getMenu } from 'lib/shopify';
 //   );
 // }
 
-
 const footer = async () => {
   const menu = await getMenu('footer_menu');
   console.log("menu",menu)
@@ -88,28 +87,28 @@ const footer = async () => {
           </p>
         </div>
         <div className="col-span-3  grid grid-cols-2 gap-y-2 sm:grid-cols-3 sm:px-6 md:pl-20">
-        {menu&&menu.map((items,ind)=>{
-          return(
-          <div className="px-3">
-            <h2 className="trading-wider mb-2  text-lg font-medium text-[#003445]">
-              {items?.title}
-            </h2>
-            <ul>
-              {items?.subMenu?.map((item, index) => {
-                return (
-                  <li
-                    key={index}
-                    className="mb-1 text-sm font-light text-gray-600 hover:cursor-pointer hover:text-primary"
-                  >
-                    <a href={item.path}>{item.title}</a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          )
-        })} 
-         
+          {menu &&
+            menu.map((items, ind) => {
+              return (
+                <div className="px-3">
+                  <h2 className="trading-wider mb-2  text-lg font-medium text-[#003445]">
+                    {items?.title}
+                  </h2>
+                  <ul>
+                    {items?.subMenu?.map((item, index) => {
+                      return (
+                        <li
+                          key={index}
+                          className="mb-1 text-sm font-light text-gray-600 hover:cursor-pointer hover:text-primary"
+                        >
+                          <a href={item.path}>{item.title}</a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              );
+            })}
         </div>
       </div>
       <div className="mx-auto w-full bg-white p-6 text-center">

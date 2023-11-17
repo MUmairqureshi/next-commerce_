@@ -9,8 +9,8 @@ import React, { useState } from 'react';
 
 const Login = () => {
   const router = useRouter();
-  const [showModal,setShowModal]=useState(false)
-  const [modalData,setModalData]=useState({})
+  const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState({});
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -23,21 +23,29 @@ const Login = () => {
         .post('/api/login', formData)
         .then((response: any) => {
           if (response.data.status === 200) {
-            router.push("/")
+            router.push('/');
             // setShowModal(true)
             // setModalData({title:'Success!',message:response.data.message,href:"/",closeState:setShowModal})
           } else {
-            setShowModal(true)
-            setModalData({title:'Error!',message:response.data.message,closeState:setShowModal})
+            setShowModal(true);
+            setModalData({
+              title: 'Error!',
+              message: response.data.message,
+              closeState: setShowModal
+            });
           }
         })
         .catch((error: any) => {
-          setShowModal(true)
-            setModalData({title:'Error!',message:"Error",closeState:setShowModal})
+          setShowModal(true);
+          setModalData({ title: 'Error!', message: 'Error', closeState: setShowModal });
         });
     } catch (error) {
-      setShowModal(true)
-            setModalData({title:'Error!',message:"Error Logging Shopify customer: Please Try Again",closeState:setShowModal})
+      setShowModal(true);
+      setModalData({
+        title: 'Error!',
+        message: 'Error Logging Shopify customer: Please Try Again',
+        closeState: setShowModal
+      });
     }
   };
 
@@ -86,8 +94,7 @@ const Login = () => {
             </div>
           </form>
         </div>
-      {showModal&&(<AlertModal Data={modalData}/>)}
-
+        {showModal && <AlertModal Data={modalData} />}
       </div>
     </>
   );

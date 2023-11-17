@@ -4,10 +4,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default async function Hero2({ params }: { params: { handle: string } }) {
-  console.log(params.handle)
-  const BlogData= await getArticlesById(params.handle)
-  
-    const latestProduct = await getCollectionProducts({
+  console.log(params.handle);
+  const BlogData = await getArticlesById(params.handle);
+
+  const latestProduct = await getCollectionProducts({
     collection: `${params.handle}`
   });
   if (!BlogData) return null;

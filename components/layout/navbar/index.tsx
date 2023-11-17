@@ -39,13 +39,19 @@ export default async function Navbar() {
 
             {menu.length ? (
               <ul className="ml-20 hidden gap-8  text-sm lg:flex lg:items-center ">
-                {menu.map((item) => (
-                  <li className=" w-full">
+                {menu.map((item, key) => (
+                  // <li className='w-full' key={key}>
+                  //   {item.title}
+                  // </li>
+                  <li className=" w-full" key={key}>
                     {item.title === 'Shop' ? (
                       <DropdownMenuCheckboxes items={item?.subMenu} Collection1={Collection1} Collection2={Collection2} Collection3={Collection3} />
                     ) : (
                       <Link
-                        href={`${item.path}`}
+                        href={`${item.path
+                          .replace('blogs/blogs', 'all-blogs')
+                          .replace('blogs/dapper-scouts', 'all-blogs/dapper-scouts')
+                          .replace('/news', '')}`}
                         className="text-baseline w-full items-baseline text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300 "
                       >
                         {item.title}
@@ -63,7 +69,7 @@ export default async function Navbar() {
               </div>
               <div className="right-0 top-0 flex h-full items-center font-extrabold">
                 <Link href="/account">
-                <UserIcon className="h-6  font-extrabold " />
+                  <UserIcon className="h-6  font-extrabold " />
                 </Link>
               </div>
             </div>
