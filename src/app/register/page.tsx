@@ -4,12 +4,15 @@ import { Input } from '@/components/ui/input';
 import axios from 'axios';
 import AlertModal from 'components/AlertModal/page';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
 
 import React, { useState } from 'react';
 const Login = () => {
   // const router = useRouter()
   const [showModal,setShowModal]=useState(false)
   const [modalData,setModalData]=useState({})
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -27,9 +30,11 @@ const Login = () => {
         })
         .then((response: any) => {
           if (response.data.status === 200) {
-            console.log(response)
-            setShowModal(true)
-            setModalData({title:'Success!',message:response.data.message,href:"/",closeState:setShowModal})
+            router.push("/")
+            
+            // console.log(response)
+            // setShowModal(true)
+            // setModalData({title:'Success!',message:response.data.message,href:"/",closeState:setShowModal})
           } 
           else {
             setShowModal(true)

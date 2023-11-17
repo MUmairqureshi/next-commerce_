@@ -73,7 +73,7 @@ import { getMenu } from 'lib/shopify';
 
 
 const footer = async () => {
-  const menu = await getMenu('footer');
+  const menu = await getMenu('footer_menu');
   console.log("menu",menu)
   return (
     <div className="bg-white pt-10">

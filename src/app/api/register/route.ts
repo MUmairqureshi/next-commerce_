@@ -1,4 +1,5 @@
 import { SignUp } from 'lib/shopify';
+import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
@@ -6,13 +7,16 @@ export async function POST(req: NextRequest) {
   
   try {
     const res = await SignUp(data.formData); 
-    if(!res.customer){
-      console.log("hehe")
-      throw Error;
-    }
-    return NextResponse.json({ message: 'Sign Up Successful', status: 200, userData: res.customer });
+    console.log(res)
+    if(!res.customerAccessToken){
+      throw Error
+      }
+      cookies().set('accessToken', res.customerAccessToken?.accessToken);
+
+    return NextResponse.json({ message: 'Sign Up Successful', status: 200, userData: res.customerAccessToken });
   } catch (error: any) {
-    console.error('Error registering customer:', error.message);
+
+    console.error('Error registering customer:', error);
     return NextResponse.json({ message: 'Error registering customer', status: 500 });
   }
 }

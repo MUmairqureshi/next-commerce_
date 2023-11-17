@@ -325,6 +325,7 @@ export async function getArticlesById({blogHandle,articleHandle}:{blogHandle:str
       email:modal.email,password:modal.password,
     }
   });
+  console.log(res.body.data.customerAccessTokenCreate)
   return res.body.data.customerAccessTokenCreate
   
 }
@@ -346,7 +347,8 @@ export async function getArticlesById({blogHandle,articleHandle}:{blogHandle:str
     }
   });
     if(res.body.data.customerCreate){
-      return res.body.data.customerCreate;
+      const result= await SignIn({email:modal.email,password:modal.password})
+      return result;
     }else{
       return null;
     }
