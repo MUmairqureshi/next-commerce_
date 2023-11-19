@@ -18,6 +18,7 @@ import {
   getCollectionQuery,
   getCollectionsQuery
 } from './queries/collection';
+import { getFormQuery } from './queries/contact-form';
 import { getLoginCustomerDataQuery } from './queries/customer';
 import { getMenuQuery } from './queries/menu';
 import { getPageQuery, getPagesQuery } from './queries/page';
@@ -94,6 +95,8 @@ export async function shopifyFetch<T>({
     const body = await result.json();
 
     if (body.errors) {
+    console.log(body.errors,"erooro")
+
       throw body.errors[0];
     }
 
@@ -102,6 +105,7 @@ export async function shopifyFetch<T>({
       body
     };
   } catch (e) {
+    console.log(e,"erooro")
     if (isShopifyError(e)) {
       throw {
         cause: e.cause?.toString() || 'unknown',
@@ -296,7 +300,15 @@ export async function getArticlesById({blogHandle,articleHandle}:{blogHandle:str
   });
   return res.body.data.blogByHandle.articleByHandle;
 }
+};
+export async function getForm(): Promise<Collection | any> {
+    const res = await shopifyFetch<any>({
+    query: getFormQuery,
+    
+  });
+  console.log(res);
 }
+
   export async function getAllArticles(): Promise<articles | any> {
   const res = await shopifyFetch<{data:{articles:articles}}>({
     query: getArticlesQuery,

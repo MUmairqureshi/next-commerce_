@@ -14,9 +14,7 @@ export async function POST(req:NextRequest){
         return NextResponse.json({ message: 'Login In Successful', status: 200,customerAccessToken:res.customerAccessToken });
     
     }catch(err){
-        console.log("erorr")
-        // @ts-ignore
-        console.log(err)
+       
     return NextResponse.json({ message: 'Error Logging In customer', status: 500 });
     }
 }
