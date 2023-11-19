@@ -15,8 +15,6 @@ import Link from 'next/link';
 type Checked = DropdownMenuCheckboxItemProps['checked'];
 
 export async function DropdownMenuCheckboxes({items,Collection1,Collection2,Collection3}:{items:{title:string,path:string}[],Collection1:any,Collection2:any,Collection3:any}) {
-
-  
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -39,11 +37,13 @@ export async function DropdownMenuCheckboxes({items,Collection1,Collection2,Coll
           transition={{ duration: 0.6 }}
         >
           <div className="grid w-full grid-cols-5 p-12 2xl:w-5/6 ">
-            <div className="col-span-2 flex items-center justify-end border-r-2 border-white pr-14">
+            <div className="col-span-2 flex justify-end border-r-2 border-white pr-14">
               <div>
                 {items?.length ? (
                   <ul className=" ml-14 hidden w-full gap-6   text-sm md:flex md:flex-col  ">
+
                     {items?.slice(0,6)?.map((item) => (
+
                       <li>
                         <Link
                           href={`${item.path}`}

@@ -18,7 +18,7 @@ export const CreateCustomerMutation = `
     }
   `;
 
-export const SignInWithEmailAndPasswordMutataion=`
+export const SignInWithEmailAndPasswordMutataion = `
   mutation SignInWithEmailAndPassword(
     $email: String!, 
     $password: String!,
@@ -37,5 +37,6 @@ export const SignInWithEmailAndPasswordMutataion=`
             message
         }
     }
-    
+
 }`;
+

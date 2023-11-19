@@ -13,7 +13,7 @@ import SearchMobile from './searchMobile';
 interface PropType {
   title: string;
   path: string;
-  subMenu:{title:string,path:string}[]
+  subMenu: { title: string; path: string }[];
 }
 
 export default function MobileMenu({ men }: { men: PropType[] }) {
