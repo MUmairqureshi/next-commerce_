@@ -1,5 +1,7 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable @next/next/no-async-client-component */
 import ContactForm from 'components/Contact-Form/page';
-import { getPage } from 'lib/shopify';
+import { getMetaObject, getShopDetails } from 'lib/shopify';
 import TwoBoxes from '../collections/two-boxes';
 import "./style.css";
 // export async function getServerSideProps() {
@@ -16,33 +18,22 @@ import "./style.css";
 
 
 const Page = async () => {
-  const page = await getPage('contactsss');
-
-  // window.onload = async function() {
-  // };
-  // const [page,setPage]=useState({})
-  // let page;
-  // const fetchData=async()=>{
-  //   let res=await axios.get('/api/getContactPage') 
-  //   return res?.data;
-  // }
-  // useEffect(()=>{
-  //   fetchData()
-  // })
+  
+  const page = await getMetaObject('contact-page','contact_page');
+  getShopDetails();
+  console.log(page)
   return (
     <div className="w-full h-full">
         <div className="max-w-screen-2xl w-full flex justify-center relative items-center flex-col  mx-auto">
-
-            <div className="w-full z-10 top-0 h-[72vh] max-h-[490px] flex justify-end items-end text-right  pr-10 absolute ">
-            <h1 className="text-white lg:text-6xl text-5xl bottom-0 font-bold italic">{page?.title}</h1>
+          <div style={{backgroundImage: `url(${page?.image})`,backgroundPosition:"center",backgroundRepeat:"no-repeat",backgroundSize:"cover"}} className='h-[86vh] flex justify-end items-end w-full max-h-[700px]'>
+          <h1 className='text-white font-bold text-6xl mb-16 mr-12'>{page?.title}</h1>
+          </div>
+            
+            <div className="p-10    sm:p-20 bg-[#003445] w-full text-center text-white">
+        <h1 className="text-4xl font-bold mb-4">{page?.sub_heading}</h1>
+        <p>{page?.short_description}</p>
             </div>
-        <div className="w-full ">
- 
-            <div
-            className="my-styled-content"
-      dangerouslySetInnerHTML={{ __html: page?.body as string }}
-    /> 
-             </div>
+
           <ContactForm/>
           <TwoBoxes/>
 

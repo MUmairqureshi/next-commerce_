@@ -23,6 +23,7 @@ import {
 } from './queries/collection';
 import { getFormQuery } from './queries/contact-form';
 import { getLoginCustomerDataQuery } from './queries/customer';
+import { fetchMetaObjectQuery } from './queries/fetchMetaObject';
 import { getMenuQuery } from './queries/menu';
 import { getPageQuery, getPagesQuery } from './queries/page';
 import {
@@ -68,7 +69,7 @@ const key = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
 type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
 
 export async function shopifyFetch<T>({
-  cache = 'force-cache',
+  cache = 'no-cache',
   headers,
   query,
   tags,
@@ -462,6 +463,18 @@ export async function getCollections(): Promise<Collection[]> {
 
   return collections;
 }
+export async function getShopDetails(): Promise<any> {
+  const res = await shopifyFetch<ShopifyMenuOperation>({
+    query: `query getShopDetails {
+      email    
+      shop {
+          name
+      }
+    }`,
+    
+  });
+    console.log(res?.body?.data)
+}
 
 export async function getSubMenu(handle: string): Promise<Menu2[]> {
   const res = await shopifyFetch<ShopifyMenuOperation>({
@@ -540,6 +553,26 @@ export async function getProduct(handle: string): Promise<Product | undefined> {
   return reshapeProduct(res.body.data.product, false);
 }
 
+export async function getMetaObject(handle: string,type:string): Promise<any> {
+  const res = await shopifyFetch<any>({
+    cache:"no-cache",
+    query: fetchMetaObjectQuery,
+    variables: {
+      handle,
+      type
+    }
+  });
+  let obj:any={}
+  res.body?.data?.metaobject?.fields?.map((e:any)=>{
+    if(!e.reference){
+    obj[e.key]=e?.value;
+    }else{
+      obj[e.key]=e?.reference?.image?.originalSrc;
+    }
+  })
+  return obj;
+  // return reshapeProducts(res.body.data.productRecommendations);
+}
 export async function getProductRecommendations(productId: string): Promise<Product[]> {
   const res = await shopifyFetch<ShopifyProductRecommendationsOperation>({
     query: getProductRecommendationsQuery,
