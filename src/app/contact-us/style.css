@@ -1,0 +1,47 @@
+ .my-styled-content img {
+    width:100vw;
+    height:80vh;
+    max-height:660px;
+  }
+/*
+  .my-styled-content h1 {
+    font-size: 62px;
+  }
+  .my-styled-content h2 {
+    font-size: 48px;
+    background-color: red;
+
+  }
+  .my-styled-content h3 {
+    font-size: 32px;
+  }
+  .my-styled-content h4 {
+    font-size: 24px;
+  }
+*/
+  @media only screen and (max-width: 768px) {
+  .my-styled-content h2 span {
+    font-size: 8px;
+    color: yellow;
+    background-color: aliceblue;
+  }
+  .my-styled-content h2 {
+    font-size: 8px;
+    padding-left: 0px !important; 
+    padding-right: 0px !important; 
+    color: yellow;
+  }
+  .my-styled-content p {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .my-styled-content h1 {
+    font-size: 18px;
+  }
+  .my-styled-content h3 {
+    font-size: 4px;
+  }
+  .my-styled-content h4 {
+    font-size: 2px;
+  }
+} 

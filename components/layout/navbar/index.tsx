@@ -3,7 +3,7 @@ import Cart from 'components/cart';
 import OpenCart from 'components/cart/open-cart';
 import { Suspense } from 'react';
 // import { LuBird } from "react-icons/lu";
-import { getMenu } from 'lib/shopify';
+import { getCollection, getMenu } from 'lib/shopify';
 import Link from 'next/link';
 import { DropdownMenuCheckboxes } from './dropdown';
 import MobileMenu from './mobile-menu';
@@ -12,6 +12,12 @@ const { SITE_NAME } = process.env;
 
 export default async function Navbar() {
   const menu = await getMenu('main_menu');
+  const Collection1 = await getCollection('our-design')
+  const Collection2 = await getCollection('all-new-arrivals-1')
+  const Collection3 = await getCollection('shop-best-sellers')
+  if (!Collection1) return null;
+  if (!Collection2) return null;
+  if (!Collection3) return null;
   return (
     <div className="mx-auto h-full w-full  max-w-screen-2xl">
       <div className="ceontent-center flex h-12 items-center justify-center bg-slate-400 text-center text-black">
@@ -39,7 +45,7 @@ export default async function Navbar() {
                   // </li>
                   <li className=" w-full" key={key}>
                     {item.title === 'Shop' ? (
-                      <DropdownMenuCheckboxes items={item?.subMenu} />
+                      <DropdownMenuCheckboxes items={item?.subMenu} Collection1={Collection1} Collection2={Collection2} Collection3={Collection3} />
                     ) : (
                       <Link
                         href={`${item.path

@@ -72,8 +72,11 @@ import { getMenu } from 'lib/shopify';
 // }
 
 const footer = async () => {
-  const menu = await getMenu('footer');
-  console.log('menu', menu);
+  const menu = await getMenu('footer_menu');
+  let updatedMenu=[
+    menu[0]
+  ]
+  console.log("menu",menu[0]?.subMenu[0]?.path.replace('/collections',''))
   return (
     <div className="bg-white pt-10">
       <div className="mx-auto grid max-w-screen-2xl gap-y-4 border-y-2 border-gray-300 bg-white px-6 py-10 sm:grid-cols-5 md:px-10">
@@ -101,7 +104,7 @@ const footer = async () => {
                           key={index}
                           className="mb-1 text-sm font-light text-gray-600 hover:cursor-pointer hover:text-primary"
                         >
-                          <a href={item.path}>{item.title}</a>
+                          <a href={ind==1?item.path:item.path.replace('/collections','')}>{item.title}</a>
                         </li>
                       );
                     })}

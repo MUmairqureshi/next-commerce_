@@ -125,10 +125,12 @@ export default function MobileMenu({ men }: { men: PropType[] }) {
                     transition={{ duration: 0.3, delay: 0.7 }}
                     className="flex text-white"
                   >
+                    <Link href="/account">
                     <p className="flex">
                       <UserIcon className={clsx('mr-2 h-6 w-8  font-extrabold text-white ')} />
                       Accounts
                     </p>
+                    </Link>
                   </motion.li>
                   <motion.li
                     viewport={{ once: false }}

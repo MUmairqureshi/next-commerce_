@@ -21,7 +21,9 @@ import {
   getCollectionQuery,
   getCollectionsQuery
 } from './queries/collection';
+import { getFormQuery } from './queries/contact-form';
 import { getLoginCustomerDataQuery } from './queries/customer';
+import { fetchMetaObjectQuery } from './queries/fetchMetaObject';
 import { getMenuQuery } from './queries/menu';
 import { getPageQuery, getPagesQuery } from './queries/page';
 import {
@@ -67,7 +69,7 @@ const key = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
 type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
 
 export async function shopifyFetch<T>({
-  cache = 'force-cache',
+  cache = 'no-cache',
   headers,
   query,
   tags,
@@ -98,6 +100,8 @@ export async function shopifyFetch<T>({
     const body = await result.json();
 
     if (body.errors) {
+    console.log(body.errors,"erooro")
+
       throw body.errors[0];
     }
 
@@ -106,6 +110,7 @@ export async function shopifyFetch<T>({
       body
     };
   } catch (e) {
+    console.log(e,"erooro")
     if (isShopifyError(e)) {
       throw {
         cause: e.cause?.toString() || 'unknown',
@@ -318,6 +323,16 @@ export async function getArticlesByBlog(blogHandle: string): Promise<articles[] 
   }
 }
 
+export async function getForm(): Promise<Collection | any> {
+    const res = await shopifyFetch<any>({
+    query: getFormQuery,
+    
+  });
+  console.log(res);
+}
+
+  
+
 export async function getArticlesById({
   blogHandle,
   articleHandle
@@ -362,7 +377,11 @@ export async function SignIn(modal: { email: string; password: string }): Promis
       password: modal.password
     }
   });
-  return res.body.data.customerAccessTokenCreate;
+
+  console.log(res.body.data.customerAccessTokenCreate)
+  return res.body.data.customerAccessTokenCreate
+  
+
 }
 export async function SignUp(modal: {
   firstName: string;
@@ -381,11 +400,14 @@ export async function SignUp(modal: {
       acceptsMarketing: modal.acceptsMarketing
     }
   });
-  if (res.body.data.customerCreate) {
-    return res.body.data.customerCreate;
-  } else {
-    return null;
-  }
+
+    if(res.body.data.customerCreate){
+      const result= await SignIn({email:modal.email,password:modal.password})
+      return result;
+    }else{
+      return null;
+    }
+
 }
 
 export async function getCollectionProducts({
@@ -441,10 +463,22 @@ export async function getCollections(): Promise<Collection[]> {
 
   return collections;
 }
+export async function getShopDetails(): Promise<any> {
+  const res = await shopifyFetch<ShopifyMenuOperation>({
+    query: `query getShopDetails {
+      email    
+      shop {
+          name
+      }
+    }`,
+    
+  });
+    console.log(res?.body?.data)
+}
 
 export async function getSubMenu(handle: string): Promise<Menu2[]> {
   const res = await shopifyFetch<ShopifyMenuOperation>({
-    query: getSubMenuQuery,
+    query: getMenuQuery,
     tags: [TAGS.collections],
     variables: {
       handle
@@ -519,6 +553,26 @@ export async function getProduct(handle: string): Promise<Product | undefined> {
   return reshapeProduct(res.body.data.product, false);
 }
 
+export async function getMetaObject(handle: string,type:string): Promise<any> {
+  const res = await shopifyFetch<any>({
+    cache:"no-cache",
+    query: fetchMetaObjectQuery,
+    variables: {
+      handle,
+      type
+    }
+  });
+  let obj:any={}
+  res.body?.data?.metaobject?.fields?.map((e:any)=>{
+    if(!e.reference){
+    obj[e.key]=e?.value;
+    }else{
+      obj[e.key]=e?.reference?.image?.originalSrc;
+    }
+  })
+  return obj;
+  // return reshapeProducts(res.body.data.productRecommendations);
+}
 export async function getProductRecommendations(productId: string): Promise<Product[]> {
   const res = await shopifyFetch<ShopifyProductRecommendationsOperation>({
     query: getProductRecommendationsQuery,

@@ -4,12 +4,15 @@ import { Input } from '@/components/ui/input';
 import axios from 'axios';
 import AlertModal from 'components/AlertModal/page';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
 
 import React, { useState } from 'react';
 const Login = () => {
   // const router = useRouter()
-  const [showModal, setShowModal] = useState(false);
-  const [modalData, setModalData] = useState({});
+  const [showModal,setShowModal]=useState(false)
+  const [modalData,setModalData]=useState({})
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -27,40 +30,31 @@ const Login = () => {
         })
         .then((response: any) => {
           if (response.data.status === 200) {
-            console.log(response);
-            setShowModal(true);
-            setModalData({
-              title: 'Success!',
-              message: response.data.message,
-              href: '/',
-              closeState: setShowModal
-            });
-          } else {
-            setShowModal(true);
-            setModalData({
-              title: 'Error!',
-              message: response.data.message,
-              closeState: setShowModal
-            });
+            router.push("/")
+            
+            // console.log(response)
+            // setShowModal(true)
+            // setModalData({title:'Success!',message:response.data.message,href:"/",closeState:setShowModal})
+          } 
+          else {
+            setShowModal(true)
+            setModalData({title:'Error!',message:response.data.message,closeState:setShowModal})
           }
         })
         .catch((error: any) => {
-          setShowModal(true);
-          setModalData({ title: 'Error!', message: 'Error', closeState: setShowModal });
+          setShowModal(true)
+            setModalData({title:'Error!',message:"Error",closeState:setShowModal})
         });
     } catch (error) {
-      setShowModal(true);
-      setModalData({
-        title: 'Error!',
-        message: 'Error Signing Up Shopify customer: Please Try Again',
-        closeState: setShowModal
-      });
+      setShowModal(true)
+            setModalData({title:'Error!',message:"Error Signing Up Shopify customer: Please Try Again",closeState:setShowModal})
     }
   };
 
   return (
     <>
-      <div className="relative flex h-screen w-full items-center justify-center bg-slate-100">
+
+      <div className="flex h-screen w-full items-center justify-center bg-slate-100 relative">
         <div className="mb-4 flex w-full max-w-sm items-center justify-center gap-1.5 space-x-2 space-y-12 px-8 pb-8 pt-12 text-2xl font-semibold text-sky-950 sm:bg-white sm:shadow-xl">
           <form
             className="w-full	space-y-5 rounded-full border-sky-500 sm:w-[400px]"
@@ -112,11 +106,9 @@ const Login = () => {
                 id="marketing"
                 className="h-4 w-4"
                 // size={2}
-                onChange={(e: any) =>
-                  setFormData({ ...formData, acceptsMarketing: !formData.acceptsMarketing })
-                }
-              />
-              <label className="text-sm font-normal">You want Email Marketing</label>
+                onChange={(e: any) => setFormData({ ...formData, acceptsMarketing: !formData.acceptsMarketing })}
+                />
+               <label  className="text-sm font-normal">You want Email Marketing</label>
             </div>
             <div className="grid  w-full max-w-sm items-center gap-1.5 text-slate-200 shadow-xl ">
               <Button className="bg-[#003445]" variant="default">
@@ -124,7 +116,10 @@ const Login = () => {
               </Button>
             </div>
 
+  
             <div className="mb-4 flex w-full max-w-sm items-center justify-center gap-1.5 space-x-2 text-sm font-semibold text-sky-950 ">
+  
+
               <label>
                 Have an account?{' '}
                 <Link href="/login" className="text-indigo-500 hover:underline">
@@ -135,8 +130,10 @@ const Login = () => {
             </div>
           </form>
         </div>
-        {showModal && <AlertModal Data={modalData} />}
+      {showModal&&(<AlertModal Data={modalData}/>)}
       </div>
+
+
     </>
   );
 };
